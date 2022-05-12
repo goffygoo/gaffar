@@ -1,0 +1,13 @@
+{
+  "scripts": {
+    "client-i": "cd ./client/ && npm install",
+    "client": "cd ./client/ && npm start",
+    "server-i": "cd ./server/ && npm install",
+    "server": "cd ./server/ && npm start",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "install": "concurrently \"npm run server-i\" \"npm run client-i\""
+  },
+  "dependencies": {
+    "concurrently": "^7.1.0"
+  }
+}
