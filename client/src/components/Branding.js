@@ -9,7 +9,6 @@ export default function Branding(props) {
     
   return (
     <div className={styles.container} style={{height, width}}>
-
     </div>
   )
 }

@@ -1,0 +1,12 @@
+.container {
+    display: flex;
+    cursor: pointer;
+    height: 5vh;
+    width: 10vw;
+    background-color: aqua;
+    margin: 1vh 0;
+}
+
+.container > p {
+    margin: auto;
+}

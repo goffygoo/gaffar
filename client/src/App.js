@@ -1,22 +1,25 @@
 import { Provider } from "react-redux"
 import store from "./store";
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Test from "./pages/Test";
 import Project from "./pages/Project";
+import NotFound from "./pages/NotFound";
 
 function App() {
   return (
     <Provider store={store}>
-      <Router>
+      <BrowserRouter>
         <Routes>
+          <Route exact path="/" element={<Login/>} />
           <Route exact path="/login" element={<Login/>} />
           <Route exact path="/home" element={<Home/>} />
           <Route exact path="/test" element={<Test/>} />
-          <Route exact path="/project" element={<Project/>} />
+          <Route exact path="/project/*" element={<Project/>} />
+          <Route path="/*"  element={<NotFound/>} />
         </Routes>
-      </Router>
+      </BrowserRouter>
     </Provider>
   );
 }
