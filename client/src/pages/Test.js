@@ -1,7 +1,7 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
 import { bindActionCreators } from 'redux'
+import { useNavigate } from 'react-router-dom'
 
 import * as actionTest from '../action/actionTest'
 import ViewNum from '../components/viewNum'
