@@ -1,4 +1,10 @@
-import { TOGGLE_EDITABLE, EDIT_DATA, ADD_BOX, SET_TYPEC } from "./actionTypes";
+import {
+  TOGGLE_EDITABLE,
+  EDIT_DATA,
+  ADD_BOX,
+  SET_TYPEC,
+  REMOVE_BOX,
+} from "./actionTypes";
 import store from "../store";
 
 export const toggleedit = (editable) => (dispatch) => {
@@ -18,9 +24,7 @@ export const editdata = (content, indx) => (dispatch) => {
 };
 
 export const addbox = () => (dispatch) => {
-  let contents = store.getState().docs.contents;
-  let typecon = store.getState().docs.typecon;
-  let typec = store.getState().docs.typec;
+  let { contents, typecon, typec } = store.getState().docs;
   contents.push("");
   typecon.push(typec);
   dispatch({
@@ -33,6 +37,26 @@ export const addbox = () => (dispatch) => {
 };
 
 export const settypec = (typii) => (dispatch) => {
+  dispatch({
+    data: typii,
+    type: SET_TYPEC,
+  });
+};
+
+export const removebox = (indx) => (dispatch) => {
+  let { contents, typecon } = store.getState().docs;
+  contents.splice(indx, 1);
+  typecon.splice(indx, 1);
+  dispatch({
+    data: {
+      contents,
+      typecon,
+    },
+    type: REMOVE_BOX,
+  });
+};
+
+export const getDocs = (typii) => (dispatch) => {
   dispatch({
     data: typii,
     type: SET_TYPEC,
