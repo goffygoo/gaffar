@@ -14,6 +14,18 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  projects: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Project",
+    },
+  ],
+  mytasks: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Tasks",
+    },
+  ],
 });
 
 const Users = mongoose.model("Users", userSchema);

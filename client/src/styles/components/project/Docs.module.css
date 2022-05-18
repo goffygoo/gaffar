@@ -1,0 +1,62 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: aqua;
+  overflow-y: scroll;
+}
+.stillcomp {
+  background-color: gray;
+  min-height: 20vh;
+  border: none;
+  outline: none;
+}
+.buttons {
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+.url {
+  min-height: 20vh;
+  margin: 0 auto 0 auto;
+  color: blue;
+  color: 1rem;
+}
+
+.title {
+  min-height: 20vh;
+  font-weight: bolder;
+  font-size: 2rem;
+  margin: 0 auto 0 auto;
+}
+
+.method {
+  min-height: 20vh;
+  font-weight: bolder;
+  font-size: 1rem;
+  margin: 0 auto 0 auto;
+}
+
+.request {
+  font-weight: bolder;
+  font-size: 1rem;
+  margin: 0 auto 0 auto;
+  min-height: 20vh;
+  color: chocolate;
+}
+
+.response {
+  font-weight: bolder;
+  color: green;
+  font-size: 1rem;
+  margin: 0 auto 0 auto;
+}
+
+.docCon {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  word-break: break-all;
+  min-height: 20vh;
+  width: 40vw;
+}

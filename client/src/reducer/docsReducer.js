@@ -3,6 +3,7 @@ import {
   EDIT_DATA,
   ADD_BOX,
   SET_TYPEC,
+  REMOVE_BOX,
 } from "../action/actionTypes";
 
 const initialstate = {
@@ -35,6 +36,12 @@ const func = function (state = initialstate, action) {
       return {
         ...state,
         typec: action.data,
+      };
+    case REMOVE_BOX:
+      return {
+        ...state,
+        contents: action.data.contents,
+        typecon: action.data.typecon,
       };
     default:
       return state;

@@ -21,3 +21,4 @@ export const TOGGLE_EDITABLE = "TOGGLE_EDITABLE";
 export const EDIT_DATA = "EDIT_DATA";
 export const ADD_BOX = "ADD_BOX";
 export const SET_TYPEC = "SET_TYPEC";
+export const REMOVE_BOX = "REMOVE_BOX";
