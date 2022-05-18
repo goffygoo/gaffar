@@ -2,21 +2,29 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import * as actionDocs from "../../../action/actionDocs";
 import { bindActionCreators } from "redux";
-import "../../../styles/components/project/Docs.module.css";
+import styles from "../../../styles/components/project/Docs.module.css";
 
-export default function TextComp({ indx }) {
+export default function TextComp({ indx, typec }) {
   const { contents } = useSelector((state) => state.docs);
 
   const dispatch = useDispatch();
   const { editdata } = bindActionCreators(actionDocs, dispatch);
   return (
-    <div className="textcomp">
-      <textarea
-        value={contents[indx]}
-        onChange={(e) => editdata(e.target.value, indx)}
-        rows={12}
-        cols={60}
-      />
+    <div className={styles.textcomp}>
+      <p>{typec.charAt(0).toUpperCase() + typec.substring(1) + " : "}</p>
+      {typec === "response" || typec == "request" ? (
+        <textarea
+          className={styles.textcomparea}
+          value={contents[indx][typec]}
+          onChange={(e) => editdata(e.target.value, indx, typec)}
+        />
+      ) : (
+        <input
+          className={`${styles.textcomparea}`}
+          value={contents[indx][typec]}
+          onChange={(e) => editdata(e.target.value, indx, typec)}
+        />
+      )}
     </div>
   );
 }

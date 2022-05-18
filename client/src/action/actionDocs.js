@@ -7,16 +7,18 @@ import {
 } from "./actionTypes";
 import store from "../store";
 
-export const toggleedit = (editable) => (dispatch) => {
+export const toggleedit = (indx) => (dispatch) => {
+  let { editable } = store.getState().docs;
+  editable[indx] = !editable[indx];
   dispatch({
     data: editable,
     type: TOGGLE_EDITABLE,
   });
 };
 
-export const editdata = (content, indx) => (dispatch) => {
+export const editdata = (content, indx, typec) => (dispatch) => {
   let contents = store.getState().docs.contents;
-  contents[indx] = content;
+  contents[indx][typec] = content;
   dispatch({
     data: contents,
     type: EDIT_DATA,
@@ -24,13 +26,19 @@ export const editdata = (content, indx) => (dispatch) => {
 };
 
 export const addbox = () => (dispatch) => {
-  let { contents, typecon, typec } = store.getState().docs;
-  contents.push("");
-  typecon.push(typec);
+  let { contents, editable } = store.getState().docs;
+  contents.push({
+    title: "",
+    url: "",
+    method: "",
+    request: "",
+    response: "",
+  });
+  editable.push(true);
   dispatch({
     data: {
       contents,
-      typecon,
+      editable,
     },
     type: ADD_BOX,
   });
