@@ -1,55 +1,105 @@
 .container {
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
-  background-color: aqua;
+  background-color: white;
+  height: 90vh;
   overflow-y: scroll;
 }
-.stillcomp {
-  background-color: gray;
-  min-height: 20vh;
-  border: none;
-  outline: none;
+.boxContainer {
+  margin: 1vh auto 0 auto;
+  width: 70vw;
+  border: 0.5mm grey solid;
 }
-.buttons {
+
+.textcomp {
+  background-color: white;
+  min-height: 5vh;
+  border: none;
+  padding-left: 5rem;
   display: flex;
-  flex-direction: row-reverse;
+  flex-direction: row;
+}
+.textcomp > p {
+  margin: auto 0 auto 1vw;
+}
+.textcomparea {
+  border: none;
+}
+.stillcomp {
+  background-color: white;
+  min-height: 5vh;
+  border: none;
+  padding-left: 5rem;
+
+  outline: none;
 }
 
 .url {
-  min-height: 20vh;
-  margin: 0 auto 0 auto;
   color: blue;
-  color: 1rem;
+  font-size: 1rem;
 }
 
 .title {
-  min-height: 20vh;
   font-weight: bolder;
   font-size: 2rem;
-  margin: 0 auto 0 auto;
 }
 
 .method {
-  min-height: 20vh;
   font-weight: bolder;
   font-size: 1rem;
-  margin: 0 auto 0 auto;
+}
+
+.title .textcomp > input {
+  margin-left: 1vw;
+  font-size: 1.5rem;
+  font-weight: bolder;
+}
+
+.method .textcomp > input {
+  margin-left: 1vw;
+  font-size: 1rem;
+}
+
+.url .textcomp > input {
+  margin-left: 1vw;
+  font-size: 1rem;
 }
 
 .request {
   font-weight: bolder;
   font-size: 1rem;
-  margin: 0 auto 0 auto;
-  min-height: 20vh;
   color: chocolate;
 }
+.request .textcomp {
+  display: flex;
+  flex-direction: column;
+}
+.request .textcomp > textarea {
+  font-size: 1rem;
+  min-height: 5vh;
+  width: 40vw;
+  margin-left: 1vw;
+  background-color: rgba(0, 128, 0, 0.467);
+}
 
+.response .textcomp > textarea {
+  font-size: 1rem;
+  min-height: 5vh;
+  width: 40vw;
+  margin-left: 1vw;
+  margin-bottom: 2vh;
+  background-color: rgba(0, 128, 0, 0.467);
+}
+.response .textcomp {
+  display: flex;
+  flex-direction: column;
+}
 .response {
   font-weight: bolder;
   color: green;
   font-size: 1rem;
-  margin: 0 auto 0 auto;
+  display: flex;
+  flex-direction: column;
 }
 
 .docCon {
@@ -59,4 +109,41 @@
   word-break: break-all;
   min-height: 20vh;
   width: 40vw;
+}
+
+.save {
+  background-color: green;
+  color: white;
+  cursor: pointer;
+  width: 2vw;
+  height: 3vh;
+  margin-left: 1mm;
+}
+
+.edit {
+  background-color: green;
+  color: white;
+  cursor: pointer;
+  width: 2vw;
+  height: 3vh;
+  margin-left: 1mm;
+}
+
+.request .stillcomp > div {
+  font-size: 1rem;
+  min-height: 5vh;
+  width: 40vw;
+  font-weight: 100;
+  color: black;
+  background-color: rgba(0, 128, 0, 0.467);
+}
+
+.response .stillcomp > div {
+  font-size: 1rem;
+  font-weight: 100;
+  color: black;
+  min-height: 5vh;
+  width: 40vw;
+  margin-bottom: 2vh;
+  background-color: rgba(0, 128, 0, 0.467);
 }
