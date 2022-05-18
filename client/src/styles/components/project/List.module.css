@@ -1,0 +1,58 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    height: 92vh;
+    width: 90vw;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}   
+
+.item {
+    display: flex;
+    flex-direction: column;
+    margin: 1vh 0 1vh 2vw;
+    border: 2px solid black;
+}
+
+.itemHead {
+    display: flex;
+    flex-direction: row;
+}
+
+.itemHead > button {
+
+    margin: auto 1vw;
+}
+
+
+.subContainer {
+    display: flex;
+    flex-direction: column;
+    margin: 1vh 0 1vh 2vw;
+    border: 2px solid black;
+}
+
+.taskContainer {
+    display: flex;
+    flex-direction: row;
+    cursor: pointer;
+    width: fit-content;
+}
+
+.taskContainer > input {
+    margin: auto 1vw;
+}
+
+.taskContainer > h2 {
+    margin: auto 0;
+}
+
+.taskChecked {
+    text-decoration: line-through;
+} 
+
+.addItem {
+    display: flex;
+    flex-direction: row;
+    margin: 1vh 0 1vh 2vw;
+}
