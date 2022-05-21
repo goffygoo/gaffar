@@ -1,0 +1,85 @@
+.mainCtn {
+  background-color: rgb(119, 119, 219);
+  width: 54vw;
+  height: 20vh;
+  display: flex;
+  flex-direction: row;
+  margin: 2vh auto 0 auto;
+}
+
+.left {
+  background-color: rgb(201, 112, 201);
+  width: 8vw;
+  height: 16vh;
+  margin: auto 1vw auto auto;
+}
+
+.center {
+  display: flex;
+  height: 16vh;
+  width: 18vw;
+  flex-direction: column;
+  margin: auto 1vw auto auto;
+}
+
+.right {
+  display: flex;
+  height: 16vh;
+  width: 18vw;
+  margin: auto 1vw auto auto;
+  flex-direction: column;
+}
+.kickBtn {
+  margin: 1vh 1vw auto auto;
+
+  height: 2vh;
+  width: 2vh;
+  background-color: orangered;
+}
+.name {
+  height: 3vh;
+  width: 15vw;
+  margin: auto auto auto auto;
+  background-color: rgb(255, 128, 0);
+}
+
+.email {
+  height: 3vh;
+  width: 15vw;
+  margin: auto auto auto auto;
+  background-color: rgb(255, 99, 216);
+}
+
+.upper {
+  height: 3vh;
+  width: 15vw;
+  margin: auto auto auto auto;
+  background-color: orange;
+}
+.lower {
+  height: 3vh;
+  width: 15vw;
+  margin: auto auto auto auto;
+  display: flex;
+  flex-direction: row;
+}
+
+.edit {
+  width: 3vw;
+  height: 3vh;
+  background-color: purple;
+}
+
+.save {
+  width: 3vw;
+  height: 3vh;
+  margin: 0 0 0 auto;
+  background-color: greenyellow;
+}
+
+.makeadmin {
+  width: 7vw;
+  height: 3vh;
+  background-color: orangered;
+  margin: 0 0 0 auto;
+}

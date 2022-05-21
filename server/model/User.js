@@ -26,6 +26,12 @@ const userSchema = new mongoose.Schema({
       ref: "Tasks",
     },
   ],
+  invites: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Project",
+    },
+  ],
 });
 
 const Users = mongoose.model("Users", userSchema);

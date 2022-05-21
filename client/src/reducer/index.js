@@ -4,6 +4,8 @@ import list from "./listReducer";
 import board from "./boardReducer";
 import docs from "./docsReducer";
 import home from "./homeReducer";
+import member from "./memberReducer";
+import project from "./projectReducer";
 
 export default combineReducers({
   login,
@@ -11,4 +13,6 @@ export default combineReducers({
   board,
   docs,
   home,
+  member,
+  project,
 });
