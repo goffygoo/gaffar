@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Branding from "../components/Branding";
 import Project from "../components/home/Project";
 import Invite from "../components/home/Invite";
@@ -9,19 +9,37 @@ import { useNavigate } from "react-router-dom";
 import { bindActionCreators } from "redux";
 
 import * as actionHome from "../action/actionHome";
+import * as actionLogin from "../action/actionLogin";
 
 export default function Home() {
   const { pname } = useSelector((state) => state.home);
   const navigate = useNavigate();
 
   const dispatch = useDispatch();
-  const { addProject, pnamechange } = bindActionCreators(actionHome, dispatch);
+  const { addProject, pnamechange, initUser } = bindActionCreators(Object.assign({}, actionHome, actionLogin), dispatch);
+  
+  useEffect(() => {
+    if (localStorage.getItem('user') === null || localStorage.getItem('token') === null) return navigate('/')
+    const user = JSON.parse(localStorage.getItem('user'))
+    const token = JSON.parse(localStorage.getItem('token'))
+
+    initUser(user, token)
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
   return (
     <div className={styles.page}>
       <div className={styles.topArea}>
         <Branding height="10vh" />
 
-        <div className={styles.logoutBtn}></div>
+        <div className={styles.logoutBtn} onClick={() => {
+          localStorage.removeItem('user')
+          localStorage.removeItem('token')
+
+          navigate('/login')
+        }}>
+          <p>Log Out</p>
+        </div>
       </div>
       <div className={styles.mainWindow}>
         <div className={styles.mainContainer}>

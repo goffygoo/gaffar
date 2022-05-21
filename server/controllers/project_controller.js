@@ -2,7 +2,6 @@ import Projects from "../model/Project.js";
 import Users from "../model/User.js";
 import jwt from "jsonwebtoken";
 import Docs from "../model/Docs.js";
-import func from "../../client/src/reducer/testReducer.js";
 
 export const home = function (req, res) {
   res.send("Project Controller is Working");

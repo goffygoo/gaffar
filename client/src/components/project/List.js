@@ -45,9 +45,9 @@ export default function List() {
             <div className={styles.subContainer}>
               {obj.tasks.map(task => {
                 return (
-                  <div key={task.id} className={styles.taskContainer} onClick={() => toggle(id, task.id)}>
-                    <input type="checkbox" checked={task.checked} />
-                    <h2 className={task.checked ? styles.taskChecked : ""}>{task.content}</h2>
+                  <div key={task.id} className={styles.taskContainer} >
+                    <input id={`checkbox${task.id}`} type="checkbox" checked={task.checked} onChange={() => toggle(id, task.id)} />
+                    <label htmlFor={`checkbox${task.id}`} className={task.checked ? styles.taskChecked : ""}>{task.content}</label>
                   </div>
                 )
               })}

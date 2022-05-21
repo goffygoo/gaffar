@@ -15,10 +15,16 @@
 }
 
 .logoutBtn {
+  display: flex;
   width: 10vw;
   height: 10vh;
   margin: 0 0 0 auto;
   background-color: hotpink;
+  cursor: pointer;
+}
+
+.logoutBtn > p {
+  margin: auto;
 }
 
 .mainWindow {
