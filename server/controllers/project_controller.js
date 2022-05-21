@@ -2,6 +2,7 @@ import Projects from "../model/Project.js";
 import Users from "../model/User.js";
 import jwt from "jsonwebtoken";
 import Docs from "../model/Docs.js";
+import func from "../../client/src/reducer/testReducer.js";
 
 export const home = function (req, res) {
   res.send("Project Controller is Working");
@@ -37,7 +38,7 @@ export const createProject = async function (req, res) {
     return res.status(201).send({
       success: true,
       message: "Project successfully created",
-      server: resp,
+      resp: resp,
     });
   } catch (err) {
     return res.status(404).send({
