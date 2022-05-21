@@ -4,6 +4,7 @@ import login from "./loginReducer";
 import list from "./listReducer";
 import board from "./boardReducer";
 import docs from "./docsReducer";
+import home from "./homeReducer";
 
 export default combineReducers({
   test,
@@ -11,4 +12,5 @@ export default combineReducers({
   list,
   board,
   docs,
+  home,
 });

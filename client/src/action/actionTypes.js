@@ -16,9 +16,11 @@ export const LOGIN_SETLEMAIL = "LOGIN_SETLEMAIL";
 export const LOGIN_SETLPASSWORD = "LOGIN_SETLPASSWORD";
 export const LOGIN_LOGIN_ERROR = "LOGIN_LOGIN_ERROR";
 
-export const BOARD_SET_COL = "BOARD_SET_COL"
+// board
+export const BOARD_SET_COL = "BOARD_SET_COL";
 
-export const LIST_SET_LIST = "LIST_SET_LIST"
+// list
+export const LIST_SET_LIST = "LIST_SET_LIST";
 
 // docs
 export const TOGGLE_EDITABLE = "TOGGLE_EDITABLE";
@@ -26,3 +28,7 @@ export const EDIT_DATA = "EDIT_DATA";
 export const ADD_BOX = "ADD_BOX";
 export const SET_TYPEC = "SET_TYPEC";
 export const REMOVE_BOX = "REMOVE_BOX";
+
+// home
+export const ADD_PROJECT = "ADD_PROJECT";
+export const PNAMECHANGE = "PNAMECHANGE";

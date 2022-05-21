@@ -133,6 +133,8 @@
   font-size: 1rem;
   min-height: 5vh;
   width: 40vw;
+  white-space: pre-wrap;
+  word-wrap: break-word;
   font-weight: 100;
   color: black;
   background-color: rgba(0, 128, 0, 0.467);
@@ -143,6 +145,8 @@
   font-weight: 100;
   color: black;
   min-height: 5vh;
+  white-space: pre-wrap;
+  word-wrap: break-word;
   width: 40vw;
   margin-bottom: 2vh;
   background-color: rgba(0, 128, 0, 0.467);
