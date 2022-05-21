@@ -1,5 +1,4 @@
 import { combineReducers } from "redux";
-import test from "./testReducer";
 import login from "./loginReducer";
 import list from "./listReducer";
 import board from "./boardReducer";
@@ -9,7 +8,6 @@ import member from "./memberReducer";
 import project from "./projectReducer";
 
 export default combineReducers({
-  test,
   login,
   list,
   board,

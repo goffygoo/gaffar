@@ -20,7 +20,6 @@
 }
 
 .itemHead > button {
-
     margin: auto 1vw;
 }
 
@@ -35,7 +34,6 @@
 .taskContainer {
     display: flex;
     flex-direction: row;
-    cursor: pointer;
     width: fit-content;
 }
 
@@ -43,8 +41,9 @@
     margin: auto 1vw;
 }
 
-.taskContainer > h2 {
+.taskContainer > label {
     margin: auto 0;
+    cursor: pointer;
 }
 
 .taskChecked {

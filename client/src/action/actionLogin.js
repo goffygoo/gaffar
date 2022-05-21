@@ -1,6 +1,18 @@
-import { LOGIN_SETSUSERNAME, LOGIN_SETSEMAIL, LOGIN_SETSPASSWORD, LOGIN_SIGNUP_ERROR, LOGIN_SIGNUP_USER, LOGIN_LOGIN_ERROR,LOGIN_SIGNUP_TOKEN ,LOGIN_SETLEMAIL, LOGIN_SETLPASSWORD} from "./actionTypes"
+import { LOGIN_SETSUSERNAME, LOGIN_SETSEMAIL, LOGIN_SETSPASSWORD, LOGIN_SIGNUP_ERROR, LOGIN_SIGNUP_USER, LOGIN_LOGIN_ERROR,LOGIN_SIGNUP_TOKEN ,LOGIN_SETLEMAIL, LOGIN_SETLPASSWORD } from "./actionTypes"
 import store from '../store'
 import axios from 'axios'
+
+export const initUser = (user, token) => dispatch => {
+    dispatch({
+        data: user,
+        type: LOGIN_SIGNUP_USER
+    })
+
+    dispatch({
+        data: token,
+        type: LOGIN_SIGNUP_TOKEN
+    })
+}
 
 export const setsusername = val => dispatch => {
     dispatch({
