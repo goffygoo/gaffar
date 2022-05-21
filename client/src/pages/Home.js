@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Branding from "../components/Branding";
 import Project from "../components/home/Project";
 import Invite from "../components/home/Invite";
@@ -11,11 +11,23 @@ import { bindActionCreators } from "redux";
 import * as actionHome from "../action/actionHome";
 
 export default function Home() {
-  const { pname } = useSelector((state) => state.home);
+  const { pname, projects } = useSelector((state) => state.home);
   const navigate = useNavigate();
 
   const dispatch = useDispatch();
-  const { addProject, pnamechange } = bindActionCreators(actionHome, dispatch);
+  const { addProject, pnamechange, getprojects } = bindActionCreators(
+    actionHome,
+    dispatch
+  );
+  useEffect(() => {
+    console.log(projects);
+  }, [projects]);
+
+  useEffect(() => {
+    getprojects();
+    console.log(projects);
+  }, []);
+
   return (
     <div className={styles.page}>
       <div className={styles.topArea}>
@@ -27,10 +39,9 @@ export default function Home() {
         <div className={styles.mainContainer}>
           <div className={styles.projectsContainer}>
             <div className={styles.projectHeading}></div>
-            <Project />
-            <Project />
-            <Project />
-            <Project />
+            {projects.map((p, ind) => {
+              return <Project indx={ind} key={ind} />;
+            })}
           </div>
           <div className={styles.addProject}>
             <input

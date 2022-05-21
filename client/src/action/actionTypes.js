@@ -32,3 +32,8 @@ export const REMOVE_BOX = "REMOVE_BOX";
 // home
 export const ADD_PROJECT = "ADD_PROJECT";
 export const PNAMECHANGE = "PNAMECHANGE";
+export const GET_PROJECTS = "GET_PROJECTS";
+export const SET_PROJECT = "SET_PROJECT";
+
+// member
+export const GET_USERS = "GET_USERS";
