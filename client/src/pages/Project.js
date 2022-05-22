@@ -91,7 +91,7 @@ export default function Project() {
 
       <div className={styles.content}>
         <div className={styles.titlebar}>
-          <h1>Title</h1>
+          <h1>{params['*'].toUpperCase()}</h1>
         </div>
 
         <Routes>

@@ -16,7 +16,7 @@ export default function Docs() {
 
   return (
     <div className={styles.outercont}>
-      <div onClick={() => addbox()}>ADDBOX</div>
+      <div className={styles.addbox} onClick={() => addbox()}><p>ADDBOX</p></div>
       <div className={styles.container}>
         {contents.map((c, ind) => {
           return <Box indx={ind} key={ind} />;

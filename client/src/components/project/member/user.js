@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import styles from "../../../styles/components/member/user.module.css";
+import styles from "../../../styles/components/project/member/user.module.css";
 export default function User({ indx }) {
   const { members } = useSelector((state) => state.member);
 

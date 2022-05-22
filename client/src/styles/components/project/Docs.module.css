@@ -1,10 +1,32 @@
-.container {
+.outercont {
   display: flex;
   flex-direction: column;
+  height: 92vh;
+  width: 90vw;
+  background-color:white;
+}
+
+.addbox {
+  display: flex;
+  cursor: pointer;
+  margin: auto;
+  height: 5vh;
+  width: 8vw;
+  background-color: yellowgreen;
+}
+
+.addbox > p {
+  margin: auto;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;;
   background-color: white;
-  height: 90vh;
+  height: 87vh;
   overflow-y: scroll;
 }
+
 .boxContainer {
   margin: 1vh auto 0 auto;
   width: 70vw;

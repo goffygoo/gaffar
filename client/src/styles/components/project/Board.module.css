@@ -1,6 +1,22 @@
 .container {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    overflow-x: scroll;
+}
+
+.container::-webkit-scrollbar {
+    width: 0.5vw;
+    height: 2vh;
+}
+
+.container::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.4);
+    border-radius: 0.5rem;
+}
+
+.container>button {
+    height: 5vh;
+    margin: 1vh 0 0 0.5vw;
 }
 
 .containerPopup {
@@ -34,5 +50,67 @@
 }
 
 .popup > h1 {
+    color: wheat;
+    margin: auto;
+}
+
+.popup > input {
+    margin: auto;
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+}
+
+.columnHead {
+    display: flex;
+    flex-direction: row;
+}
+
+.addBtn {
+    margin: auto 0 auto auto;
+}
+
+.removeBtn {
+    margin: auto 0 auto 0;
+}
+
+.columnMain {
+    padding: 4px;
+    width: 15vw;
+    height: 75vh;
+    margin: 8px;
+    background-color: gold;
+    overflow-y: scroll;
+}
+
+.columnMain::-webkit-scrollbar {
+    width: 0.5vw;
+}
+
+.columnMain::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.4);
+    border-radius: 0.5rem;
+}
+
+.taskTile {
+    display: flex;
+    user-select: none;
+    padding: 16px;
+    margin: 0 0 1vh 0;
+    min-height: 10vh;
+    background-color: pink;
+}
+
+.taskTile > p {
+    color: black;
     
+}
+
+.taskTile > img {
+    margin: auto 0 0 auto;
+    height: 4vh;
+    width: auto;
+    cursor: pointer;
 }
