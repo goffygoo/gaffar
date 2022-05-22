@@ -6,15 +6,10 @@ const docsSchema = new mongoose.Schema({
     ref: "Project",
     required: true,
   },
-  contents: [
+  box: [
     {
-      data: {
-        type: String,
-      },
-      typecon: {
-        type: String,
-        required: true,
-      },
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Box",
     },
   ],
 });
