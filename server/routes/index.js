@@ -1,14 +1,16 @@
 import express from "express";
-import { home } from "../controllers/home_controller.js";
+import home from "../controllers/home_controller.js";
 import user from "./user.js";
 import project from "./project.js";
-const router = express.Router();
-console.log("Router loaded");
 
-router.get("/", home);
-router.use("/user", user);
-router.use("/project", project);
-// for any further routes, access from here
-// router.use('/routerName', require('./route'));
+export default function (io) {
+  const router = express.Router();
+  console.log("Router loaded");
 
-export default router;
+  router.get("/", home(io).home);
+  router.use("/user", user(io));
+  router.use("/project", project(io));
+  // for any further routes, access from here
+  // router.use('/routerName', require('./route'));
+  return router;
+}

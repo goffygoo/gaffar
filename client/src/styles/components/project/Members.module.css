@@ -1,0 +1,35 @@
+.members {
+  display: flex;
+  flex-direction: column;
+}
+.membersCtn {
+  background-color: grey;
+  overflow-y: scroll;
+  margin: auto auto auto auto;
+  width: 70vw;
+}
+
+.addMemberCtn {
+  margin: 2vh auto 1vh auto;
+  display: flex;
+  width: 4vh;
+  background-color: blueviolet;
+  width: 70vw;
+}
+.addMemberBtn {
+  background-color: rgb(157, 254, 157);
+  display: flex;
+  height: 5vh;
+  width: 10vw;
+}
+
+.addMemberBtn > p {
+  margin: auto auto auto auto;
+  font-weight: bold;
+}
+
+.membername {
+  height: 5vh;
+  width: 40;
+  /* margin: ; */
+}

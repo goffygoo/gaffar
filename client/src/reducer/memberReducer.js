@@ -1,4 +1,4 @@
-import { GET_USERS } from "../action/actionTypes";
+import { SET_MEMBERS } from "../action/actionTypes";
 
 const initialstate = {
   members: [],
@@ -7,7 +7,7 @@ const initialstate = {
 
 const func = function (state = initialstate, action) {
   switch (action.type) {
-    case GET_USERS:
+    case SET_MEMBERS:
       return {
         ...state,
         members: action.data,

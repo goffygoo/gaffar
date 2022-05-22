@@ -1,4 +1,9 @@
-import { ADD_PROJECT, PNAMECHANGE, GET_PROJECTS } from "../action/actionTypes";
+import {
+  ADD_PROJECT,
+  PNAMECHANGE,
+  GET_PROJECTS,
+  LOGIN_SIGNUP_USER,
+} from "../action/actionTypes";
 import store from "../store";
 import axios from "axios";
 
@@ -7,6 +12,9 @@ export const addProject = () => (dispatch) => {
     home: { pname, projects },
     login: { user },
   } = store.getState();
+  if (pname === "") {
+    return;
+  }
   // axios request
   const req = {
     project_name: pname,
@@ -26,23 +34,12 @@ export const addProject = () => (dispatch) => {
         data: projects,
         type: ADD_PROJECT,
       });
-
-      // const token = res.data.token;
-      // localStorage.setItem("token", JSON.stringify(token));
-
-      // dispatch({
-      //   data: token,
-      //   type: LOGIN_SIGNUP_TOKEN,
-      // });
-
-      // navigate("/home");
+      dispatch({
+        data: "",
+        type: PNAMECHANGE,
+      });
     })
     .catch((err) => {
-      // dispatch({
-      //   data: true,
-      //   type: LOGIN_SIGNUP_ERROR,
-      // });
-
       console.log(err);
     });
 };
@@ -69,30 +66,124 @@ export const getprojects = () => (dispatch) => {
       if (res.data.success === false) throw Error("Error");
 
       let projects = res.data.projects;
-      // console.log(projects);
       dispatch({
         data: projects,
         type: GET_PROJECTS,
       });
-      // let proj = store.getState().home.projects;
-      // console.log(proj);
-
-      // const token = res.data.token;
-      // localStorage.setItem("token", JSON.stringify(token));
-
-      // dispatch({
-      //   data: token,
-      //   type: LOGIN_SIGNUP_TOKEN,
-      // });
-
-      // navigate("/home");
     })
     .catch((err) => {
-      // dispatch({
-      //   data: true,
-      //   type: LOGIN_SIGNUP_ERROR,
-      // });
+      console.log(err);
+    });
+};
 
+export const rename = (name) => (dispatch) => {
+  let {
+    login: { user },
+  } = store.getState();
+
+  const req = {
+    user_email: user.email,
+    name,
+  };
+
+  axios
+    .post("http://localhost:5000/user/updateName", req)
+    .then((res) => {
+      if (res.data.success === false) throw Error("Error");
+      user.name = name;
+      dispatch({
+        data: user,
+        type: LOGIN_SIGNUP_USER,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+
+export const updateimg = (img) => (dispatch) => {
+  let {
+    login: { user },
+  } = store.getState();
+
+  const req = {
+    user_email: user.email,
+    img,
+  };
+
+  axios
+    .post("http://localhost:5000/user/updatePP", req)
+    .then((res) => {
+      if (res.data.success === false) throw Error("Error");
+      user.img = img;
+      dispatch({
+        data: user,
+        type: LOGIN_SIGNUP_USER,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+
+export const acceptInv = (id, name) => (dispatch) => {
+  let {
+    login: { user },
+    home: { projects },
+  } = store.getState();
+
+  const req = {};
+
+  axios
+    .post("http://localhost:5000/user/updatePP", req)
+    .then((res) => {
+      if (res.data.success === false) throw Error("Error");
+
+      user.invites = user.invites.filter((i) => i.project_id !== id);
+      projects.push({ project_id: id, project_name: name });
+
+      dispatch({
+        data: user,
+        type: LOGIN_SIGNUP_USER,
+      });
+
+      dispatch({
+        data: projects,
+        type: GET_PROJECTS,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+
+export const rejectInv = (id, name) => (dispatch) => {
+  let {
+    login: { user },
+    home: { projects },
+  } = store.getState();
+
+  const req = {};
+
+  axios
+    .post("http://localhost:5000/user/updatePP", req)
+    .then((res) => {
+      if (res.data.success === false) throw Error("Error");
+
+      user.invites = user.invites.filter((i) => i.project_id !== id);
+      projects.push({ project_id: id, project_name: name });
+
+      dispatch({
+        data: user,
+        type: LOGIN_SIGNUP_USER,
+      });
+
+      dispatch({
+        data: projects,
+        type: GET_PROJECTS,
+      });
+    })
+    .catch((err) => {
       console.log(err);
     });
 };

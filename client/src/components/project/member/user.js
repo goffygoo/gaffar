@@ -8,11 +8,18 @@ export default function User({ indx }) {
     <div className={styles.mainCtn}>
       <div className={styles.left}></div>
       <div className={styles.center}>
-        <div className={styles.name}>{members[indx].user_name}</div>
-        <div className={styles.email}>{members[indx].user_email}</div>
+        <div className={styles.name}>
+          <p>{members[indx].user_name}</p>
+        </div>
+        <div className={styles.email}>
+          <p>{members[indx].user_email}</p>
+        </div>
       </div>
       <div className={styles.right}>
-        <div className={styles.upper}></div>
+        <div className={styles.upper}>
+          {" "}
+          <p>{members[indx].user_role}</p>{" "}
+        </div>
         <div className={styles.lower}>
           <div className={styles.edit}></div>
           <div className={styles.save}></div>

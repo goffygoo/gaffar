@@ -1,0 +1,66 @@
+.container {
+  position: fixed;
+  display: flex;
+  z-index: 1;
+  height: 100%;
+  width: 100%;
+  background: rgba(66, 66, 66, 0.6);
+}
+
+.popUp {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  width: 25vw;
+  height: 75vh;
+  border-radius: 1rem;
+  padding: 2vh 1vw;
+  z-index: 10;
+  background: #01081e;
+}
+
+.close {
+  height: 5vh;
+  width: auto;
+  margin: 0 0 0 auto;
+  cursor: pointer;
+}
+
+.popUp > h1 {
+  font-weight: 700;
+  color: #fff;
+  font-size: 1.3rem;
+  margin: 1vh auto 0 auto;
+}
+
+.inputDiv {
+  display: flex;
+}
+
+.fileInput > input {
+  display: none;
+}
+
+.fileInput {
+  margin: 2vh 1vw 4vh auto;
+  cursor: pointer;
+  color: antiquewhite;
+  text-decoration: underline;
+}
+
+.btnSave {
+  background: linear-gradient(45deg, #e96676, #fe8b51);
+  margin: auto;
+  display: flex;
+  border-radius: 0.25rem;
+  height: 5vh;
+  width: 12vw;
+  cursor: pointer;
+}
+
+.btnSave > p {
+  font-weight: 600;
+  color: #fff;
+  font-size: 0.7rem;
+  margin: auto;
+}
