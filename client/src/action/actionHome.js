@@ -132,10 +132,13 @@ export const acceptInv = (id, name) => (dispatch) => {
     home: { projects },
   } = store.getState();
 
-  const req = {};
+  const req = {
+    project_id: id,
+    user_email: user.email
+  };
 
   axios
-    .post("http://localhost:5000/user/updatePP", req)
+    .post("http://localhost:5000/user/acceptInvite", req)
     .then((res) => {
       if (res.data.success === false) throw Error("Error");
 

@@ -1,4 +1,5 @@
-.members {
+
+widt.members {
   display: flex;
   flex-direction: column;
 }
@@ -7,6 +8,16 @@
   overflow-y: scroll;
   margin: auto auto auto auto;
   width: 70vw;
+  height: 85vh;
+}
+
+.membersCtn::-webkit-scrollbar {
+  width: 0.5vw;
+}
+
+.membersCtn::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.4);
+  border-radius: 0.5rem;
 }
 
 .addMemberCtn {

@@ -21,25 +21,39 @@ export default function (io) {
       // console.log(Projects);
       let project = await Projects.findById(req.body.project_id);
 
+      // console.log(user.invites);
+      let invites = [];
+      let co = 0;
+
       for (let inv of user.invites) {
         if (inv.project_id.toString() === project._id.toString()) {
-          // oli filter code
-          await Users.findByIdAndUpdate(user._id).invites.updateOne(
+          co++;
+          await Users.findByIdAndUpdate(user._id , 
             {
-              project_id: project._id,
-            },
-            {
-              $pull: {
-                project_id: project._id,
-              },
-            }
-          );
-          return res.status(201).send({
-            success: true,
-            message: `AA le chuck mai aa gya`,
-          });
+              $push: { projects: project._id },
+            })
+          await Projects.findByIdAndUpdate(project._id , {
+            $push: { members: {
+              member: user._id,
+              role: "fuchha"
+            }  },
+          })
+        } else{
+          invites.push({
+            project_id: project._id,
+            project_name: project.name
+          })
         }
       }
+      if(co === 0){
+          return res.status(404).send({
+            success: false,
+            message: `bhai pehle aa chuka tu`,
+          });
+      }
+      await Users.findByIdAndUpdate(user._id,{
+        invites: invites
+      })
 
       return res.status(201).send({
         success: true,

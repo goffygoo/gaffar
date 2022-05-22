@@ -9,7 +9,7 @@ import NotFound from "./pages/NotFound";
 function App() {
   return (
     <Provider store={store}>
-      <BrowserRouter>
+      <BrowserRouter>               
         <Routes>
           <Route exact path="/" element={<Login />} />
           <Route exact path="/login" element={<Login />} />
