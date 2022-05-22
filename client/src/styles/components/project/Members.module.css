@@ -1,0 +1,46 @@
+
+widt.members {
+  display: flex;
+  flex-direction: column;
+}
+.membersCtn {
+  background-color: grey;
+  overflow-y: scroll;
+  margin: auto auto auto auto;
+  width: 70vw;
+  height: 85vh;
+}
+
+.membersCtn::-webkit-scrollbar {
+  width: 0.5vw;
+}
+
+.membersCtn::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.4);
+  border-radius: 0.5rem;
+}
+
+.addMemberCtn {
+  margin: 2vh auto 1vh auto;
+  display: flex;
+  width: 4vh;
+  background-color: blueviolet;
+  width: 70vw;
+}
+.addMemberBtn {
+  background-color: rgb(157, 254, 157);
+  display: flex;
+  height: 5vh;
+  width: 10vw;
+}
+
+.addMemberBtn > p {
+  margin: auto auto auto auto;
+  font-weight: bold;
+}
+
+.membername {
+  height: 5vh;
+  width: 40;
+  /* margin: ; */
+}

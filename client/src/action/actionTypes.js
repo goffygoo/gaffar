@@ -22,6 +22,7 @@ export const ADD_PROJECT = "ADD_PROJECT";
 export const PNAMECHANGE = "PNAMECHANGE";
 export const GET_PROJECTS = "GET_PROJECTS";
 export const SET_PROJECT = "SET_PROJECT";
+export const PROJECT_ERROR = "PROJECT_ERROR";
 
 // member
-export const GET_USERS = "GET_USERS";
+export const SET_MEMBERS = "SET_MEMBERS";

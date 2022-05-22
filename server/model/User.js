@@ -28,10 +28,18 @@ const userSchema = new mongoose.Schema({
   ],
   invites: [
     {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Project",
+      project_id: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Project",
+      },
+      project_name: {
+        type: String,
+      },
     },
   ],
+  img: {
+    type: String,
+  },
 });
 
 const Users = mongoose.model("Users", userSchema);

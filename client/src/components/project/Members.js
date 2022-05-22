@@ -1,29 +1,56 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import { bindActionCreators } from "redux";
+import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import User from "./member/user";
-import * as actionMembers from "../../action/actionMembers";
 import styles from "../../styles/components/project/Members.module.css";
+import { useParams } from "react-router-dom";
+import axios from "axios";
 
 export default function Members() {
   const { members } = useSelector((state) => state.member);
-  const navigate = useNavigate();
 
-  const dispatch = useDispatch();
-  const { getusers } = bindActionCreators(actionMembers, dispatch);
+  const [text, settext] = useState("");
+  const [msg, setmsg] = useState();
 
-  useEffect(() => {
-    getusers();
-  }, []);
+  const params = useParams();
+
+  const invite = () => {
+    const req = {
+      project_id: params.id.slice(1),
+      user_email: text,
+    };
+
+    axios
+      .post("http://localhost:5000/project/invite", req)
+      .then((res) => {
+        if (res.data.message) setmsg(res.data.message);
+        settext("");
+      })
+      .catch((err) => {
+        if (err.response.data.message) setmsg(err.response.data.message);
+        console.log(err);
+      });
+  };
 
   return (
-    <div className={styles.Members}>
-      <div className={styles.title}>Members</div>
-      {members.map((mem, ind) => {
-        return <User indx={ind} key={ind} />;
-      })}
-      {/* <User></User> */}
+    <div className={styles.members}>
+      <div className={styles.membersCtn}>
+        {members.map((mem, ind) => {
+          return <User indx={ind} key={ind} />;
+        })}
+      </div>
+      <div className={styles.addMemberCtn}>
+        <div className={styles.membername}>
+          <input
+            className={styles.membernameInput}
+            value={text}
+            onChange={(e) => settext(e.target.value)}
+          ></input>
+        </div>
+        <div className={styles.addMemberBtn} onClick={() => invite()}>
+          <p>Add Member</p>
+        </div>
+        {msg ? <p>{msg}</p> : null}
+      </div>
     </div>
   );
 }

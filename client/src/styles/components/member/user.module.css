@@ -32,32 +32,49 @@
 .kickBtn {
   margin: 1vh 1vw auto auto;
 
-  height: 2vh;
-  width: 2vh;
+  height: 3vh;
+  width: 3vh;
+  border-radius: 1.5vh;
   background-color: orangered;
 }
 .name {
-  height: 3vh;
+  height: 4vh;
   width: 15vw;
+  font-family: "Gill Sans", sans-serif;
   margin: auto auto auto auto;
+  display: flex;
   background-color: rgb(255, 128, 0);
 }
 
+.name > p {
+  margin: auto auto auto auto;
+  font-family: "Gill Sans", sans-serif;
+}
+
 .email {
-  height: 3vh;
+  height: 4vh;
+  display: flex;
   width: 15vw;
+  font-family: "Gill Sans", sans-serif;
   margin: auto auto auto auto;
   background-color: rgb(255, 99, 216);
 }
 
+.email > p {
+  margin: auto auto auto auto;
+}
 .upper {
-  height: 3vh;
+  height: 4vh;
   width: 15vw;
   margin: auto auto auto auto;
   background-color: orange;
+  display: flex;
+}
+.upper > p {
+  margin: auto auto auto auto;
 }
 .lower {
-  height: 3vh;
+  height: 4vh;
   width: 15vw;
   margin: auto auto auto auto;
   display: flex;
@@ -66,20 +83,25 @@
 
 .edit {
   width: 3vw;
-  height: 3vh;
+  height: 4vh;
+  border-radius: 10px;
   background-color: purple;
 }
 
 .save {
   width: 3vw;
-  height: 3vh;
+  height: 4vh;
+  border-radius: 10px;
+
   margin: 0 0 0 auto;
   background-color: greenyellow;
 }
 
 .makeadmin {
   width: 7vw;
-  height: 3vh;
+  height: 4vh;
   background-color: orangered;
+  border-radius: 10px;
+
   margin: 0 0 0 auto;
 }

@@ -9,6 +9,7 @@
 
 .acceptBtn{
     background-color: green;
+    display: flex;
     height:5vh;
     width: 6vw;
     margin: 0 0 0 auto;
@@ -16,9 +17,25 @@
 }
 
 .rejectBtn{
-    background-color: red;
+    background-color: grey;
     height:5vh;
     width: 6vw;
+    display: flex;
     margin: 0 0 0 0;
     cursor: pointer;
+}
+
+.main{
+    display: flex;
+}
+
+.main > p{
+    margin: auto auto auto 1vw;
+}
+.acceptBtn > p{
+    margin: auto auto auto auto;
+
+}
+.rejectBtn > p{
+    margin: auto auto auto auto;
 }

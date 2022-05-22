@@ -73,21 +73,6 @@
   background-color: yellow;
   margin: 1vh auto 2vh auto;
 }
-.addProject {
-  display: flex;
-  flex-direction: row;
-}
-
-.projectName {
-  margin: 0 auto 0 5vw;
-}
-
-.addProjectBtn {
-  background-color: purple;
-  height: 5vh;
-  width: 8vw;
-  margin: 1vh auto 0 auto;
-}
 
 .profilePicture {
   background-color: lightgreen;
@@ -107,19 +92,87 @@
   height: 15vh;
   width: 20vw;
   margin: 0 auto;
-  background-color: darksalmon;
 }
 
 .edit {
   background-color: deeppink;
-  height: 10vh;
-  width: 10vw;
+  cursor: pointer;
+  height: 6vh;
+  width: 8vw;
+  display: flex;
+  border-radius: 10px;
   margin: auto;
 }
 
 .update {
+  display: flex;
+  border-radius: 10px;
   background-color: crimson;
-  height: 10vh;
-  width: 10vw;
+  height: 6vh;
+  width: 8vw;
   margin: auto;
+  cursor: pointer;
+}
+
+.edit > p {
+  font-weight: bold;
+  margin: auto auto auto auto;
+}
+
+.update > p {
+  font-weight: bold;
+
+  margin: auto auto auto auto;
+}
+input .update {
+  font-weight: 100;
+}
+
+.username {
+  margin: 1vh auto 1vh auto;
+  height: 4vh;
+  display: flex;
+  font-weight: bold;
+  font-size: 1rem;
+  width: 20vw;
+  background-color: transparent;
+}
+
+.username > p {
+  margin: auto auto auto auto;
+}
+
+.projectNameInput {
+  width: 50vw;
+  height: 5vh;
+  margin: auto auto auto auto;
+}
+
+.projectName {
+  margin: auto auto auto auto;
+  width: 40vw;
+  height: 5vh;
+}
+
+.addProject {
+  display: flex;
+  flex-direction: row;
+  width: 50vw;
+  height: 5vh;
+  margin: 0 auto 0 auto;
+  display: flex;
+}
+
+.addProjectBtn {
+  background-color: purple;
+  height: 5vh;
+  width: 10vw;
+  display: flex;
+  cursor: pointer;
+  font-weight: bold;
+  margin: 0 auto 0 auto;
+}
+
+.addProjectBtn > p {
+  margin: auto auto auto auto;
 }

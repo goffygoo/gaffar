@@ -2,7 +2,7 @@
 import mongoose from "mongoose";
 // const mongoose = require("mongoose");
 
-mongoose.connect("mongodb://127.0.0.1/project-it"); // give any name to database
+mongoose.connect("mongodb://127.0.0.1/project-y"); // give any name to database
 
 // acquire connection (to check if it is successful)
 const db = mongoose.connection;

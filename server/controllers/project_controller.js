@@ -3,110 +3,229 @@ import Users from "../model/User.js";
 import jwt from "jsonwebtoken";
 import Docs from "../model/Docs.js";
 
-export const home = function (req, res) {
-  res.send("Project Controller is Working");
-};
+export default function (io) {
+  const home = async function (req, res) {
+    res.send("Project Router is working");
+  };
 
-export const createProject = async function (req, res) {
-  try {
-    let creator = await Users.findOne({ email: req.body.user_email });
-
-    let project = await Projects.create({
-      name: req.body.project_name,
-      members: [creator._id],
-      admins: [creator._id],
-    });
-
-    await Users.updateOne(
-      {
-        _id: creator._id,
-      },
-      {
-        $push: { projects: project._id },
+  const invite = async function (req, res) {
+    try {
+      let user = await Users.findOne({
+        email: req.body.user_email,
+      });
+      if (!user) {
+        return res.status(404).send({
+          success: false,
+          message: `no such user`,
+        });
       }
-    );
+      let project = await Projects.findById(req.body.project_id);
 
-    let doc = await Docs.create({
-      project: project,
-    });
+      for (let inv of user.invites) {
+        if (inv.project_id.toString() === project._id.toString()) {
+          return res.status(404).send({
+            success: false,
+            message: `Terse Jab kehdi bulara, ruka ni jara?`,
+          });
+        }
+      }
 
-    await Docs.findByIdAndUpdate(doc._id, {
-      project: project._id,
-    });
-    await Projects.findByIdAndUpdate(project._id, {
-      doc: doc._id,
-    });
+      await Users.updateOne(
+        {
+          _id: user._id,
+        },
+        {
+          $push: {
+            invites: {
+              project_id: project._id,
+              project_name: project.name,
+            },
+          },
+        }
+      );
 
-    let resp = {
-      project_id: project._id,
-      project_name: project.name,
-      doc_id: doc._id,
-    };
-    // add this new server to creator's server list
-    return res.status(201).send({
-      success: true,
-      message: "Project successfully created",
-      resp: resp,
-    });
-  } catch (err) {
-    return res.status(404).send({
-      success: false,
-      message: `Bhai error aara : ${err}`,
-    });
-  }
-};
+      return res.status(201).send({
+        success: true,
+        message: "Ruk Bulara abhi",
+      });
+    } catch (err) {
+      return res.status(404).send({
+        success: false,
+        message: `Bhai error aara : ${err}`,
+      });
+      // res.send("Error", err);
+    }
+  };
 
-export const getProject = async function (req, res) {
-  try {
-    let creator = await Users.findOne({ email: req.body.user_email });
-    let projects = [];
+  const getInfo = async function (req, res) {
+    try {
+      let project = await Projects.findOne({
+        _id: req.body.project_id,
+      });
+      if (!project) {
+        return res.status(404).send({
+          success: false,
+          message: `Bhai error aara : ${err}`,
+        });
+      }
 
-    for (let pid of creator.projects) {
-      let project = await Projects.findById(pid);
-      projects.push({
+      let resp = {
+        id: project._id,
+        name: project.name,
+      };
+      let users = [];
+      // console.log(project);
+
+      for (let uid of project.members) {
+        let user = await Users.findById(uid.member);
+        // console.log(user);
+        users.push({
+          user_id: user._id,
+          user_name: user.name,
+          user_email: user.email,
+          user_role: uid.role,
+        });
+      }
+
+      return res.status(201).send({
+        success: true,
+        message: "Le bhay thara Project",
+        project: resp,
+        members: users,
+      });
+    } catch (err) {
+      return res.status(404).send({
+        success: false,
+        message: `Bhai error aara : ${err}`,
+      });
+      // res.send("Error", err);
+    }
+  };
+
+  const createProject = async function (req, res) {
+    try {
+      let creator = await Users.findOne({ email: req.body.user_email });
+
+      let project = await Projects.create({
+        name: req.body.project_name,
+        members: [
+          {
+            member: creator._id,
+            role: "admin",
+          },
+        ],
+        admins: [creator._id],
+      });
+
+      await Users.updateOne(
+        {
+          _id: creator._id,
+        },
+        {
+          $push: { projects: project._id },
+        }
+      );
+
+      let doc = await Docs.create({
+        project: project,
+      });
+
+      await Docs.findByIdAndUpdate(doc._id, {
+        project: project._id,
+      });
+      await Projects.findByIdAndUpdate(project._id, {
+        doc: doc._id,
+      });
+
+      let resp = {
         project_id: project._id,
         project_name: project.name,
+        doc_id: doc._id,
+      };
+      // add this new server to creator's server list
+      return res.status(201).send({
+        success: true,
+        message: "Project successfully created",
+        resp: resp,
+      });
+    } catch (err) {
+      return res.status(404).send({
+        success: false,
+        message: `Bhai error aara : ${err}`,
       });
     }
+  };
 
-    // add this new server to creator's server list
-    return res.status(201).send({
-      success: true,
-      message: "Le bhay Thare Projects:",
-      projects: projects,
-    });
-  } catch (err) {
-    return res.status(404).send({
-      success: false,
-      message: `Bhai error aara : ${err}`,
-    });
-  }
-};
+  const getProject = async function (req, res) {
+    try {
+      let creator = await Users.findOne({ email: req.body.user_email });
+      let projects = [];
 
-export const getUsers = async function (req, res) {
-  try {
-    let project = await Projects.findOne({ _id: req.body.project_id });
-    let users = [];
+      for (let pid of creator.projects) {
+        let project = await Projects.findById(pid);
+        projects.push({
+          project_id: project._id,
+          project_name: project.name,
+        });
+      }
 
-    for (let uid of project.members) {
-      let user = await Users.findById(uid);
-      users.push({
-        user_id: user._id,
-        user_name: user.name,
-        user_email: user.email,
+      // add this new server to creator's server list
+      return res.status(201).send({
+        success: true,
+        message: "Le bhay Thare Projects:",
+        projects: projects,
+      });
+    } catch (err) {
+      return res.status(404).send({
+        success: false,
+        message: `Bhai error aara : ${err}`,
       });
     }
+  };
 
-    // add this new server to creator's server list
-    return res.status(201).send({
-      success: true,
-      message: "Le bhay Thare Members:",
-      members: users,
-    });
-  } catch (err) {
-    return res.status(404).send({
-      success: false,
-      message: `Bhai error aara : ${err}`,
-    });
-  }
-};
+  const getUsers = async function (req, res) {
+    try {
+      let project = await Projects.findOne({ _id: req.body.project_id });
+      if (!project) {
+        return res.status(404).send({
+          success: false,
+          message: `Bhai error aara : ${err}`,
+        });
+      }
+      let users = [];
+      // console.log(project);
+
+      for (let uid of project.members) {
+        let user = await Users.findById(uid.member);
+        // console.log(user);
+        users.push({
+          user_id: user._id,
+          user_name: user.name,
+          user_email: user.email,
+          user_role: uid.role,
+        });
+      }
+
+      // add this new server to creator's server list
+      return res.status(201).send({
+        success: true,
+        message: "Le bhay Thare Members:",
+        members: users,
+      });
+    } catch (err) {
+      return res.status(404).send({
+        success: false,
+        message: `Bhai error aara : ${err}`,
+      });
+    }
+  };
+
+  return {
+    home,
+    createProject,
+    getProject,
+    getUsers,
+    getInfo,
+    invite,
+  };
+}

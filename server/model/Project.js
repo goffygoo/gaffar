@@ -17,8 +17,13 @@ const projectSchema = new mongoose.Schema({
   },
   members: [
     {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Users",
+      member: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Users",
+      },
+      role: {
+        type: String,
+      },
     },
   ],
   admins: [

@@ -8,17 +8,17 @@ export default function Project({ indx }) {
   const { projects } = useSelector((state) => state.home);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { setproject } = bindActionCreators(actionProject, dispatch);
+  const { initProject } = bindActionCreators(actionProject, dispatch);
 
   return (
     <div
       className={styles.container}
       onClick={(_e) => {
-        setproject(projects[indx].project_name, projects[indx].project_id);
-        navigate("/project/docs");
+        initProject(projects[indx].project_id);
+        navigate(`/project:${projects[indx].project_id}/docs`);
       }}
     >
-      {projects[indx].project_name}
+      <p>{projects[indx].project_name}</p>
     </div>
   );
 }
