@@ -128,6 +128,7 @@ export default function (io) {
 
       let doc = await Docs.create({
         project: project,
+        box: [],
       });
 
       await Docs.findByIdAndUpdate(doc._id, {
