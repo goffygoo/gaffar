@@ -1,7 +1,7 @@
 import {
   TOGGLE_EDITABLE,
   EDIT_DATA,
-  ADD_BOX,
+  SAVE_DOCS_CONTENT,
   REMOVE_BOX,
 } from "../action/actionTypes";
 
@@ -22,7 +22,7 @@ const func = function (state = initialstate, action) {
         ...state,
         contents: action.data,
       };
-    case ADD_BOX:
+    case SAVE_DOCS_CONTENT:
       return {
         ...state,
         contents: action.data.contents,

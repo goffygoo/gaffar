@@ -1,14 +1,30 @@
 import {
   TOGGLE_EDITABLE,
   EDIT_DATA,
-  ADD_BOX,
   SET_TYPEC,
   REMOVE_BOX,
+  SAVE_DOCS_CONTENT,
 } from "./actionTypes";
 import store from "../store";
+import axios from "axios";
 
 export const toggleedit = (indx) => (dispatch) => {
-  let { editable } = store.getState().docs;
+  let {
+    docs: { editable, contents },
+    project: { doc_id },
+  } = store.getState();
+  if (editable[indx] === true) {
+    const req = contents[indx];
+    axios
+      .post("http://localhost:5000/docs/saveBox", req)
+      .then((res) => {
+        if (res.data.success === false) throw Error("Error");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
   editable[indx] = !editable[indx];
   dispatch({
     data: editable,
@@ -26,22 +42,40 @@ export const editdata = (content, indx, typec) => (dispatch) => {
 };
 
 export const addbox = () => (dispatch) => {
-  let { contents, editable } = store.getState().docs;
-  contents.push({
-    title: "",
-    url: "",
-    method: "",
-    request: "",
-    response: "",
-  });
-  editable.push(true);
-  dispatch({
-    data: {
-      contents,
-      editable,
-    },
-    type: ADD_BOX,
-  });
+  let {
+    docs: { contents, editable },
+    project: { doc_id },
+  } = store.getState();
+  // axios
+  let req = {
+    docs_id: doc_id,
+  };
+
+  axios
+    .post("http://localhost:5000/docs/addBox", req)
+    .then((res) => {
+      if (res.data.success === false) throw Error("Error");
+
+      contents.push({
+        box_id: res.data.box._id,
+        title: res.data.box.title,
+        url: res.data.box.url,
+        method: res.data.box.method,
+        request: res.data.box.request,
+        response: res.data.box.response,
+      });
+      editable.push(true);
+      dispatch({
+        data: {
+          contents,
+          editable,
+        },
+        type: SAVE_DOCS_CONTENT,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 };
 
 export const settypec = (typii) => (dispatch) => {
@@ -61,12 +95,5 @@ export const removebox = (indx) => (dispatch) => {
       typecon,
     },
     type: REMOVE_BOX,
-  });
-};
-
-export const getDocs = (typii) => (dispatch) => {
-  dispatch({
-    data: typii,
-    type: SET_TYPEC,
   });
 };

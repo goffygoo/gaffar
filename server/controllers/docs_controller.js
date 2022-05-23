@@ -46,6 +46,7 @@ export default function (io) {
   const saveBox = async function (req, res) {
     try {
       let box = await Docsbox.findById(req.body.box_id);
+      // console.log("r-1");
 
       if (!box) {
         return res.status(404).send({
@@ -53,6 +54,7 @@ export default function (io) {
           message: `invalid save`,
         });
       }
+      // console.log("r-2");
       await Docsbox.findByIdAndUpdate(req.body.box_id, {
         title: req.body.title,
         url: req.body.url,
@@ -60,6 +62,7 @@ export default function (io) {
         response: req.body.response,
         request: req.body.request,
       });
+      // console.log("r-3");
 
       return res.status(201).send({
         success: true,

@@ -2,6 +2,7 @@ import Projects from "../model/Project.js";
 import Users from "../model/User.js";
 import jwt from "jsonwebtoken";
 import Docs from "../model/Docs.js";
+import Docsbox from "../model/Docsbox.js";
 
 export default function (io) {
   const home = async function (req, res) {
@@ -86,12 +87,35 @@ export default function (io) {
           user_role: uid.role,
         });
       }
+      // console.log("pagal redskull - 1");
+      let doc = await Docs.findOne({
+        project: project._id,
+      });
+      // console.log("pagal redskull - 2");
+
+      let boxes = [];
+
+      for (let bid of doc.box) {
+        let box = await Docsbox.findById(bid);
+        // console.log("pagal redskull - 3", box);
+        boxes.push({
+          box_id: box._id,
+          title: box.title,
+          url: box.url,
+          method: box.method,
+          request: box.request,
+          response: box.response,
+        });
+      }
+      // console.log("pagal redskull - 4");
 
       return res.status(201).send({
         success: true,
         message: "Le bhay thara Project",
+        doc_id: doc._id,
         project: resp,
         members: users,
+        boxes: boxes,
       });
     } catch (err) {
       return res.status(404).send({

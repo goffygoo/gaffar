@@ -14,9 +14,9 @@ export const LIST_SET_LIST = "LIST_SET_LIST";
 
 export const TOGGLE_EDITABLE = "TOGGLE_EDITABLE";
 export const EDIT_DATA = "EDIT_DATA";
-export const ADD_BOX = "ADD_BOX";
 export const SET_TYPEC = "SET_TYPEC";
 export const REMOVE_BOX = "REMOVE_BOX";
+export const SAVE_DOCS_CONTENT = "SAVE_DOCS_CONTENT";
 
 export const ADD_PROJECT = "ADD_PROJECT";
 export const PNAMECHANGE = "PNAMECHANGE";

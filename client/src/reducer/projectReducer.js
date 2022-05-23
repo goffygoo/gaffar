@@ -1,8 +1,9 @@
 import { SET_PROJECT, SET_MEMBERS, PROJECT_ERROR } from "../action/actionTypes";
 
 const initialstate = {
-  project_id: "haha",
-  project_name: "hehe",
+  project_id: "",
+  project_name: "",
+  doc_id: "",
   members: [],
   error: false,
 };
@@ -12,8 +13,9 @@ const func = function (state = initialstate, action) {
     case SET_PROJECT:
       return {
         ...state,
-        project_id: action.data.id,
-        project_name: action.data.name,
+        project_id: action.data.project.id,
+        project_name: action.data.project.name,
+        doc_id: action.data.doc_id,
       };
     case PROJECT_ERROR:
       return {

@@ -1,4 +1,9 @@
-import { SET_PROJECT, SET_MEMBERS, PROJECT_ERROR } from "../action/actionTypes";
+import {
+  SET_PROJECT,
+  SET_MEMBERS,
+  PROJECT_ERROR,
+  SAVE_DOCS_CONTENT,
+} from "../action/actionTypes";
 import store from "../store";
 import axios from "axios";
 
@@ -14,10 +19,21 @@ export const initProject = (id) => (dispatch) => {
 
       console.log(res.data);
 
-      const { project, members } = res.data;
+      const { project, members, doc_id, boxes } = res.data;
+      let editable = Array(boxes.length).fill(false);
       dispatch({
-        data: project,
+        data: {
+          project,
+          doc_id,
+        },
         type: SET_PROJECT,
+      });
+      dispatch({
+        data: {
+          contents: boxes,
+          editable: editable,
+        },
+        type: SAVE_DOCS_CONTENT,
       });
       dispatch({
         data: members,
