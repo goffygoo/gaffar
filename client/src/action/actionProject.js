@@ -4,7 +4,6 @@ import {
   PROJECT_ERROR,
   SAVE_DOCS_CONTENT,
 } from "../action/actionTypes";
-import store from "../store";
 import axios from "axios";
 
 export const initProject = (id) => (dispatch) => {
@@ -16,8 +15,6 @@ export const initProject = (id) => (dispatch) => {
     .post("http://localhost:5000/project/getInfo", req)
     .then((res) => {
       if (res.data.success === false) throw Error("Error");
-
-      console.log(res.data);
 
       const { project, members, doc_id, boxes } = res.data;
       let editable = Array(boxes.length).fill(false);

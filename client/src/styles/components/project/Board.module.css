@@ -1,22 +1,36 @@
 .container {
     display: flex;
+    flex-direction: column;
+    height: 92vh;
+}
+
+.mainContainer {
+    display: flex;
     flex-direction: row;
     overflow-x: scroll;
 }
 
-.container::-webkit-scrollbar {
+.mainContainer::-webkit-scrollbar {
     width: 0.5vw;
     height: 2vh;
 }
 
-.container::-webkit-scrollbar-thumb {
+.mainContainer::-webkit-scrollbar-thumb {
     background-color: rgba(0, 0, 0, 0.4);
     border-radius: 0.5rem;
 }
 
-.container>button {
+.containerHead {
+    display: flex;
+    flex-direction: row;
+    border: 2px solid tomato;
     height: 5vh;
-    margin: 1vh 0 0 0.5vw;
+    margin: 0;
+}
+
+.containerHead > h1 {
+    margin: auto auto;
+    font-size: 1.5rem;
 }
 
 .containerPopup {

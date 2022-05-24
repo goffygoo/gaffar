@@ -1,37 +1,32 @@
-import { LIST_SET_LIST } from './../action/actionTypes'
-import { v4 as uuid } from "uuid";
+import { LIST_OPEN_BOARD, LIST_SET_FULL, LIST_SET_BOARD, LIST_ADD_ITEM } from './../action/actionTypes'
 
 const initialstate = {
-    list: {
-        [uuid()]: {
-            title: "Front End",
-            tasks: [
-                { id: uuid(), content: "First task", checked: false },
-                { id: uuid(), content: "Second task", checked: false },
-                { id: uuid(), content: "Third task", checked: false },
-                { id: uuid(), content: "Fourth task", checked: false },
-                { id: uuid(), content: "Fifth task", checked: false }
-            ]
-        },
-        [uuid()]: {
-            title: "Backend End",
-            tasks: [
-                { id: uuid(), content: "First task", checked: false },
-                { id: uuid(), content: "Second task", checked: false },
-                { id: uuid(), content: "Third task", checked: false },
-                { id: uuid(), content: "Fourth task", checked: false },
-                { id: uuid(), content: "Fifth task", checked: false }
-            ]
-        },
-    }
+    list: {},
+    board: {}
 }
 
 const func = function (state = initialstate, action) {
     switch (action.type) {
-        case LIST_SET_LIST:
+        case LIST_SET_BOARD:
             return {
                 ...state,
-                list: action.data
+                board: action.data
+            }
+        case LIST_OPEN_BOARD:
+            return {
+                ...state,
+                board_id: action.data
+            }
+        case LIST_ADD_ITEM:
+            return {
+                ...state,
+                list: {...state.list, ...action.data.list},
+                board: {...state.board, ...action.data.board}
+            }
+        case LIST_SET_FULL:
+            return {
+                ...state,
+                ...action.data
             }
         default:
             return state;

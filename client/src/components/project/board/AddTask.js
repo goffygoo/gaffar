@@ -6,7 +6,7 @@ export default function AddTask(props) {
     const { members } = useSelector(state => state.member)
 
     const {
-        view, addTask
+        view, addTask, id
     } = props
 
     const [task, settask] = useState('')
@@ -15,7 +15,6 @@ export default function AddTask(props) {
 
     const [arr, setArr] = useState(members)
     const [added, setAdded] = useState([])
-
 
     return (
         <div className={styles.containerPopup}>
@@ -81,7 +80,7 @@ export default function AddTask(props) {
                 </div>
 
                 <button className={styles.addTaskBtn} onClick={() => {
-                    addTask(task, deadline, description, members)
+                    addTask(id, task, deadline, description, members)
                     view(false)
                 }}>Add</button>
             </div>
