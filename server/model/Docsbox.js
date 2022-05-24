@@ -18,6 +18,6 @@ const boxSchema = new mongoose.Schema({
   },
 });
 
-const Docsbox = mongoose.model("Docsbox", docsSchema);
+const Docsbox = mongoose.model("Docsbox", boxSchema);
 
 export default Docsbox;

@@ -8,7 +8,6 @@ export default function (io) {
   console.log("Docs Router loaded");
 
   router.get("/", home(io).home);
-  router.post("/createProject", home(io).createProject);
   router.post("/getDocs", home(io).getDocs);
   router.post("/saveBox", home(io).saveBox);
   router.post("/addBox", home(io).addBox);
