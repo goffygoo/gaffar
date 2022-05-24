@@ -1,6 +1,7 @@
 import { LIST_SET_BOARD, LIST_OPEN_BOARD, LIST_SET_FULL, LIST_ADD_ITEM } from "./actionTypes";
 import { v4 as uuid } from "uuid";
 import store from "../store";
+import axios from 'axios'
 
 export const toggle = (id, taskId) => (dispatch) => {
     const { list, board } = store.getState().list
@@ -72,7 +73,7 @@ export const addItem = (title) => (dispatch) => {
                     items: []
                 }
             },
-            title 
+            title
         }
     }
 
@@ -107,15 +108,10 @@ export const onDragEnd = (result) => dispatch => {
         const [removed] = sourceItems.splice(source.index, 1);
         destItems.splice(destination.index, 0, removed);
 
-        if (destination.droppableId === "To do") {
-            list[board_id].tasks.forEach(i => {
-                if (i.id === removed.id) i.checked = false
-            })
-        } else if (destination.droppableId === "Done") {
-            list[board_id].tasks.forEach(i => {
-                if (i.id === removed.id) i.checked = true
-            })
-        }
+        
+        list[board_id].tasks.forEach(i => {
+            if (i.id === removed.id) i.checked = (destination.droppableId === "Done")
+        })
 
         board[board_id].columns = {
             ...columns,
@@ -154,48 +150,63 @@ export const addCol = (id, name) => (dispatch) => {
     const { columns } = board[board_id]
 
     const index = columns[id].index + 1;
-  
+
     for (let col in columns) {
-      if (columns[col].index >= index) {
-        columns[col].index++;
-      }
+        if (columns[col].index >= index) {
+            columns[col].index++;
+        }
     }
-  
+
     columns[uuid()] = {
-      name,
-      index,
-      items: [],
+        name,
+        index,
+        items: [],
     };
 
     board[board_id].columns = columns
-    
+
     console.log(board)
-  
+
     dispatch({
-      data: board,
-      type: LIST_SET_BOARD,
+        data: board,
+        type: LIST_SET_BOARD,
     });
-  };
-  
-  export const delCol = (id) => (dispatch) => {
+};
+
+export const delCol = (id) => (dispatch) => {
     const { board_id, board } = store.getState().list;
     const { columns } = board[board_id]
 
     const index = columns[id].index + 1;
-  
+
     if (columns[id].items.length !== 0) return;
-  
+
     for (let col in columns) {
-      if (columns[col].index >= index) {
-        columns[col].index--;
-      }
+        if (columns[col].index >= index) {
+            columns[col].index--;
+        }
     }
-  
+
     delete columns[id];
-  
+
     dispatch({
         data: board,
         type: LIST_SET_BOARD,
-      });
-  };
-  
+    });
+};
+
+export const saveData = () => _dispatch => {
+    const { list, project: {project_id} } = store.getState()
+
+    const req = {
+        list, 
+        project_id
+    }
+
+    axios.post("http://localhost:5000/list/saveList", req).then((res) => {
+        if (res.data.success === false) throw Error("Error");
+
+    }).catch((err) => {
+        console.log(err);
+    });
+}

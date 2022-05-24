@@ -27,3 +27,5 @@ export const PROJECT_ERROR = "PROJECT_ERROR";
 
 // member
 export const SET_MEMBERS = "SET_MEMBERS";
+
+export const SET_TASKS = "SET_TASKS";
