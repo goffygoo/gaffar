@@ -64,7 +64,7 @@ export default function Project() {
         console.log(err);
       });
 
-    initProject(params.id.slice(1));
+    initProject(params.id.slice(1), user_email);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

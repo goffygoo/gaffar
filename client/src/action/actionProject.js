@@ -4,12 +4,15 @@ import {
   PROJECT_ERROR,
   SAVE_DOCS_CONTENT,
   LIST_ADD_ITEM,
+  SET_TASKS,
 } from "../action/actionTypes";
 import axios from "axios";
+import store from "../store";
 
-export const initProject = (id) => (dispatch) => {
+export const initProject = (id, user_email) => (dispatch) => {
   const req = {
     project_id: id,
+    user_email
   };
 
   axios
@@ -19,7 +22,7 @@ export const initProject = (id) => (dispatch) => {
 
       console.log(res.data)
 
-      const { project, members, doc_id, boxes, list } = res.data;
+      const { project, members, doc_id, boxes, list, tasks } = res.data;
       let editable = Array(boxes.length).fill(false);
       dispatch({
         data: {
@@ -45,7 +48,17 @@ export const initProject = (id) => (dispatch) => {
       dispatch({
         data: list,
         type: LIST_ADD_ITEM
-    })
+      })
+
+      dispatch({
+        data: tasks,
+        type: SET_TASKS,
+      });
+
+      dispatch({
+        data: tasks,
+        type: SET_TASKS,
+      });
 
     })
     .catch((err) => {
