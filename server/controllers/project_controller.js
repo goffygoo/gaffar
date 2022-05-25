@@ -3,6 +3,7 @@ import Users from "../model/User.js";
 import jwt from "jsonwebtoken";
 import Docs from "../model/Docs.js";
 import Docsbox from "../model/Docsbox.js";
+import Lists from "../model/List.js";
 
 export default function (io) {
   const home = async function (req, res) {
@@ -108,6 +109,16 @@ export default function (io) {
         });
       }
       // console.log("pagal redskull - 4");
+      let list = await Lists.findOne({
+        project: project._id,
+      });
+      let lb = list.listboards
+      if (!lb) {
+        lb = {
+          list: {},
+          board: {}
+        }
+      }
 
       return res.status(201).send({
         success: true,
@@ -116,6 +127,7 @@ export default function (io) {
         project: resp,
         members: users,
         boxes: boxes,
+        list: lb
       });
     } catch (err) {
       return res.status(404).send({
@@ -155,17 +167,27 @@ export default function (io) {
         box: [],
       });
 
-      await Docs.findByIdAndUpdate(doc._id, {
-        project: project._id,
+      let list = await Lists.create({
+        project: project,
+        listboards: {
+          list: {},
+          board: {},
+        }
       });
+
+      // await Docs.findByIdAndUpdate(doc._id, {
+      //   project: project._id,
+      // });
       await Projects.findByIdAndUpdate(project._id, {
         doc: doc._id,
+        list: list._id
       });
 
       let resp = {
         project_id: project._id,
         project_name: project.name,
         doc_id: doc._id,
+        list_id: list._id
       };
       // add this new server to creator's server list
       return res.status(201).send({

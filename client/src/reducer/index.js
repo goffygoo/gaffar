@@ -5,6 +5,7 @@ import docs from "./docsReducer";
 import home from "./homeReducer";
 import member from "./memberReducer";
 import project from "./projectReducer";
+import mytasks from "./mytasksReducer";
 
 export default combineReducers({
   login,
@@ -13,4 +14,5 @@ export default combineReducers({
   home,
   member,
   project,
+  mytasks
 });

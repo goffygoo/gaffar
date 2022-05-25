@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 
+import AddTask from "./board/AddTask";
 import Task from "./board/Task";
 import styles from "../../styles/components/project/Board.module.css";
 
@@ -8,11 +9,10 @@ import { useDispatch } from "react-redux";
 import { bindActionCreators } from "redux";
 import * as actionList from "../../action/actionList";
 import { useSelector } from "react-redux";
-import AddTask from "./board/AddTask";
 
 export default function Board() {
   const dispatch = useDispatch();
-  const { addCol, delCol, addTask, onDragEnd } = bindActionCreators(
+  const { addCol, delCol, addTask, onDragEnd, saveData } = bindActionCreators(
     actionList, 
     dispatch
   );
@@ -62,7 +62,7 @@ export default function Board() {
           <div className={styles.containerHead}>
             <button onClick={() => setpopupAddTask(true)}>+</button>
             <h1>{board[board_id].title}</h1>
-            <button>✔</button>
+            <button onClick={() => saveData()}>✔</button>
           </div>
 
           <div className={styles.mainContainer}>

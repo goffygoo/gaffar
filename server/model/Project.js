@@ -5,12 +5,10 @@ const projectSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  board: [
-    {
+  list: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "Board",
+      ref: "Lists",
     },
-  ],
   doc: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Docs",

@@ -3,6 +3,7 @@ import {
   SET_MEMBERS,
   PROJECT_ERROR,
   SAVE_DOCS_CONTENT,
+  LIST_ADD_ITEM,
 } from "../action/actionTypes";
 import axios from "axios";
 
@@ -16,7 +17,9 @@ export const initProject = (id) => (dispatch) => {
     .then((res) => {
       if (res.data.success === false) throw Error("Error");
 
-      const { project, members, doc_id, boxes } = res.data;
+      console.log(res.data)
+
+      const { project, members, doc_id, boxes, list } = res.data;
       let editable = Array(boxes.length).fill(false);
       dispatch({
         data: {
@@ -25,6 +28,7 @@ export const initProject = (id) => (dispatch) => {
         },
         type: SET_PROJECT,
       });
+
       dispatch({
         data: {
           contents: boxes,
@@ -32,10 +36,17 @@ export const initProject = (id) => (dispatch) => {
         },
         type: SAVE_DOCS_CONTENT,
       });
+
       dispatch({
         data: members,
         type: SET_MEMBERS,
       });
+
+      dispatch({
+        data: list,
+        type: LIST_ADD_ITEM
+    })
+
     })
     .catch((err) => {
       dispatch({
