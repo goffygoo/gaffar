@@ -5,7 +5,8 @@ import {
   SAVE_DOCS_CONTENT,
   LIST_ADD_ITEM,
   SET_TASKS,
-  SET_EXTRAS
+  SET_EXTRAS,
+  SET_EXTRA_VAL
 } from "../action/actionTypes";
 import store from "../store";
 
@@ -73,10 +74,10 @@ export const initProject = (id, user_email) => (dispatch) => {
 };
 
 
-export const saveExtras = (gitLink, discLink, resources, notes) => dispatch => {
-  const { project:{project_id}  } = store.getState();
+export const saveExtras = () => dispatch => {
+  const { project_id, gitLink, discLink, resources, notes } = store.getState().project;
 
-  const req = {
+  const req = { 
     project_id,
     gitLink,
     discLink,
@@ -100,4 +101,11 @@ console.log(req);
       console.log(err);
     });
 };
+
+export const setExtra = (name, val) => dispatch => {
+  dispatch({
+    data: {[name]: val},
+    type: SET_EXTRA_VAL
+  }) 
+}
 

@@ -1,17 +1,13 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import styles from '../../styles/components/project/Extras.module.css'
 import { bindActionCreators } from 'redux';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import * as actionProject from '../../action/actionProject'
 
 export default function Extras() {
   const dispatch = useDispatch()
-  const { saveExtras } = bindActionCreators(actionProject, dispatch)
-
-  const [git, setgit] = useState("");
-  const [disc, setdisc] = useState("");
-  const [res, setres] = useState("");
-  const [note, setnote] = useState("");
+  const { saveExtras, setExtra } = bindActionCreators(actionProject, dispatch);
+  const { gitLink, discLink, resources, notes } = useSelector((state) => state.project);
 
   const [edit, setedit] = useState(false)
 
@@ -20,34 +16,68 @@ export default function Extras() {
       <div className={styles.component}>
         <div className={styles.first}>
           <div className={styles.title}><p>GitHub</p></div>
-          <div className={styles.editBtn} onClick = {() => {setedit("github")}}><p>{edit === "github" ? "Cancel" : "Edit"}</p></div>
-          <div className={styles.saveBtn} onClick = {() => saveExtras(git,disc,res,note)}><p>Save</p></div>
+          <div className={styles.editBtn} onClick={() => { setedit("github") }}><p>Edit</p></div>
+          <div className={styles.saveBtn} onClick={() => {
+            saveExtras();
+            setedit(false);
+          }
+          }><p>Save💀</p></div>
         </div>
-        <input className={styles.input}  value = {git} onChange = {e=>setgit(e.target.value)} />
+        {edit === "github" ?
+          <input className={styles.input} value={gitLink} onChange={e => setExtra("gitLink", e.target.value)} />
+          :
+          <div className={styles.content}><p><a href={gitLink}>{gitLink}</a></p></div>
+        }
       </div>
       <div className={styles.component}>
         <div className={styles.first}>
           <div className={styles.title}><p>Discode</p></div>
-          <div className={styles.editBtn} onClick = {e => {setedit("discode")}}><p>Edit</p></div>
-          <div className={styles.saveBtn}><p>Save</p></div>
+          <div className={styles.editBtn} onClick={() => { setedit("discode") }}><p>Edit</p></div>
+          <div className={styles.saveBtn} onClick={() => {
+            saveExtras();
+            setedit(false);
+          }
+          }><p>Save👻</p></div>
         </div>
-        <input className={styles.input}  value = {disc} onChange = {e=>setdisc(e.target.value)}/>
+        {edit === "discode" ?
+          <input className={styles.input} value={discLink} onChange={e => setExtra("discLink", e.target.value)} />
+          :
+          <div className={styles.content}><p>{discLink}</p></div>
+        }
       </div>
       <div className={styles.component2}>
         <div className={styles.first}>
           <div className={styles.title}><p>Resources</p></div>
-          <div className={styles.editBtn} onClick = {e => {setedit("resources")}}><p>Edit</p></div>
-          <div className={styles.saveBtn}><p>Save</p></div>
+          <div className={styles.editBtn} onClick={() => { setedit("resources") }}><p>Edit</p></div>
+          <div className={styles.saveBtn} onClick={() => {
+            saveExtras();
+            setedit(false);
+          }
+          }><p>Save🧝‍♂️</p></div>
         </div>
-        <div className={styles.textarea}><textarea  value = {res} onChange = {e=>setres(e.target.value)}/></div>
+        {edit === "resources" ?
+          <div className={styles.textarea}><textarea value={resources} onChange={e => setExtra("resources", e.target.value)} /></div>
+
+          :
+          <div className={styles.content}><p>{resources}</p></div>
+        }
+
       </div>
       <div className={styles.component2}>
         <div className={styles.first}>
           <div className={styles.title}><p>Notes</p></div>
-          <div className={styles.editBtn} onClick = {e => {setedit("notes")}}><p>Edit</p></div>
-          <div className={styles.saveBtn}><p>Save</p></div>
+          <div className={styles.editBtn} onClick={() => { setedit("notes") }}><p>Edit</p></div>
+          <div className={styles.saveBtn} onClick={() => {
+            saveExtras();
+            setedit(false);
+          }
+          }><p>Save😼</p></div>
         </div>
-        <div className={styles.textarea}><textarea  value = {note} onChange = {e=>setnote(e.target.value)}/></div>
+        {edit === "notes" ?
+          <div className={styles.textarea}><textarea value={notes} onChange={e => setExtra("notes", e.target.value)} /></div>
+          :
+          <div className={styles.content}><p>{notes}</p></div>
+        }
       </div>
     </div>
   )

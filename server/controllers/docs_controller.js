@@ -119,10 +119,48 @@ export default function (io) {
     }
   };
 
+  const deleteBox = async function (req, res) {
+    try {
+      let doc = await Docs.findOne({
+        project: req.body.project_id
+      });
+      let tbox = await Docsbox.findById(req.body.box_id);
+
+      if (!doc || !tbox) {
+        return res.status(404).send({
+          success: false,
+          message: `invalid delete`,
+        });
+      }
+
+      await Docs.updateOne(
+        {
+          _id: doc._id,
+        },
+        {
+          $pull: { box: tbox._id },
+        }
+      );
+      await Docsbox.findByIdAndDelete(tbox._id);
+
+      return res.status(201).send({
+        success: true,
+        message: "Box deleted",
+      });
+    } catch (err) {
+      return res.status(404).send({
+        success: false,
+        message: `Bhai error aara : ${err}`,
+      });
+      // res.send("Error", err);
+    }
+  };
+
   return {
     home,
     getDocs,
     saveBox,
+    deleteBox,
     addBox,
   };
 }

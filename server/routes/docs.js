@@ -11,6 +11,7 @@ export default function (io) {
   router.post("/getDocs", home(io).getDocs);
   router.post("/saveBox", home(io).saveBox);
   router.post("/addBox", home(io).addBox);
+  router.post("/deleteBox", home(io).deleteBox);
   // router.post("/createUser", createUser);
   // router.post(
   //   "/userInfo",

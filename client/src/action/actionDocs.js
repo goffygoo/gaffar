@@ -85,15 +85,33 @@ export const settypec = (typii) => (dispatch) => {
   });
 };
 
-export const removebox = (indx) => (dispatch) => {
-  let { contents, typecon } = store.getState().docs;
-  contents.splice(indx, 1);
-  typecon.splice(indx, 1);
-  dispatch({
-    data: {
-      contents,
-      typecon,
-    },
-    type: REMOVE_BOX,
-  });
+
+
+export const deleteBox = (indx) => (dispatch) => {
+  let {
+    docs: { editable, contents },
+    project: { project_id }
+  } = store.getState();
+  const req = {
+    box_id: contents[indx].box_id,
+    project_id,
+  }
+  axios
+    .post("http://localhost:5000/docs/deleteBox", req)
+    .then((res) => {
+      if (res.data.success === false) throw Error("Error");
+      contents.splice(indx, 1);
+      editable.splice(indx, 1);
+
+      dispatch({
+        data: {
+          contents,
+          editable,
+        },
+        type: SAVE_DOCS_CONTENT,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 };

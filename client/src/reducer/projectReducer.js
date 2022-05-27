@@ -1,4 +1,4 @@
-import { SET_PROJECT, PROJECT_ERROR , SET_EXTRAS } from "../action/actionTypes";
+import { SET_PROJECT, PROJECT_ERROR , SET_EXTRAS, SET_EXTRA_VAL } from "../action/actionTypes";
 
 const initialstate = {
   project_id: "",
@@ -31,6 +31,11 @@ const func = function (state = initialstate, action) {
         ...state,
         ...action.data
       };
+      case SET_EXTRA_VAL:
+        return {
+          ...state,
+          ...action.data
+        };
     default:
       return state;
   }

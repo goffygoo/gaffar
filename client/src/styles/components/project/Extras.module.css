@@ -1,9 +1,10 @@
-.mainCtn{
+.mainCtn {
     overflow-y: scroll;
     display: flex;
     flex-direction: column;
 }
-.component{
+
+.component {
     display: flex;
     flex-direction: column;
     min-height: 20vh;
@@ -11,7 +12,7 @@
     margin: 1vh auto auto auto;
 }
 
-.component2{
+.component2 {
     display: flex;
     flex-direction: column;
     min-height: 20vh;
@@ -19,67 +20,83 @@
     margin: 1vh auto auto auto;
 }
 
-.first{
+.first {
     display: flex;
     flex-direction: row;
     height: 6vh;
     width: 100%;
 }
 
-.title{
+.title {
     background-color: blue;
     height: 100%;
     display: flex;
-    width:60%;
+    width: 60%;
 }
 
-.title > p{
+.title>p {
     margin: auto;
     font-weight: bold;
     font-size: 1rem;
 }
 
-.editBtn{
+.editBtn {
     display: flex;
     height: 100%;
-    width:8vw;
+    width: 8vw;
     background-color: green;
     margin: auto 0 auto auto;
     cursor: pointer;
 }
-.saveBtn{
+
+.saveBtn {
     display: flex;
     background-color: red;
     height: 100%;
-    width:8vw;
+    width: 8vw;
     margin: auto 0 auto auto;
     cursor: pointer;
 }
 
-.editBtn > p{
+.editBtn>p {
     margin: auto;
     font-weight: bold;
     font-size: 1rem;
 }
-.saveBtn > p{
+
+.saveBtn>p {
     margin: auto;
     font-weight: bold;
     font-size: 1.2rem;
 }
 
-.input{
+.input {
     margin: 1vh 0 auto auto;
     height: 5vh;
-    width:100%;
+    width: 100%;
 }
 
-.textarea{
+.textarea {
     margin: 1vh 0 auto auto;
     height: 10vh;
-    width:100%;
+    width: 100%;
 }
 
-.textarea > textarea{
+.textarea>textarea {
     resize: none;
     width: 100%;
+}
+
+.content {
+    margin: 1vh 0 2vh auto;
+    min-height: 5vh;
+    width: 100%;
+    background-color: white;
+    display: flex;
+}
+
+.content > p {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    margin: 1px auto auto 1px;
 }
