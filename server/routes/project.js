@@ -13,6 +13,9 @@ export default function (io) {
   router.post("/getUsers", home(io).getUsers);
   router.post("/getInfo", home(io).getInfo);
   router.post("/invite", home(io).invite);
+  router.post("/makeAdmin", home(io).makeAdmin);
+  router.post("/changeRole", home(io).changeRole);
+  router.post("/saveExtras", home(io).saveExtras);
   // router.post("/createUser", createUser);
   // router.post(
   //   "/userInfo",

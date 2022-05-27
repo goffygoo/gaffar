@@ -5,9 +5,11 @@ import {
   SAVE_DOCS_CONTENT,
   LIST_ADD_ITEM,
   SET_TASKS,
+  SET_EXTRAS
 } from "../action/actionTypes";
-import axios from "axios";
 import store from "../store";
+
+import axios from "axios";
 
 export const initProject = (id, user_email) => (dispatch) => {
   const req = {
@@ -22,7 +24,7 @@ export const initProject = (id, user_email) => (dispatch) => {
 
       console.log(res.data)
 
-      const { project, members, doc_id, boxes, list, tasks } = res.data;
+      const { project, members, doc_id, boxes, list, tasks, is_admin, gitLink, discLink, resources, notes } = res.data;
       let editable = Array(boxes.length).fill(false);
       dispatch({
         data: {
@@ -56,8 +58,8 @@ export const initProject = (id, user_email) => (dispatch) => {
       });
 
       dispatch({
-        data: tasks,
-        type: SET_TASKS,
+        data: { is_admin, gitLink, discLink, resources, notes },
+        type: SET_EXTRAS,
       });
 
     })
@@ -69,3 +71,33 @@ export const initProject = (id, user_email) => (dispatch) => {
       console.log(err);
     });
 };
+
+
+export const saveExtras = (gitLink, discLink, resources, notes) => dispatch => {
+  const { project:{project_id}  } = store.getState();
+
+  const req = {
+    project_id,
+    gitLink,
+    discLink,
+    resources,
+    notes
+ }
+console.log(req);
+  axios
+    .post("http://localhost:5000/project/saveExtras", req)
+    .then((res) => {
+      if (res.data.success === false) throw Error("Error");
+
+      console.log(res);
+
+      dispatch({
+        data: { gitLink, discLink, resources, notes },
+        type: SET_EXTRAS,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+

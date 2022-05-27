@@ -76,18 +76,26 @@ export default function (io) {
         name: project.name,
       };
       let users = [];
+      let am_i_admin = false;
       // console.log(project);
 
       for (let uid of project.members) {
         let user = await Users.findById(uid.member);
+        if(user.email === req.body.user_email){
+          console.log("hola");
+          am_i_admin = uid.admin;
+        }
         // console.log(user);
         users.push({
           user_id: user._id,
           user_name: user.name,
           user_email: user.email,
+          user_photu: user.img,
           user_role: uid.role,
+          is_admin: uid.admin
         });
       }
+      console.log(am_i_admin);
       // console.log("pagal redskull - 1");
       let doc = await Docs.findOne({
         project: project._id,
@@ -148,7 +156,12 @@ export default function (io) {
         members: users,
         boxes: boxes,
         list: lb,
-        tasks: tasks
+        tasks: tasks,
+        is_admin: am_i_admin,
+        gitLink: project.gitLink,
+        discLink: project.discLink,
+        resources: project.resources,
+        notes: project.notes,
       });
     } catch (err) {
       return res.status(404).send({
@@ -169,9 +182,9 @@ export default function (io) {
           {
             member: creator._id,
             role: "admin",
+            admin: true
           },
         ],
-        admins: [creator._id],
       });
 
       await Users.updateOne(
@@ -288,6 +301,110 @@ export default function (io) {
     }
   };
 
+  const makeAdmin = async function (req, res) {
+    try {
+      let project = await Projects.findOne({ _id: req.body.project_id });
+      if (!project) {
+        return res.status(404).send({
+          success: false,
+          message: `No such project found`,
+        });
+      }
+      let users = [];
+      // console.log(project);
+
+      for (let uid of project.members) {
+        if(uid.member.toString() === req.body.user_id.toString()){
+          uid.admin = true;
+          // console.log("hello");
+        }
+        // console.log(user);
+        users.push(uid);
+      }
+      await Projects.findOneAndUpdate({ _id: req.body.project_id } , {
+        members: users
+      });
+
+      // add this new server to creator's server list
+      return res.status(201).send({
+        success: true,
+        message: "Admin banaya aapne",
+      });
+    } catch (err) {
+      return res.status(404).send({
+        success: false,
+        message: `Bhai error aara : ${err}`,
+      });
+    }
+  };
+
+  const changeRole = async function (req, res) {
+    try {
+      let project = await Projects.findOne({ _id: req.body.project_id });
+      if (!project) {
+        return res.status(404).send({
+          success: false,
+          message: `No such project found`,
+        });
+      }
+      let users = [];
+      // console.log(project);
+
+      for (let uid of project.members) {
+        if(uid.member.toString() === req.body.user_id.toString()){
+          uid.role = req.body.new_role;
+          // console.log("hello");
+        }
+        // console.log(user);
+        users.push(uid);
+      }
+      await Projects.findOneAndUpdate({ _id: req.body.project_id } , {
+        // papa ka phone aa rkha
+        // axios bann rakha
+        members: users
+      });
+
+      // add this new server to creator's server list
+      return res.status(201).send({
+        success: true,
+        message: "Role Changed",
+      });
+    } catch (err) {
+      return res.status(404).send({
+        success: false,
+        message: `Bhai error aara : ${err}`,
+      });
+    }
+  };
+
+  const saveExtras = async function (req, res) {
+    try {
+      let project = await Projects.findOne({ _id: req.body.project_id });
+      if (!project) {
+        return res.status(404).send({
+          success: false,
+          message: `No such project found`,
+        });
+      }
+      await Projects.findOneAndUpdate({ _id: project._id },{
+        gitLink: req.body.gitLink,
+        discLink: req.body.discLink,
+        resources: req.body.resources,
+        notes: req.body.notes,
+      })
+
+      return res.status(201).send({
+        success: true,
+        message: "Extras Changed",
+      });
+    } catch (err) {
+      return res.status(404).send({
+        success: false,
+        message: `Bhai error aara : ${err}`,
+      });
+    }
+  };
+
   return {
     home,
     createProject,
@@ -295,5 +412,8 @@ export default function (io) {
     getUsers,
     getInfo,
     invite,
+    makeAdmin,
+    changeRole,
+    saveExtras
   };
 }

@@ -6,9 +6,10 @@ const initialstate = {
   doc_id: "",
   error: false,
   gitLink:"",
-  discodeLink: "",
+  discLink: "",
   resources: "",
-  notes: ""
+  notes: "",
+  is_admin: false
 };
 
 const func = function (state = initialstate, action) {
@@ -28,10 +29,7 @@ const func = function (state = initialstate, action) {
     case SET_EXTRAS:
       return {
         ...state,
-        gitLink: action.data.gitLink,
-        discodeLink: action.data.discodeLink,
-        resources: action.data.resources,
-        notes: action.data.notes
+        ...action.data
       };
     default:
       return state;

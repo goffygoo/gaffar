@@ -92,6 +92,22 @@ export const openBoard = (id, navigate, link) => (dispatch) => {
     navigate(link)
 }
 
+export const delBoard = (id) => (dispatch) => {
+    const { board_id, list, board } = store.getState().list
+
+    delete list[id]
+    delete board[id]
+    
+    dispatch({
+        data: {
+            list, 
+            board,
+            ...(board_id === id && {board_id: undefined})
+        },
+        type: LIST_SET_FULL
+    })
+}
+
 export const onDragEnd = (result) => dispatch => {
     if (!result.destination) return;
     const { source, destination } = result;

@@ -13,7 +13,7 @@ export default function List() {
   const navigate = useNavigate()
   const params = useParams()
 
-  const { toggle, addTask, addItem, openBoard, saveData } = bindActionCreators(actionList, dispatch)
+  const { toggle, addTask, addItem, openBoard, delBoard, saveData } = bindActionCreators(actionList, dispatch)
   const { list } = useSelector(state => state.list)
 
   const [popupAddTask, setpopupAddTask] = useState(false);
@@ -26,7 +26,7 @@ export default function List() {
       ) : null}
 
       <div className={styles.container}>
-        <button onClick={() => saveData()}>Save</button>
+        <button onClick={() => saveData()}>Save</button> 
         {Object.entries(list).map(([id, obj]) => {
           return (
             <div key={id} className={styles.item}>
@@ -34,6 +34,7 @@ export default function List() {
                 <h1>{obj.title}</h1>
                 <button onClick={() => setpopupAddTask(id)} >+</button>
                 <button onClick={() => openBoard(id, navigate, `/project${params.id}/board`)}>✔</button>
+                <button onClick={() => delBoard(id)}>💣</button>
               </div>
               <div className={styles.subContainer}>
                 {obj.tasks.map(task => {
