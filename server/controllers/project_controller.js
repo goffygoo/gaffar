@@ -13,7 +13,7 @@ export default function (io) {
   const invite = async function (req, res) {
     try {
       let user = await Users.findOne({
-        email: req.body.user_email,
+        email: req.body.new_user_email,
       });
       if (!user) {
         return res.status(404).send({
@@ -82,7 +82,7 @@ export default function (io) {
       for (let uid of project.members) {
         let user = await Users.findById(uid.member);
         if(user.email === req.body.user_email){
-          console.log("hola");
+          // console.log("hola");
           am_i_admin = uid.admin;
         }
         // console.log(user);
@@ -95,7 +95,7 @@ export default function (io) {
           is_admin: uid.admin
         });
       }
-      console.log(am_i_admin);
+      // console.log(am_i_admin);
       // console.log("pagal redskull - 1");
       let doc = await Docs.findOne({
         project: project._id,

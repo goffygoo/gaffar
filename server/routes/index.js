@@ -4,11 +4,14 @@ import user from "./user.js";
 import project from "./project.js";
 import docs from "./docs.js";
 import list from "./list.js"
+
+import { logger2} from '../config/middleware.js'
+
 export default function (io) {
   const router = express.Router();
   console.log("Router loaded");
 
-  router.get("/", home(io).home);
+  router.get("/", logger2 ,home(io).home);
   router.use("/user", user(io));
   router.use("/project", project(io));
   router.use("/docs", docs(io));

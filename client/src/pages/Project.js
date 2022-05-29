@@ -2,11 +2,7 @@ import React, { useEffect } from "react";
 import Branding from "../components/Branding";
 import styles from "../styles/pages/Project.module.css";
 import {
-  Navigate,
-  Route,
-  Routes,
-  useNavigate,
-  useParams,
+  Navigate, Route, Routes, useNavigate, useParams,
 } from "react-router-dom";
 import Tabs from "../components/project/Tabs";
 import List from "../components/project/List";
@@ -16,6 +12,7 @@ import Extras from "../components/project/Extras";
 import Members from "../components/project/Members";
 import Mytasks from "../components/project/Mytasks";
 import axios from "axios";
+import io from 'socket.io-client'
 
 import { useDispatch, useSelector } from "react-redux";
 import { bindActionCreators } from "redux";
@@ -28,8 +25,8 @@ export default function Project() {
   const dispatch = useDispatch();
   const { error } = useSelector((state) => state.project);
 
-  const { initUser, initProject } = bindActionCreators(
-    Object.assign({}, actionLogin, actionProject),
+  const { initUser, initProject , getDocs } = bindActionCreators(
+    { ...actionLogin, ...actionProject },
     dispatch
   );
 
@@ -44,7 +41,7 @@ export default function Project() {
       localStorage.getItem("user") === null ||
       localStorage.getItem("token") === null
     )
-      return navigate("/");
+      return navigate("/home");
 
     const user_email = localStorage.getItem("user");
     const token = localStorage.getItem("token");
@@ -65,8 +62,28 @@ export default function Project() {
       });
 
     initProject(params.id.slice(1), user_email);
+
+    console.log("react ka jaadu");
+    
+    const socket = io("http://localhost:5000/");
+
+    initSocket(socket)
+
+    return () => {
+      socket.disconnect()
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  const initSocket = socket => {
+    socket.emit('join', params.id.slice(1))
+
+    socket.on('getDocs', () => {
+      // console.log("hayadocs");
+      getDocs();
+    });
+
+  }
 
   return (
     <div className={styles.page}>

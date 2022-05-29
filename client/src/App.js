@@ -5,13 +5,14 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Project from "./pages/Project";
 import NotFound from "./pages/NotFound";
+import LandingPage from "./pages/LandingPage";
 
 function App() {
   return (
     <Provider store={store}>
       <BrowserRouter>               
         <Routes>
-          <Route exact path="/" element={<Login />} />
+          <Route exact path="/" element={<LandingPage />} />
           <Route exact path="/login" element={<Login />} />
           <Route exact path="/home" element={<Home />} />
           <Route exact path="/project:id/*" element={<Project />} />

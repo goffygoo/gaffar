@@ -11,10 +11,15 @@ import axios from "axios";
 export const toggleedit = (indx) => (dispatch) => {
   let {
     docs: { editable, contents },
-    project: { doc_id },
+    project: { doc_id , project_id},
+    login: {user}
   } = store.getState();
   if (editable[indx] === true) {
-    const req = contents[indx];
+    const req = {
+      ...contents[indx],
+      user_email: user.email,
+      project_id: project_id
+    }
     axios
       .post("http://localhost:5000/docs/saveBox", req)
       .then((res) => {
@@ -44,11 +49,14 @@ export const editdata = (content, indx, typec) => (dispatch) => {
 export const addbox = () => (dispatch) => {
   let {
     docs: { contents, editable },
-    project: { doc_id },
+    project: { doc_id , project_id},
+    login: {user}
   } = store.getState();
   // axios
   let req = {
+    project_id:project_id,
     docs_id: doc_id,
+    user_email: user.email
   };
 
   axios
@@ -90,11 +98,13 @@ export const settypec = (typii) => (dispatch) => {
 export const deleteBox = (indx) => (dispatch) => {
   let {
     docs: { editable, contents },
-    project: { project_id }
+    project: { project_id },
+    login: {user}
   } = store.getState();
   const req = {
     box_id: contents[indx].box_id,
     project_id,
+    user_email: user.email
   }
   axios
     .post("http://localhost:5000/docs/deleteBox", req)

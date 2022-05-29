@@ -4,11 +4,12 @@ import axios from "axios";
 
 export const invite = (email) => (dispatch) => { };
 export const makeAdmin = (indx) => (dispatch) => {
-    const { project: { project_id }, member: { members } } = store.getState();
+    const { project: { project_id }, member: { members } , login:{user} } = store.getState();
     // 
     const req = {
         project_id: project_id,
         user_id: members[indx].user_id,
+        user_email: user.email
     };
 
     axios
@@ -30,12 +31,13 @@ export const makeAdmin = (indx) => (dispatch) => {
 }
 
 export const changeRole = (indx,role) => (dispatch) => {
-    const { project: { project_id }, member: { members } } = store.getState();
+    const { project: { project_id }, member: { members },login:{user} } = store.getState();
     // 
     const req = {
         project_id: project_id,
         user_id: members[indx].user_id,
         new_role:role,
+        user_email: user.email
     };
 
     axios

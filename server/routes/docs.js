@@ -2,6 +2,7 @@ import express from "express";
 import passport from "passport";
 import "../config/passport.js";
 import home from "../controllers/docs_controller.js";
+import {adminAccess} from '../config/middleware.js'
 
 export default function (io) {
   const router = express.Router();
@@ -9,9 +10,9 @@ export default function (io) {
 
   router.get("/", home(io).home);
   router.post("/getDocs", home(io).getDocs);
-  router.post("/saveBox", home(io).saveBox);
-  router.post("/addBox", home(io).addBox);
-  router.post("/deleteBox", home(io).deleteBox);
+  router.post("/saveBox",adminAccess, home(io).saveBox);
+  router.post("/addBox", adminAccess,home(io).addBox);
+  router.post("/deleteBox", adminAccess,home(io).deleteBox);
   // router.post("/createUser", createUser);
   // router.post(
   //   "/userInfo",

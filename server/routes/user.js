@@ -3,6 +3,7 @@ import passport from "passport";
 import "../config/passport.js";
 import home from "../controllers/user_controller.js";
 
+
 export default function (io) {
   const router = express.Router();
   console.log("User Router loaded");

@@ -212,11 +212,12 @@ export const delCol = (id) => (dispatch) => {
 };
 
 export const saveData = () => _dispatch => {
-    const { list, project: {project_id} } = store.getState()
+    const { list, project: {project_id} , login:{user} } = store.getState()
 
     const req = {
         list, 
-        project_id
+        project_id,
+        user_email:user.email
     }
 
     axios.post("http://localhost:5000/list/saveList", req).then((res) => {

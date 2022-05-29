@@ -7,7 +7,27 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+body::-webkit-scrollbar {
+  background-color: black;
+  width: 0.5vw;
 }
+
+body::-webkit-scrollbar-thumb {
+  background-color: wheat;
+  border-radius: 0.5rem;
+}
+
+/* h1 {
+  font-family: Noto Sans, Montserrat ;
+  font-weight: 700;
+} */
+
+/* p {
+  font-family: Montserrat ;
+  font-weight: 400;
+} */
+
+
+
+/* **************************************************************** */
+

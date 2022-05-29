@@ -23,7 +23,7 @@ export const initProject = (id, user_email) => (dispatch) => {
     .then((res) => {
       if (res.data.success === false) throw Error("Error");
 
-      console.log(res.data)
+      console.log(res.data);
 
       const { project, members, doc_id, boxes, list, tasks, is_admin, gitLink, discLink, resources, notes } = res.data;
       let editable = Array(boxes.length).fill(false);
@@ -75,14 +75,15 @@ export const initProject = (id, user_email) => (dispatch) => {
 
 
 export const saveExtras = () => dispatch => {
-  const { project_id, gitLink, discLink, resources, notes } = store.getState().project;
+  const { project:{project_id, gitLink, discLink, resources, notes},login:{user} } = store.getState().project;
 
   const req = { 
     project_id,
     gitLink,
     discLink,
     resources,
-    notes
+    notes,
+    user_email:user.email
  }
 console.log(req);
   axios
@@ -109,3 +110,40 @@ export const setExtra = (name, val) => dispatch => {
   }) 
 }
 
+export const getDocs = () => (dispatch) => {
+  let {
+    project: { project_id },
+    login: {user}
+  } = store.getState();
+  const req = {
+    project_id: project_id,
+    user_email: user.email,
+  };
+
+  axios
+    .post("http://localhost:5000/docs/getDocs", req)
+    .then((res) => {
+      if (res.data.success === false) throw Error("Error");
+
+      console.log(res);
+
+      const { boxes } = res.data;
+      let editable = Array(boxes.length).fill(false);
+
+      dispatch({
+        data: {
+          contents: boxes,
+          editable: editable,
+        },
+        type: SAVE_DOCS_CONTENT,
+      });
+
+    })
+    .catch((err) => {
+      dispatch({
+        data: true,
+        type: PROJECT_ERROR,
+      });
+      console.log(err);
+    });
+};

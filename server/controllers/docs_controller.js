@@ -24,8 +24,16 @@ export default function (io) {
       let boxes = [];
 
       for (let bid of doc.box) {
-        let box = await Projects.findById(bid);
-        boxes.push(box);
+        let box = await Docsbox.findById(bid);
+        // console.log("pagal redskull - 3", box);
+        boxes.push({
+          box_id: box._id,
+          title: box.title,
+          url: box.url,
+          method: box.method,
+          request: box.request,
+          response: box.response,
+        });
       }
 
       return res.status(201).send({
@@ -63,6 +71,7 @@ export default function (io) {
         request: req.body.request,
       });
       // console.log("r-3");
+      io.sockets.in(req.body.project_id).emit("getDocs" , req.body.project_id);
 
       return res.status(201).send({
         success: true,
@@ -79,7 +88,9 @@ export default function (io) {
 
   const addBox = async function (req, res) {
     try {
-      let doc = await Docs.findById(req.body.docs_id);
+      let doc = await Docs.findOne({
+        project: req.body.project_id
+      });
 
       if (!doc) {
         return res.status(404).send({
@@ -104,6 +115,9 @@ export default function (io) {
           $push: { box: newbox._id },
         }
       );
+      
+      io.sockets.in(req.body.project_id).emit("getDocs" , req.body.project_id);
+      // console.log("hello");
 
       return res.status(201).send({
         success: true,
@@ -142,6 +156,7 @@ export default function (io) {
         }
       );
       await Docsbox.findByIdAndDelete(tbox._id);
+      io.sockets.in(req.body.project_id).emit("getDocs" , req.body.project_id);
 
       return res.status(201).send({
         success: true,

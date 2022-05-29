@@ -8,7 +8,7 @@ opts.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken();
 opts.secretOrKey = "Random Alina 2.0";
 passport.use(
   new Strategy(opts, function (jwt_payload, done) {
-    // console.log(jwt_payload);
+    console.log("auth");
     Users.findOne({ email: jwt_payload.user_email }, function (err, user) {
       if (err) {
         return done(err, false);
