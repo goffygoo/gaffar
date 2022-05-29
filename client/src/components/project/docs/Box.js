@@ -9,14 +9,14 @@ import TextComp from "./textComp";
 import styles from "../../../styles/components/project/Docs.module.css";
 
 export default function Box({ indx }) {
-  const { editable, contents, typec } = useSelector((state) => state.docs);
-  const navigate = useNavigate();
+  const { editable } = useSelector((state) => state.docs);
 
   const dispatch = useDispatch();
-  const { toggleedit } = bindActionCreators(actionDocs, dispatch);
+  const { toggleedit , deleteBox } = bindActionCreators(actionDocs, dispatch);
 
   return (
     <div className={styles.boxContainer}>
+      <div className={styles.btnCtn}>
       {editable[indx] ? (
         <div className={styles.save} onClick={() => toggleedit(indx)}>
           save
@@ -26,7 +26,10 @@ export default function Box({ indx }) {
           edit
         </div>
       )}
-
+      <div className={styles.delete} onClick = {()=>deleteBox(indx)}>
+          vibhor b3
+        </div>
+      </div>
       <div className={styles.title}>
         {editable[indx] ? (
           <TextComp indx={indx} typec={"title"} />

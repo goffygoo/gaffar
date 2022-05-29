@@ -86,12 +86,16 @@
   height: 4vh;
   border-radius: 10px;
   background-color: purple;
+  cursor: pointer;
+  display: flex;
 }
 
 .save {
   width: 3vw;
   height: 4vh;
   border-radius: 10px;
+  display: flex;
+  cursor: pointer;
 
   margin: 0 0 0 auto;
   background-color: greenyellow;
@@ -100,8 +104,35 @@
 .makeadmin {
   width: 7vw;
   height: 4vh;
+  cursor: pointer;
   background-color: orangered;
   border-radius: 10px;
+  display: flex;
 
   margin: 0 0 0 auto;
+}
+
+.edit > p{
+  margin: auto;
+  font-weight: bold;
+}
+
+.save > p{
+  margin: auto;
+  font-weight: bold;
+}
+
+.makeadmin > p{
+  margin: auto;
+  font-weight: bold;
+}
+
+.left  > img{
+  width:8vw;
+  height:8vw
+}
+
+.upper > input{
+  width: 100%;
+  height: 100%;
 }

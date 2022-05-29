@@ -113,6 +113,7 @@ export default function Board() {
                                     key={item.id}
                                     draggableId={item.id}
                                     index={index}
+                                    // isDragDisabled
                                   >
                                     {(provided, snapshot) => {
                                       return (

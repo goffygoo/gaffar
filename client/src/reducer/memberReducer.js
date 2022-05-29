@@ -1,4 +1,4 @@
-import { SET_MEMBERS } from "../action/actionTypes";
+import { SET_MEMBERS, MAKE_ADMIN } from "../action/actionTypes";
 
 const initialstate = {
   members: [],
@@ -12,6 +12,11 @@ const func = function (state = initialstate, action) {
         ...state,
         members: action.data,
       };
+    case MAKE_ADMIN:
+      return{
+        ...state,
+        members: action.data,
+      }
     default:
       return state;
   }

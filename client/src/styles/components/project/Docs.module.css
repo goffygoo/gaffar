@@ -173,3 +173,14 @@
   margin-bottom: 2vh;
   background-color: rgba(0, 128, 0, 0.467);
 }
+
+
+.btnCtn{
+  display: flex;
+}
+
+.delete{
+  display: flex;
+  margin: auto 1vw auto auto;
+  cursor: pointer;
+}

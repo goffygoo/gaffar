@@ -24,8 +24,13 @@ export const PNAMECHANGE = "PNAMECHANGE";
 export const GET_PROJECTS = "GET_PROJECTS";
 export const SET_PROJECT = "SET_PROJECT";
 export const PROJECT_ERROR = "PROJECT_ERROR";
+export const SET_EXTRAS = "SET_EXTRAS";
+export const SET_EXTRA_VAL = "SET_EXTRA_VAL";
 
 // member
 export const SET_MEMBERS = "SET_MEMBERS";
+export const MAKE_ADMIN = "MAKE_ADMIN";
 
 export const SET_TASKS = "SET_TASKS";
+
+

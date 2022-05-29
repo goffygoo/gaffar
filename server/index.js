@@ -4,6 +4,7 @@ import cors from "cors";
 import routes from "./routes/index.js";
 import { Server } from "socket.io";
 import http from "http";
+import iofunc from "./config/sockets.js"
 
 // fire up the express app
 const app = express();
@@ -18,6 +19,7 @@ const io = new Server(server, {
     methods: ["GET", "POST"],
   },
 });
+iofunc(io);
 
 // connect to database
 import db from "./config/mongoose.js";

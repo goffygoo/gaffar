@@ -42,7 +42,7 @@ export default function Home() {
       localStorage.getItem("user") === null ||
       localStorage.getItem("token") === null
     )
-      return navigate("/");
+      return navigate("/login");
     const user_email = localStorage.getItem("user");
     const token = localStorage.getItem("token");
 
@@ -51,7 +51,11 @@ export default function Home() {
     };
 
     axios
-      .post("http://localhost:5000/user/getInfo", req)
+      .post("http://localhost:5000/user/getInfo", req, {
+        headers: {
+          Authorization: token,
+        }
+      })
       .then((res) => {
         if (res.data.success === false) throw Error("Error");
 

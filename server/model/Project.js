@@ -22,14 +22,23 @@ const projectSchema = new mongoose.Schema({
       role: {
         type: String,
       },
+      admin: {
+        type: Boolean
+      }
     },
   ],
-  admins: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Users",
-    },
-  ],
+  gitLink : {
+    type: String
+  },
+  discLink : {
+    type: String
+  },
+  resources : {
+    type: String
+  },
+  notes : {
+    type: String
+  }
 });
 
 const Projects = mongoose.model("Project", projectSchema);

@@ -6,7 +6,7 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 
 export default function Members() {
-  const { members } = useSelector((state) => state.member);
+  const { member:{members} , login:{user}  } = useSelector((state) => state);
 
   const [text, settext] = useState("");
   const [msg, setmsg] = useState();
@@ -16,7 +16,8 @@ export default function Members() {
   const invite = () => {
     const req = {
       project_id: params.id.slice(1),
-      user_email: text,
+      new_user_email: text,
+      user_email:user.email
     };
 
     axios

@@ -47,7 +47,7 @@ export default function AddTask(props) {
                                     setArr(tempArr)
                                     setAdded(tempAdd)
                                 }}>
-                                    <img src='/me.jpeg' alt="img" />
+                                    <img src={mem.user_photu} alt="img" />
                                     <div className={styles.memberInfo}>
                                         <p className={styles.name}>{mem.user_name}</p>
                                         <p className={styles.role}>{mem.user_role}</p>
@@ -68,7 +68,7 @@ export default function AddTask(props) {
                                     setArr(tempArr)
                                     setAdded(tempAdd)
                                 }}>
-                                    <img src='/me.jpeg' alt="img" />
+                                    <img src={mem.user_photu} alt="img" />
                                     <div className={styles.memberInfo}>
                                         <p className={styles.name}>{mem.user_name}</p>
                                         <p className={styles.role}>{mem.user_role}</p>

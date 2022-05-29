@@ -2,6 +2,7 @@ import express from "express";
 import passport from "passport";
 import "../config/passport.js";
 import home from "../controllers/list_controller.js";
+import {adminAccess} from '../config/middleware.js'
 
 export default function (io) {
     const router = express.Router();
@@ -9,7 +10,7 @@ export default function (io) {
 
     router.get("/", home(io).home);
     router.post('/getList', home(io).getList);
-    router.post('/saveList', home(io).saveList);
+    router.post('/saveList',adminAccess, home(io).saveList);
 
     // router.post("/createUser", createUser);
     // router.post(

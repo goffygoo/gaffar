@@ -1,11 +1,15 @@
-import { SET_PROJECT, SET_MEMBERS, PROJECT_ERROR } from "../action/actionTypes";
+import { SET_PROJECT, PROJECT_ERROR , SET_EXTRAS, SET_EXTRA_VAL } from "../action/actionTypes";
 
 const initialstate = {
   project_id: "",
   project_name: "",
   doc_id: "",
-  members: [],
   error: false,
+  gitLink:"",
+  discLink: "",
+  resources: "",
+  notes: "",
+  is_admin: false
 };
 
 const func = function (state = initialstate, action) {
@@ -22,6 +26,16 @@ const func = function (state = initialstate, action) {
         ...state,
         error: action.data,
       };
+    case SET_EXTRAS:
+      return {
+        ...state,
+        ...action.data
+      };
+      case SET_EXTRA_VAL:
+        return {
+          ...state,
+          ...action.data
+        };
     default:
       return state;
   }

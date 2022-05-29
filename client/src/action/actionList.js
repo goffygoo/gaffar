@@ -92,6 +92,22 @@ export const openBoard = (id, navigate, link) => (dispatch) => {
     navigate(link)
 }
 
+export const delBoard = (id) => (dispatch) => {
+    const { board_id, list, board } = store.getState().list
+
+    delete list[id]
+    delete board[id]
+    
+    dispatch({
+        data: {
+            list, 
+            board,
+            ...(board_id === id && {board_id: undefined})
+        },
+        type: LIST_SET_FULL
+    })
+}
+
 export const onDragEnd = (result) => dispatch => {
     if (!result.destination) return;
     const { source, destination } = result;
@@ -196,11 +212,12 @@ export const delCol = (id) => (dispatch) => {
 };
 
 export const saveData = () => _dispatch => {
-    const { list, project: {project_id} } = store.getState()
+    const { list, project: {project_id} , login:{user} } = store.getState()
 
     const req = {
         list, 
-        project_id
+        project_id,
+        user_email:user.email
     }
 
     axios.post("http://localhost:5000/list/saveList", req).then((res) => {
