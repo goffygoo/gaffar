@@ -59,36 +59,36 @@ export default function LandingPage() {
             </div>
           </div>
           <div className={styles.pointerRight}>
-            <img className = {styles.rlImage} src="/pointRight.svg" alt='right' />
+            <img className={styles.rlImage} src="/pointRight.svg" alt='right' />
             <div></div>
           </div>
           <div className={styles.featuresRight}>
             <div className={styles.textDescriptionRight}><h3>Teams</h3>
-              <p>You can create you own team to work collaborative in a project. All members of a team can track the progress of the project any time and can also keep track of the tasks assigned to them the team leaders.</p></div>
+              <p>You can create your own team to work collaboratively in a project. All members of a team can track the progress of the project any time and can also keep track of the tasks assigned to them by the team leaders.</p></div>
             <img src='/boyComp.svg' alt='robo' />
           </div>
           <div className={styles.pointerLeft}>
-          <img className = {styles.lrImage} src="/pointLeft.svg" alt='right' />
+            <img className={styles.lrImage} src="/pointLeft.svg" alt='right' />
           </div>
           <div className={styles.featuresLeft}>
             <img src='/managing.svg' alt='robo' />
             <div className={styles.textDescriptionLeft}>
               <h3>List</h3>
-              <p>Manage your project agenda under using our advanced to-do list. Assign a task to members with our other handy features and track your overall progress at one place. </p>
+              <p>Manage your project using our advanced to-do list. Assign a task to members with our other handy features and track your overall progress at one place. </p>
             </div>
           </div>
           <div className={styles.pointerRight}>
-          <img className = {styles.rlImage} src="/pointRight.svg" alt='right' />
+            <img className={styles.rlImage} src="/pointRight.svg" alt='right' />
           </div>
           <div className={styles.featuresRight}>
             <div className={styles.textDescriptionRight}>
               <h3>Documentation</h3>
-              <p>Document your APIs with over super easy documenting tool which is designed by keeping work sharing in mind. Easily access and read documents so that developers can focus more on innovation rather on managing. </p>
+              <p>Document your APIs with our super easy documenting tool which is designed by keeping work sharing in mind. Easily access and read documents so that developers can focus more on innovation rather on managing. </p>
             </div>
             <img src='/book.svg' alt='robo' />
           </div>
           <div className={styles.pointerLeft}>
-          <img className = {styles.lrImage} src="/pointLeft.svg" alt='right' /> 
+            <img className={styles.lrImage} src="/pointLeft.svg" alt='right' />
           </div>
           <div className={styles.featuresLeft}>
             <img src='/calculate.svg' alt='robo' />
@@ -101,32 +101,68 @@ export default function LandingPage() {
       </div>
 
       <div className={styles.aboutUs}>
-        <div className={styles.container}>
-          <div className={styles.content}>
-            <h1 className={styles.title}>King</h1>
-            <p className={styles.description}>What else you want to know!</p>
+        <h1>Meet the developers</h1>
+        <div className={styles.aboutUsMain}>
+
+          <div className={styles.container}>
+            <div className={styles.content}>
+              {/* <h1 className={styles.title}>King 👑 </h1> */}
+              <p className={styles.description}>
+                CS Major (2019-23) <br/>
+                Delhi Technological University <br/>
+                Delhi-110042  <br/>
+                <br/>
+                Full stack dev.  <br/>
+                Problems solving and chess are <img src='/heart.svg' alt="♥"/>.
+              </p>
+              <div className={styles.social}>
+                <a href="mailto:vineetoli52@gmail.com"><img src="/mail.svg" alt="" /></a>
+                <a href="https://github.com/goffygoo"><img src="/git.png" alt="" /></a>
+                <a href="https://www.linkedin.com/in/vineet-oli-834a031b6/"><img src="/linkedin.svg" alt="" /></a>
+                <a href="https://www.ewently.com"><img src="https://ewently.com/fp1/ewently.svg" alt="" /></a>
+              </div>
+            </div>
+            <div className={styles.flap1}></div>
           </div>
-          <div className={styles.flap}></div>
+
+          <div className={styles.container}>
+            <div className={styles.content}>
+              <p className={styles.description}>Software Engineering<br/>DTU23</p>
+              <p className={styles.description}>Skills
+              <br/>➡️Full stack developer
+              <br/>➡️Problem solving
+              <br/>➡️DBMS
+              <br/>➡️C++ Programming
+              </p>
+              <div className={styles.social}>
+                <a href="mailto:askhan.ak912@gmail.com"><img src="/mail.svg" alt="" /></a>
+                <a href="https://github.com/redscool"><img src="/git.png" alt="" /></a>
+                <a href="https://www.linkedin.com/in/asif-khan-369344196/"><img src="/linkedin.svg" alt="" /></a>
+              </div>
+            </div>
+            <div className={styles.flap2}></div>
+          </div>
+
+          <div className={styles.container}>
+            <div className={styles.content}>
+              <h1 className={styles.title}>retard🥴</h1>
+              <p className={styles.description}>Srib ke ppo ke hi layak hu mai</p>
+              <div className={styles.social}>
+                <a href="https://leetcode.com/bottom_text"><img src="/leetcode.png" alt="" /></a>
+              </div>
+            </div>
+            <div className={styles.flap3}></div>
+          </div>
         </div>
 
-        <div className={styles.container}>
-          <div className={styles.content}>
-            <h1 className={styles.title}>King</h1>
-            <p className={styles.description}>What else you want to know!</p>
+        <div className={styles.diveIn} onClick={() => navigate('/home')}>
+          <div className={styles.diveInBox}>
+            <span>Dive In</span>
+            <div className={styles.wave}></div>
           </div>
-          <div className={styles.flap}></div>
         </div>
-
-        <div className={styles.container}>
-          <div className={styles.content}>
-            <h1 className={styles.title}>King</h1>
-            <p className={styles.description}>What else you want to know!</p>
-          </div>
-          <div className={styles.flap}></div>
-        </div>
-
-
       </div>
+
     </div>
   )
 }
