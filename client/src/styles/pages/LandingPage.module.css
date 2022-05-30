@@ -1,8 +1,3 @@
-.null {
-  /*       black   , peach,     */
-  color: #000000, #FEA680, #FEDC3D, #01ABAA, #272727, #747474, #FF6527, #FFE400, #14A76C;
-}
-
 .ctn {
   display: flex;
   flex-direction: column;
@@ -79,17 +74,33 @@
   background-color: #f2f2f2;
   width: 80%;
   padding-top: 10vh;
-  margin: 0 auto 10vh auto;
+  margin: 0 auto 20vh auto;
 }
 .aboutUs {
   display: flex;
-  flex-direction: row;
-  background-color: limegreen ;
+  flex-direction: column;
+  background-color: #14A76C ;
   background-image: url("./../../../public/hex.svg");
-  height: 100vh;
+  min-height: 100vh;
 }
 
+.aboutUs > h1 {
+  color: #FEDC3D ;
+  font-family: Noto Sans;
+  font-weight: 900;
+  margin: 8vh auto 8vh auto;
+  font-size: 3rem;
+  letter-spacing: 5px;
+}
 
+.aboutUs .diveIn {
+  margin: 5vh 0 5vh 4vw;
+}
+
+.aboutUsMain {
+  display: flex;
+  flex-direction: row;
+}
 
 .coverPicture{
   margin: auto 4vw auto auto;
@@ -97,7 +108,6 @@
 }
 .coverPicture > img{
   height: 65vh;
-  /* border: 2px solid lime; */
   width: auto;
 }
 
@@ -114,7 +124,6 @@
 
 }
 .logo > img{
-  /* border: 2px solid lime; */
   height : 15vh;
   width: auto;
 }
@@ -123,8 +132,6 @@
 
 
 .diveIn {
-  /* min-height: 100vh; */
-  /* background-color: #000; */
   margin: auto 0 0 0;
   display: flex;
   justify-content: center;
@@ -201,13 +208,11 @@
 .sec2heading {
   display: flex;
   margin: 2vh 0 auto 0;
-  /* border: 2px solid salmon; */
   flex-direction: column;
 }
 
 .sec2heading > h2{
   color: #FFFFFF;
-  /* border: 2px solid white; */
   font-family: Nunito;
   font-weight: 700;
   margin: 3vh auto 0 auto;
@@ -217,7 +222,6 @@
 .sec2heading > h1 {
   color: #35da3d;
   letter-spacing: 8px;
-  /* border: 2px solid white; */
   font-family: Noto Sans;
   font-weight: 900;
   margin: 3vh auto 3vh auto;
@@ -226,8 +230,6 @@
 
 .sec2heading > p {
   color: #FFE400;
-  /* letter-spacing: 8px; */
-  /* border: 2px solid white; */
   font-family: Montserrat;
   font-weight: 400;
   margin: 3vh auto 0 auto;
@@ -239,7 +241,7 @@
 .sec2 > img {
   width: 90%;
   height: auto;
-  margin: 3vh auto 10vh auto;
+  margin: 3vh auto 20vh auto;
   border-radius: 5vh;
 }
 
@@ -248,20 +250,17 @@
 .featuresLeft{
   display: flex;
   flex-direction: row;
-  border: solid 2px red;
   height: 35vh;
   width: 100%;
 }
 
 .featuresLeft > img{
-  border: solid 2px green;
   height: 100%;
   width: auto;
   margin-left: 3vw;
 }
 
 .textDescriptionLeft{
-  border: solid 2px pink;
   height: 30vh;
   width: 35vw;
   margin: 0 auto 0 10vw;
@@ -293,14 +292,12 @@
 .featuresRight {
   display: flex;
   flex-direction: row;
-  border: solid 2px red; 
   width: 100%;
   height: 35vh;
   margin: 0 5vw 0 auto;
 }
 
 .featuresRight > img{
-  border: solid 2px green;
   height: 100%;
   width: auto;
   margin-right: 3vw;
@@ -311,7 +308,6 @@
   width: 35vw;
   margin: 0 10vw 0 auto;
   flex-direction: column;
-  border: solid 2px black; 
   height: 30vh;
 
 }
@@ -345,6 +341,7 @@
   font-weight: 900;
   font-family: Noto Sans;
   background-color: #EFE2BA;
+  
   margin: 8vh auto 8vh auto;
   color: #F13C20;
   font-size: 3rem;
@@ -368,6 +365,7 @@
 .content {
   position: absolute;
   top: 50%;
+  min-width: 80%;
   transform: translatey(-50%);
   text-align: justify;
   color: black;
@@ -381,47 +379,148 @@
 }
 
 .description {
-  font-weight: 300;
+  font-family: Montserrat;
+  font-weight: 500;
+  margin-top: 0;
+  font-size: 1.3rem;
+  color: #747474;
 }
 
-.flap {
+.description > img {
+  height: 1.3rem;
+}
+
+.flap1 {
   width: 100%;
   height: 100%;
 }
 
-.flap::before {
+.flap1::before {
   position: absolute;
   content: "";
   height: 100%;
   width: 50%;
-  background: url("./../../../public/Ol.svg") white;
-  /* background-position: 100px; */
+  background: url("./../../../public/devl1.svg") white;
   background-position: center right;
   background-repeat: no-repeat;
   background-size: auto 100%; 
   transition: 1s ease-in;
 }
 
-.flap::after {
+.flap1::after {
   position: absolute;
   content: "";
   height: 100%;
   width: 50%;
   right: 0;
   
-  background: url("./../../../public/iV.svg") white;
-  /* background-position: -200px; */
+  background: url("./../../../public/devr1.svg") white;
   background-position: center left;
   background-repeat: no-repeat;
   background-size: auto 100%;
   transition: 1s ease-in;
 }
 
-.container:hover .flap::after {
+.container:hover .flap1::after {
   transform: translatex(300px);
 }
 
-.container:hover .flap::before {
+.container:hover .flap1::before {
   transform: translatex(-300px);
 }
 
+
+
+.flap2 {
+  width: 100%;
+  height: 100%;
+}
+
+.flap2::before {
+  position: absolute;
+  content: "";
+  height: 100%;
+  width: 50%;
+  background: url("./../../../public/devl2.svg") white;
+  background-position: center right;
+  background-repeat: no-repeat;
+  background-size: auto 100%; 
+  transition: 1s ease-in;
+}
+
+.flap2::after {
+  position: absolute;
+  content: "";
+  height: 100%;
+  width: 50%;
+  right: 0;
+  
+  background: url("./../../../public/devr2.svg") white;
+  background-position: center left;
+  background-repeat: no-repeat;
+  background-size: auto 100%;
+  transition: 1s ease-in;
+}
+
+.container:hover .flap2::after {
+  transform: translatex(300px);
+}
+
+.container:hover .flap2::before {
+  transform: translatex(-300px);
+}
+
+
+.flap3 {
+  width: 100%;
+  height: 100%;
+}
+
+.flap3::before {
+  position: absolute;
+  content: "";
+  height: 100%;
+  width: 50%;
+  background: url("./../../../public/devl3.svg") white;
+  background-position: center right;
+  background-repeat: no-repeat;
+  background-size: auto 100%; 
+  transition: 1s ease-in;
+}
+
+.flap3::after {
+  position: absolute;
+  content: "";
+  height: 100%;
+  width: 50%;
+  right: 0;
+  
+  background: url("./../../../public/devr3.svg") white;
+  background-position: center left;
+  background-repeat: no-repeat;
+  background-size: auto 100%;
+  transition: 1s ease-in;
+}
+
+.container:hover .flap3::after {
+  transform: translatex(300px);
+}
+
+.container:hover .flap3::before {
+  transform: translatex(-300px);
+}
+
+.social {
+  display: flex;
+  flex-direction: row;
+  margin-top: 5vh;
+}
+
+.social > a {
+  height: 5vh; 
+  margin: auto;
+}
+
+.social > a > img {
+  height: 100%;
+}
