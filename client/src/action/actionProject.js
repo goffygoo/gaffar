@@ -75,17 +75,17 @@ export const initProject = (id, user_email) => (dispatch) => {
 
 
 export const saveExtras = () => dispatch => {
-  const { project:{project_id, gitLink, discLink, resources, notes},login:{user} } = store.getState().project;
+  const { project: { project_id, gitLink, discLink, resources, notes }, login: { user } } = store.getState().project;
 
-  const req = { 
+  const req = {
     project_id,
     gitLink,
     discLink,
     resources,
     notes,
-    user_email:user.email
- }
-console.log(req);
+    user_email: user.email
+  }
+  console.log(req);
   axios
     .post("http://localhost:5000/project/saveExtras", req)
     .then((res) => {
@@ -105,15 +105,15 @@ console.log(req);
 
 export const setExtra = (name, val) => dispatch => {
   dispatch({
-    data: {[name]: val},
+    data: { [name]: val },
     type: SET_EXTRA_VAL
-  }) 
+  })
 }
 
 export const getDocs = () => (dispatch) => {
   let {
     project: { project_id },
-    login: {user}
+    login: { user }
   } = store.getState();
   const req = {
     project_id: project_id,
@@ -146,4 +146,21 @@ export const getDocs = () => (dispatch) => {
       });
       console.log(err);
     });
+};
+
+export const getList = (list, tasks) => (dispatch) => {
+  try {
+    dispatch({
+      data: list,
+      type: LIST_ADD_ITEM
+    })
+
+    dispatch({
+      data: tasks,
+      type: SET_TASKS,
+    });
+    console.log("reached - 1");
+  } catch (err) {
+    console.log(`Bhay error aara: ${err}`);
+  }
 };

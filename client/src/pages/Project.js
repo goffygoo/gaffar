@@ -25,7 +25,7 @@ export default function Project() {
   const dispatch = useDispatch();
   const { error } = useSelector((state) => state.project);
 
-  const { initUser, initProject , getDocs } = bindActionCreators(
+  const { initUser, initProject, getDocs, getList } = bindActionCreators(
     { ...actionLogin, ...actionProject },
     dispatch
   );
@@ -64,7 +64,7 @@ export default function Project() {
     initProject(params.id.slice(1), user_email);
 
     console.log("react ka jaadu");
-    
+
     const socket = io("http://localhost:5000/");
 
     initSocket(socket)
@@ -81,6 +81,11 @@ export default function Project() {
     socket.on('getDocs', () => {
       // console.log("hayadocs");
       getDocs();
+    });
+
+    socket.on('getList', (data) => {
+      console.log("hayadocs");
+      getList(data.list, data.tasks);
     });
 
   }

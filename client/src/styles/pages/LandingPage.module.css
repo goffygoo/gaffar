@@ -11,22 +11,34 @@
 .header {
   display: flex;
   flex-direction: column;
-  background-color: #FFE400;
+  background: radial-gradient(1.5em 6.28571em at 1.95em, rgba(255, 255, 255, 0) 50%, rgba(255, 255, 255, 0.25) 50%, rgba(255, 255, 255, 0.25) 55%, rgba(255, 255, 255, 0) 55%) 0 0, radial-gradient(1.5em 6.28571em at -0.45em, rgba(255, 255, 255, 0) 50%, rgba(255, 255, 255, 0.25) 50%, rgba(255, 255, 255, 0.25) 55%, rgba(255, 255, 255, 0) 55%) 1.5em 5.5em, radial-gradient(2.3em 4.57143em at 2.99em, rgba(255, 255, 255, 0) 50%, rgba(255, 255, 255, 0.3) 50%, rgba(255, 255, 255, 0.3) 55%, rgba(255, 255, 255, 0) 55%) 0 0, radial-gradient(2.3em 4.57143em at -0.69em, rgba(255, 255, 255, 0) 50%, rgba(255, 255, 255, 0.3) 50%, rgba(255, 255, 255, 0.3) 55%, rgba(255, 255, 255, 0) 55%) 2.3em 4em, radial-gradient(3.5em 6.28571em at 4.55em, rgba(255, 255, 255, 0) 50%, rgba(255, 255, 255, 0.25) 50%, rgba(255, 255, 255, 0.25) 55%, rgba(255, 255, 255, 0) 55%) 0 0, radial-gradient(3.5em 6.28571em at -1.05em, rgba(255, 255, 255, 0) 50%, rgba(255, 255, 255, 0.25) 50%, rgba(255, 255, 255, 0.25) 55%, rgba(255, 255, 255, 0) 55%) 3.5em 5.5em, radial-gradient(#15ffa5, #00ced1);
+  background-color: mediumspringgreen;
+  background-size: 1.5em 11em, 1.5em 11em, 2.3em 8em, 2.3em 8em, 3.5em 11em, 3.5em 11em, 100% 100%;
+  background-repeat: repeat;
   height: 100vh;
 }
+
 .heading > p {
   font-family: Nunito;
   font-weight: 700;
-  font-size: 1.2rem;
+  font-size: 1.5rem;
   margin: 1vh 0 0 1vw;
 }
 
 .subheading > p {
   font-family: Montserrat;
-  font-weight: 400;
-  font-size: 1rem;
+  font-weight: 500;
+  font-size: 1.1rem;
+  color: #121212;
   margin: 3vh 0 0 1vw;
 }
+
+.subheading > p > span {
+  font-family: Shadows Into Light;
+  font-weight: 700;
+  font-size: 1.3rem;
+}
+
 
 .headerContent {
   display: flex;
@@ -49,18 +61,31 @@
   display: flex;
   flex-direction: column;
   background-color: #272727;
+  background-image: url("./../../../public/dots.svg");
 }
 
 .sec3 {
   display: flex;
   flex-direction: column;
-  background-color: yellow;
+  background-color: #EFE2BA;
+  background-image: url("./../../../public/dots.svg");
 }
 
+.featureBox{
+  backdrop-filter: blur(200px);
+  filter: blur();
+  box-shadow: 0 3rem 5rem rgba(0, 0, 0, 0.25);
+  border-radius: 5vh;
+  background-color: #f2f2f2;
+  width: 80%;
+  padding-top: 10vh;
+  margin: 0 auto 10vh auto;
+}
 .aboutUs {
   display: flex;
   flex-direction: row;
   background-color: limegreen ;
+  background-image: url("./../../../public/hex.svg");
   height: 100vh;
 }
 
@@ -90,7 +115,7 @@
 }
 .logo > img{
   /* border: 2px solid lime; */
-  height : 10vh;
+  height : 15vh;
   width: auto;
 }
 
@@ -173,8 +198,6 @@
 
 
 
-
-
 .sec2heading {
   display: flex;
   margin: 2vh 0 auto 0;
@@ -187,7 +210,7 @@
   /* border: 2px solid white; */
   font-family: Nunito;
   font-weight: 700;
-  margin: 0 auto 0 auto;
+  margin: 3vh auto 0 auto;
   font-size: 1.8rem;
 }
 
@@ -216,7 +239,7 @@
 .sec2 > img {
   width: 90%;
   height: auto;
-  margin: 3vh auto 0 auto;
+  margin: 3vh auto 10vh auto;
   border-radius: 5vh;
 }
 
@@ -225,40 +248,107 @@
 .featuresLeft{
   display: flex;
   flex-direction: row;
-  /* border: solid 2px red; */
-  height: 40vh;
-  width: 70%;
-  margin: 0 auto 0 5vw;
+  border: solid 2px red;
+  height: 35vh;
+  width: 100%;
+}
+
+.featuresLeft > img{
+  border: solid 2px green;
+  height: 100%;
+  width: auto;
+  margin-left: 3vw;
 }
 
 .textDescriptionLeft{
+  border: solid 2px pink;
+  height: 30vh;
+  width: 35vw;
+  margin: 0 auto 0 10vw;
   display: flex;
   flex-direction: column;
-  margin: 0 6vw 0 auto;
 }
+
+.textDescriptionLeft > h3 {
+  font-family: Noto Sans;
+  font-weight: 900;
+  margin-top: 0;
+  font-size: 1.8rem;
+  color: #D79922;
+}
+
+.textDescriptionLeft > p {
+  font-family: Montserrat;
+  font-weight: 600;
+  margin: 0 0;
+  color: #4056A1;
+}
+
 
 .pointerRight{
   margin-left: 18vw;
+  display: flex;
 }
 
-
-.featuresRight{
+.featuresRight {
   display: flex;
   flex-direction: row;
-  /* border: solid 2px red; */
-  width: 70%;
-  height: 40vh;
+  border: solid 2px red; 
+  width: 100%;
+  height: 35vh;
   margin: 0 5vw 0 auto;
+}
+
+.featuresRight > img{
+  border: solid 2px green;
+  height: 100%;
+  width: auto;
+  margin-right: 3vw;
 }
 
 .textDescriptionRight{
   display: flex;
+  width: 35vw;
+  margin: 0 10vw 0 auto;
   flex-direction: column;
-  margin: 0 auto 0 1vw;
+  border: solid 2px black; 
+  height: 30vh;
+
+}
+
+.textDescriptionRight > h3 {
+  font-family: Noto Sans;
+  font-weight: 900;
+  margin-top: 0;
+  font-size: 1.8rem;
+  color: #D79922;
+}
+
+.textDescriptionRight > p{
+  font-family: Montserrat;
+  font-weight: 600;
+  margin: 0 0;
+  color: #4056A1;
 }
 
 .pointerLeft{
-  margin: 0 18vw 0 auto;
+  
+  display: flex;
+  width: 50vw;
+  flex-direction: row;
+  margin: 0 0 0 auto;
+  width: 40%;
+}
+
+
+.sec3 > h1 {
+  font-weight: 900;
+  font-family: Noto Sans;
+  background-color: #EFE2BA;
+  margin: 8vh auto 8vh auto;
+  color: #F13C20;
+  font-size: 3rem;
+  letter-spacing: 8px;
 }
 
 
@@ -304,8 +394,7 @@
   content: "";
   height: 100%;
   width: 50%;
-  background: url("file:///C:/workspace/project-y/client/public/svg/g10.svg") white;
-  background: url("file:///C:/Users/91966/Downloads/bl 1.svg") white;
+  background: url("./../../../public/Ol.svg") white;
   /* background-position: 100px; */
   background-position: center right;
   background-repeat: no-repeat;
@@ -320,8 +409,7 @@
   width: 50%;
   right: 0;
   
-  background: url("file:///C:/workspace/project-y/client/public/svg/g10.svg") white;
-  background: url("file:///C:/Users/91966/Downloads/br 1.svg") white;
+  background: url("./../../../public/iV.svg") white;
   /* background-position: -200px; */
   background-position: center left;
   background-repeat: no-repeat;
