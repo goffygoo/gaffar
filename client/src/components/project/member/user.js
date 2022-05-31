@@ -5,7 +5,7 @@ import { useState } from "react";
 import styles from "../../../styles/components/project/member/user.module.css";
 import * as actionMembers from "../../../action/actionMembers";
 export default function User({ indx }) {
-  const { members } = useSelector((state) => state.member);
+  const { member:{members} , project:{is_admin}  } = useSelector((state) => state);
   const dispatch = useDispatch()
   const { makeAdmin , changeRole} = bindActionCreators(actionMembers, dispatch)
   const [editable, seteditable] = useState(false);
@@ -30,20 +30,23 @@ export default function User({ indx }) {
             <p>{members[indx].user_role}</p>
           }
         </div>
+
+        {is_admin ? 
         <div className={styles.lower}>
 
-          <div className={styles.edit} onClick= {()=>seteditable(!editable)}><p>
-            {editable?"Cancel":"Edit"}</p></div>
-          <div className={styles.save} onClick= {() =>{ changeRole(indx,role)
-          seteditable(false)
+        <div className={styles.edit} onClick= {()=>seteditable(!editable)}><p>
+          {editable?"Cancel":"Edit"}</p></div>
+        <div className={styles.save} onClick= {() =>{ changeRole(indx,role)
+        seteditable(false)
+      }
+        }> <p>Save</p></div>
+        {members[indx].is_admin ?
+          <div className={styles.makeadmin}><p>Admin</p></div>
+          :
+          <div className={styles.makeadmin} onClick={() => makeAdmin(indx)}><p>Makeadmin</p></div>
         }
-          }> <p>Save</p></div>
-          {members[indx].is_admin ?
-            <div className={styles.makeadmin}><p>Admin</p></div>
-            :
-            <div className={styles.makeadmin} onClick={() => makeAdmin(indx)}><p>Makeadmin</p></div>
-          }
-        </div>
+      </div>
+        : null}
       </div>
     </div>
   );

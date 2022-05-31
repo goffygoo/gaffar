@@ -7,7 +7,7 @@ import * as actionProject from '../../action/actionProject'
 export default function Extras() {
   const dispatch = useDispatch()
   const { saveExtras, setExtra } = bindActionCreators(actionProject, dispatch);
-  const { gitLink, discLink, resources, notes } = useSelector((state) => state.project);
+  const { project:{gitLink, discLink, resources, notes},project:{is_admin} } = useSelector((state) => state);
 
   const [edit, setedit] = useState(false)
 
@@ -16,12 +16,17 @@ export default function Extras() {
       <div className={styles.component}>
         <div className={styles.first}>
           <div className={styles.title}><p>GitHub</p></div>
+          {is_admin ? <>
           <div className={styles.editBtn} onClick={() => { setedit("github") }}><p>Edit</p></div>
           <div className={styles.saveBtn} onClick={() => {
             saveExtras();
             setedit(false);
           }
-          }><p>Save💀</p></div>
+          }><p>Save💀</p>
+          </div>
+          </>
+          : null}
+          
         </div>
         {edit === "github" ?
           <input className={styles.input} value={gitLink} onChange={e => setExtra("gitLink", e.target.value)} />
@@ -32,12 +37,16 @@ export default function Extras() {
       <div className={styles.component}>
         <div className={styles.first}>
           <div className={styles.title}><p>Discode</p></div>
+          {is_admin ? <>
           <div className={styles.editBtn} onClick={() => { setedit("discode") }}><p>Edit</p></div>
           <div className={styles.saveBtn} onClick={() => {
             saveExtras();
             setedit(false);
           }
-          }><p>Save👻</p></div>
+          }><p>Save💀</p>
+          </div>
+          </>
+          : null}
         </div>
         {edit === "discode" ?
           <input className={styles.input} value={discLink} onChange={e => setExtra("discLink", e.target.value)} />
@@ -48,12 +57,16 @@ export default function Extras() {
       <div className={styles.component2}>
         <div className={styles.first}>
           <div className={styles.title}><p>Resources</p></div>
+          {is_admin ? <>
           <div className={styles.editBtn} onClick={() => { setedit("resources") }}><p>Edit</p></div>
           <div className={styles.saveBtn} onClick={() => {
             saveExtras();
             setedit(false);
           }
-          }><p>Save🧝‍♂️</p></div>
+          }><p>Save💀</p>
+          </div>
+          </>
+          : null}
         </div>
         {edit === "resources" ?
           <div className={styles.textarea}><textarea value={resources} onChange={e => setExtra("resources", e.target.value)} /></div>
@@ -66,12 +79,16 @@ export default function Extras() {
       <div className={styles.component2}>
         <div className={styles.first}>
           <div className={styles.title}><p>Notes</p></div>
+          {is_admin ? <>
           <div className={styles.editBtn} onClick={() => { setedit("notes") }}><p>Edit</p></div>
           <div className={styles.saveBtn} onClick={() => {
             saveExtras();
             setedit(false);
           }
-          }><p>Save😼</p></div>
+          }><p>Save💀</p>
+          </div>
+          </>
+          : null}
         </div>
         {edit === "notes" ?
           <div className={styles.textarea}><textarea value={notes} onChange={e => setExtra("notes", e.target.value)} /></div>

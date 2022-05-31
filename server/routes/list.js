@@ -6,7 +6,7 @@ import {adminAccess} from '../config/middleware.js'
 
 export default function (io) {
     const router = express.Router();
-    console.log("list Router loaded");
+    console.log("List Router loaded");
 
     router.get("/", home(io).home);
     router.post('/getList', home(io).getList);

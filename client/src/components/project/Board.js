@@ -16,7 +16,7 @@ export default function Board() {
     actionList, 
     dispatch
   );
-  const { list: { board_id, board } } = useSelector((state) => state);
+  const { list: { board_id, board } , project: {is_admin} } = useSelector((state) => state);
 
   const [popupCol, setpopupCol] = useState(false);
   const [col, setcol] = useState("");
@@ -62,7 +62,10 @@ export default function Board() {
           <div className={styles.containerHead}>
             <button onClick={() => setpopupAddTask(true)}>+</button>
             <h1>{board[board_id].title}</h1>
+            {is_admin ? 
             <button onClick={() => saveData()}>✔</button>
+            : null
+            }
           </div>
 
           <div className={styles.mainContainer}>
