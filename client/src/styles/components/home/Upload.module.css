@@ -10,17 +10,18 @@
 .popUp {
   display: flex;
   flex-direction: column;
+  font-family: Nunito;
   margin: auto;
   width: 25vw;
   height: 75vh;
   border-radius: 1rem;
   padding: 2vh 1vw;
   z-index: 10;
-  background: #01081e;
+  background: #CAEBF2;
 }
 
 .close {
-  height: 5vh;
+  height: 4vh;
   width: auto;
   margin: 0 0 0 auto;
   cursor: pointer;
@@ -28,7 +29,8 @@
 
 .popUp > h1 {
   font-weight: 700;
-  color: #fff;
+  font-family: Nunito;
+  color: #121212;
   font-size: 1.3rem;
   margin: 1vh auto 0 auto;
 }
@@ -44,12 +46,12 @@
 .fileInput {
   margin: 2vh 1vw 4vh auto;
   cursor: pointer;
-  color: antiquewhite;
+  color: #121212;
   text-decoration: underline;
 }
 
 .btnSave {
-  background: linear-gradient(45deg, #e96676, #fe8b51);
+  background-color: #FF3B3F;
   margin: auto;
   display: flex;
   border-radius: 0.25rem;
@@ -60,7 +62,8 @@
 
 .btnSave > p {
   font-weight: 600;
-  color: #fff;
-  font-size: 0.7rem;
+  font-family: Nunito;
+  color: #FFFFFF;
+  font-size: 1rem;
   margin: auto;
 }

@@ -72,13 +72,13 @@ export default function Home() {
   return (
     <>
       {popup ? (
-        <UploadImg show={setpopup} ratio={1} setUploadData={setimgdata} />
+        <UploadImg show={setpopup} ratio={1} setUploadData={setimgdata} updateimg={updateimg} />
       ) : null}
 
       <div className={styles.page}>
         <div className={styles.topArea}>
           <Branding height="10vh" />
-
+          <div className={styles.pageheading}><h1> Dashboard</h1></div>
           <div
             className={styles.logoutBtn}
             onClick={() => {
@@ -94,17 +94,20 @@ export default function Home() {
         <div className={styles.mainWindow}>
           <div className={styles.mainContainer}>
             <div className={styles.projectsContainer}>
-              <div className={styles.projectHeading}></div>
-              {projects.map((p, ind) => {
-                return <Project indx={ind} key={ind} />;
-              })}
+              <div className={styles.projectHeading}><h2>Your Projects</h2></div>
+              <div className={styles.projectCtn}>
+                {projects.map((p, ind) => {
+                  return <Project indx={ind} key={ind} />;
+                })}
+              </div>
             </div>
             <div className={styles.addProject}>
               <div className={styles.projectNameInput}>
-                <input
+                <input placeholder="Project Name"
                   className={styles.projectName}
                   value={pname}
                   onChange={(e) => pnamechange(e.target.value)}
+                  spellCheck="false"
                 ></input>
               </div>
               <div className={styles.addProjectBtn} onClick={addProject}>
@@ -112,28 +115,35 @@ export default function Home() {
               </div>
             </div>
             <div className={styles.invitesContainer}>
-              <div className={styles.projectHeading}></div>
+              <div className={styles.projectHeading}>
+                <h2>Invites</h2>
+              </div>
+              <div className={styles.inviteCtn}>
 
-              {user.invites.map((e) => {
-                return (
-                  <Invite
-                    key={e.project_id}
-                    id={e.project_id}
-                    name={e.project_name}
-                    accept={acceptInv}
-                    reject={rejectInv}
-                  />
-                );
-              })}
+                {user.invites.map((e) => {
+                  return (
+                    <Invite
+                      key={e.project_id}
+                      id={e.project_id}
+                      name={e.project_name}
+                      accept={acceptInv}
+                      reject={rejectInv}
+                    />
+                  );
+                })}
+              </div>
             </div>
           </div>
           <div className={styles.profileContainer}>
+            <div className={styles.profileHeader}>
+              <h1>Your Profile</h1>
+            </div>
             <div className={styles.profilePicture}>
               <img
                 src={
                   imgdata === undefined
                     ? user.img === undefined
-                      ? "me.jpeg"
+                      ? "user.svg"
                       : user.img
                     : imgdata
                 }
@@ -147,7 +157,8 @@ export default function Home() {
                 type="text"
                 value={text}
                 onChange={(e) => settext(e.target.value)}
-                className={styles.username}
+                className={styles.usernameInput}
+                spellCheck="false"
               ></input>
             ) : (
               <div className={styles.username}>
@@ -170,14 +181,9 @@ export default function Home() {
 
                     settext("");
                   }
-
-                  if (imgdata) {
-                    updateimg(imgdata);
-                    setimgdata(undefined);
-                  }
                 }}
               >
-                <p>update</p>
+                <p>Update</p>
               </div>
             </div>
           </div>

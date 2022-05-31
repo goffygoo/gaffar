@@ -1,4 +1,9 @@
 .container {
   cursor: pointer;
-  background: green;
+  display: flex;
+}
+
+.container>img {
+  margin: auto;
+  height: 80%;
 }
