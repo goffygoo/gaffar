@@ -11,6 +11,8 @@ export default function Branding(props) {
       className={styles.container}
       style={{ height, width }}
       onClick={(_e) => navigate("/home")}
-    ></div>
+    >
+      <img src="/logo.svg" alt='logo' />
+    </div>
   );
 }

@@ -9,10 +9,10 @@ export default function Project(props) {
         <p>{name}</p>
       </div>
       <div className={styles.acceptBtn} onClick={() => accept(id, name)}>
-        <p>✔</p>
+        <img src = "tick.png" alt = ''/>
       </div>
       <div className={styles.rejectBtn} onClick={() => reject(id, name)}>
-        <p>❌</p>
+      <img src = "cross_white.png" alt = ''/>
       </div>
     </div>
   );

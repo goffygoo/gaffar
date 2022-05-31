@@ -3,10 +3,10 @@ import styles from "../../styles/components/home/Upload.module.css";
 import Cropper from "react-cropper";
 import "cropperjs/dist/cropper.css";
 
-const defaultSrc = "/me.jpeg";
+const defaultSrc = "/user.svg";
 
 export default function UploadImg(props) {
-  const { show, ratio, setUploadData } = props;
+  const { show, ratio, updateimg, setUploadData } = props;
 
   const [image, setImage] = useState(defaultSrc);
   const [cropper, setCropper] = useState();
@@ -26,10 +26,11 @@ export default function UploadImg(props) {
     reader.readAsDataURL(files[0]);
   };
 
-  const getCropData = () => {
+  const crop = () => {
     if (typeof cropper !== "undefined") {
-      setUploadData(cropper.getCroppedCanvas().toDataURL());
-      show(false);
+      updateimg(cropper.getCroppedCanvas().toDataURL())
+      setUploadData(cropper.getCroppedCanvas().toDataURL())
+      show(false)
     }
   };
 
@@ -38,8 +39,9 @@ export default function UploadImg(props) {
       <div className={styles.popUp}>
         <img
           className={styles.close}
-          src="/cancelButton.svg"
+          src="/close.png"
           onClick={(_e) => show(false)}
+          alt="X"
         />
         <h1>Crop</h1>
         <div style={{ width: "100%" }}>
@@ -51,7 +53,7 @@ export default function UploadImg(props) {
           </div>
 
           <Cropper
-            style={{ height: "30vh", width: "100%" }}
+            style={{ height: "30vh", width: "100%", backgroundColor: "#CAEBF2"}}
             zoomTo={0}
             aspectRatio={ratio}
             src={image}
@@ -67,7 +69,7 @@ export default function UploadImg(props) {
           />
         </div>
 
-        <div className={styles.btnSave} onClick={getCropData}>
+        <div className={styles.btnSave} onClick={() => crop()}>
           <p>Crop Image</p>
         </div>
       </div>

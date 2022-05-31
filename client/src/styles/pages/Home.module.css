@@ -1,9 +1,14 @@
+.null{
+   color : #C5C1C0 #0A1612 #1A2930 #F7CE3E;
+   color : #4ABDAC #FC4A1A #F78733 #DFDCE3;
+   font-family: Nunito, Noto Sans, Montserrat, Shadows Into Light;
+}
+
 .page {
   display: flex;
   flex-direction: column;
   height: 100vh;
   width: 100vw;
-  background-color: pink;
 }
 
 .topArea {
@@ -11,19 +16,36 @@
   flex-direction: row;
   width: 100vw;
   height: 10vh;
-  background-color: red;
+  background-color: #CABEF2;
+}
+
+.pageheading{
+  display: flex;
+  margin: auto;
+}
+
+.pageheading > h1{
+  font-family: Nunito;
+  color: #0A1612;
+  letter-spacing: 2px;
+  font-weight: 900;
+  font-size: 2.3rem;
+  margin: auto;
 }
 
 .logoutBtn {
   display: flex;
   width: 10vw;
   height: 10vh;
-  margin: 0 0 0 auto;
-  background-color: hotpink;
+  margin: auto 0;
+  background-color: #F78733;
   cursor: pointer;
 }
 
 .logoutBtn > p {
+  font-family: Nunito;
+  font-size: 1.3rem;
+  font-weight: 500;
   margin: auto;
 }
 
@@ -32,23 +54,28 @@
   display: flex;
   flex-direction: row;
   height: 90vh;
-  background-color: blueviolet;
 }
 
-.mainContainer {
-  background-color: blue;
-  display: flex;
-  flex-direction: column;
-  width: 75vw;
-  height: 90vh;
-}
 
 .profileContainer {
-  background-color: grey;
+  background-color: #0A1612;
   display: flex;
   flex-direction: column;
   width: 25vw;
   height: 90vh;
+}
+
+.profileHeader {
+  display: flex;
+  height: 7vh;
+  background-color: #1A2930;
+}
+
+.profileHeader > h1 {
+  font-family: Nunito;
+  color: #FFFFFF;
+  font-size: 1.2rem;
+  margin: auto;
 }
 
 .projectsContainer {
@@ -59,6 +86,31 @@
   height: 40vh;
 }
 
+.mainContainer {
+  background-color: #FFFFFF;
+  display: flex;
+  flex-direction: column;
+  width: 75vw;
+  height: 90vh;
+}
+
+.projectCtn{
+  height: 80%;
+  width: 85%;
+  overflow-y: scroll;
+  margin: 0 auto 2vh 5vw;
+}
+
+.projectCtn::-webkit-scrollbar {
+  width: 0.5vw;
+}
+
+.projectCtn::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.4);
+  border-radius: 0.5rem;
+}
+
+
 .invitesContainer {
   display: flex;
   flex-direction: column;
@@ -67,16 +119,51 @@
   height: 30vh;
 }
 
+
+.mainContainer {
+  background-color: #FFFFFF;
+  display: flex;
+  flex-direction: column;
+  width: 75vw;
+  height: 90vh;
+}
+
+.inviteCtn{
+  height: 80%;
+  width: 85%;
+  overflow-y: scroll;
+  margin: 0 auto 2vh 5vw;
+}
+
+.inviteCtn::-webkit-scrollbar {
+  width: 0.5vw;
+}
+
+.inviteCtn::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.4);
+  border-radius: 0.5rem;
+}
+
+
 .projectHeading {
   height: 6vh;
   width: 55vw;
-  background-color: yellow;
   margin: 1vh auto 2vh auto;
+  display: flex;
+}
+
+.projectHeading > h2{
+  margin: auto;
+  font-family: Nunito;
+  font-size: 1.7rem;
+  color: #4ABDAC;
+  font-weight: 700;
+  letter-spacing: 3px;
 }
 
 .profilePicture {
-  background-color: lightgreen;
   height: 20vh;
+  cursor: pointer;
   width: 20vh;
   margin: 20vh auto 0 auto;
 }
@@ -95,7 +182,7 @@
 }
 
 .edit {
-  background-color: deeppink;
+  background-color: #FFFFFF;
   cursor: pointer;
   height: 6vh;
   width: 8vw;
@@ -107,7 +194,7 @@
 .update {
   display: flex;
   border-radius: 10px;
-  background-color: crimson;
+  background-color: #F7CE3E;
   height: 6vh;
   width: 8vw;
   margin: auto;
@@ -116,29 +203,51 @@
 
 .edit > p {
   font-weight: bold;
+  color: #1A2930;
+  font-family: Nunito;
+
   margin: auto auto auto auto;
 }
 
 .update > p {
-  font-weight: bold;
+  font-family: Nunito;
 
+  font-weight: bold;
+  color: #1A2930;
   margin: auto auto auto auto;
 }
+
 input .update {
   font-weight: 100;
 }
 
 .username {
-  margin: 1vh auto 1vh auto;
+  margin: 3vh auto 1vh auto;
   height: 4vh;
   display: flex;
   font-weight: bold;
-  font-size: 1rem;
+  font-size: 1.5rem;
+  font-family: Noto Sans;
   width: 20vw;
-  background-color: transparent;
+  color: #FFFFFF;
+}
+
+.usernameInput {
+  margin: 3vh auto 1vh auto;
+  height: 4vh;
+  display: flex;
+  font-family: Montserrat;
+  outline: none;
+  /* font-weight: bold; */
+  font-size: 1rem;
+  font-family: Noto Sans;
+  width: 20vw;
+  color: #1A2930;
 }
 
 .username > p {
+  font-family: Nunito;
+
   margin: auto auto auto auto;
 }
 
@@ -150,8 +259,9 @@ input .update {
 
 .projectName {
   margin: auto auto auto auto;
-  width: 40vw;
+  width: 38vw;
   height: 5vh;
+  padding-left: 1vw;
 }
 
 .addProject {
@@ -164,15 +274,19 @@ input .update {
 }
 
 .addProjectBtn {
-  background-color: purple;
-  height: 5vh;
-  width: 10vw;
+  background-color: #4ABDAC;
+  height: 6vh;
+  width: 12vw;
   display: flex;
   cursor: pointer;
   font-weight: bold;
+  border-radius: 5px;
   margin: 0 auto 0 auto;
 }
 
 .addProjectBtn > p {
-  margin: auto auto auto auto;
+  font-family: Nunito;
+
+  margin: auto;
+  color: #0A1612;
 }
