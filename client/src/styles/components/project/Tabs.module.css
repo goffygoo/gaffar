@@ -2,11 +2,18 @@
     display: flex;
     cursor: pointer;
     height: 5vh;
-    width: 10vw;
-    background-color: aqua;
-    margin: 1vh 0;
+    width: 9vw;
+    background-color: #FFFFFF;
+    margin: 2vh auto;
+    border-radius: 3px;
+}
+
+.selected {
+    background-color: #F7CE3E;
 }
 
 .container > p {
     margin: auto;
+    font-family: Noto Sans;
+    font-weight: 500;
 }

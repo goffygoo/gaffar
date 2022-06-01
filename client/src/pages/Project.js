@@ -25,7 +25,7 @@ export default function Project() {
   const dispatch = useDispatch();
   const { error } = useSelector((state) => state.project);
 
-  const { initUser, initProject, getDocs, getList , getMembers } = bindActionCreators(
+  const { initUser, initProject, getDocs, getList, getMembers } = bindActionCreators(
     { ...actionLogin, ...actionProject },
     dispatch
   );
@@ -97,40 +97,39 @@ export default function Project() {
 
   return (
     <div className={styles.page}>
-      <div className={styles.navbar}>
+      <div className={styles.titlebar}>
         <Branding />
 
-        <Tabs name="List" link={`${params.id}/list`} navigate={navigate} />
-        <Tabs name="Board" link={`${params.id}/board`} navigate={navigate} />
-        <Tabs name="Docs" link={`${params.id}/docs`} navigate={navigate} />
-        <Tabs
-          name="Members"
-          link={`${params.id}/members`}
-          navigate={navigate}
-        />
-        <Tabs
-          name="Mytasks"
-          link={`${params.id}/mytasks`}
-          navigate={navigate}
-        />
-        <Tabs name="Extras" link={`${params.id}/extras`} navigate={navigate} />
+        <h1>{params['*'].toUpperCase()}</h1>
       </div>
 
-      <div className={styles.content}>
-        <div className={styles.titlebar}>
-          <h1>{params['*'].toUpperCase()}</h1>
+      <div className={styles.mainContainer}>
+        <div className={styles.navbar}>
+          <Tabs name="List" link={`${params.id}/list`} selected={params['*'] === "list"} navigate={navigate} />
+          <Tabs name="Board" link={`${params.id}/board`} selected={params['*'] === "board"} navigate={navigate} />
+          <Tabs name="Docs" link={`${params.id}/docs`} selected={params['*'] === "docs"} navigate={navigate} />
+          <Tabs name="Members" link={`${params.id}/members`} selected={params['*'] === "members"} navigate={navigate} />
+          <Tabs name="Mytasks" link={`${params.id}/mytasks`} selected={params['*'] === "mytasks"} navigate={navigate} />
+          <Tabs name="Extras" link={`${params.id}/extras`} selected={params['*'] === "extras"} navigate={navigate} />
         </div>
 
-        <Routes>
-          <Route exact path="/list" element={<List />} />
-          <Route exact path="/board" element={<Board />} />
-          <Route exact path="/docs" element={<Docs />} />
-          <Route exact path="/members" element={<Members />} />
-          <Route exact path="/mytasks" element={<Mytasks />} />
-          <Route exact path="/extras" element={<Extras />} />
-          <Route path="/*" element={<Navigate to="/page_not_found" />} />
-        </Routes>
+        <div className={styles.content}>
+          <Routes>
+            <Route exact path="/list" element={<List />} />
+            <Route exact path="/board" element={<Board />} />
+            <Route exact path="/docs" element={<Docs />} />
+            <Route exact path="/members" element={<Members />} />
+            <Route exact path="/mytasks" element={<Mytasks />} />
+            <Route exact path="/extras" element={<Extras />} />
+            <Route path="/*" element={<Navigate to="/page_not_found" />} />
+          </Routes>
+        </div>
+
       </div>
+
+
+
+
     </div>
   );
 }

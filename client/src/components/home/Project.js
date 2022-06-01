@@ -15,7 +15,7 @@ export default function Project({ indx }) {
       className={styles.container}
       onClick={(_e) => {
         initProject(projects[indx].project_id);
-        navigate(`/project:${projects[indx].project_id}/docs`);
+        navigate(`/project:${projects[indx].project_id}/list`);
       }}
     >
       <p>{projects[indx].project_name}</p>
