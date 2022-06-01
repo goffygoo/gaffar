@@ -12,6 +12,40 @@ import store from "../store";
 
 import axios from "axios";
 
+function roughSizeOfObject( object ) {
+
+  var objectList = [];
+  var stack = [ object ];
+  var bytes = 0;
+
+  while ( stack.length ) {
+      var value = stack.pop();
+
+      if ( typeof value === 'boolean' ) {
+          bytes += 4;
+      }
+      else if ( typeof value === 'string' ) {
+          bytes += value.length * 2;
+      }
+      else if ( typeof value === 'number' ) {
+          bytes += 8;
+      }
+      else if
+      (
+          typeof value === 'object'
+          && objectList.indexOf( value ) === -1
+      )
+      {
+          objectList.push( value );
+
+          for( var i in value ) {
+              stack.push( value[ i ] );
+          }
+      }
+  }
+  return bytes;
+}
+
 export const initProject = (id, user_email) => (dispatch) => {
   const req = {
     project_id: id,
@@ -163,4 +197,38 @@ export const getList = (list, tasks) => (dispatch) => {
   } catch (err) {
     console.log(`Bhay error aara: ${err}`);
   }
+};
+
+export const getMembers = () => (dispatch) => {
+  let {
+    project: { project_id },
+    login: { user }
+  } = store.getState();
+  const req = {
+    project_id: project_id,
+    user_email: user.email,
+  };
+
+  axios
+    .post("http://localhost:5000/project/getUsers", req)
+    .then((res) => {
+      if (res.data.success === false) throw Error("Error");
+
+      console.log(res);
+
+      const { members } = res.data;
+
+      dispatch({
+        data: members,
+        type: SET_MEMBERS,
+      });
+
+    })
+    .catch((err) => {
+      dispatch({
+        data: true,
+        type: PROJECT_ERROR,
+      });
+      console.log(err);
+    });
 };

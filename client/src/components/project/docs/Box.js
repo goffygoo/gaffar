@@ -9,13 +9,14 @@ import TextComp from "./textComp";
 import styles from "../../../styles/components/project/Docs.module.css";
 
 export default function Box({ indx }) {
-  const { editable } = useSelector((state) => state.docs);
+  const { docs:{editable} , project:{is_admin}} = useSelector((state) => state);
 
   const dispatch = useDispatch();
   const { toggleedit , deleteBox } = bindActionCreators(actionDocs, dispatch);
 
   return (
     <div className={styles.boxContainer}>
+      {is_admin ? 
       <div className={styles.btnCtn}>
       {editable[indx] ? (
         <div className={styles.save} onClick={() => toggleedit(indx)}>
@@ -30,6 +31,7 @@ export default function Box({ indx }) {
           vibhor b3
         </div>
       </div>
+      : null}
       <div className={styles.title}>
         {editable[indx] ? (
           <TextComp indx={indx} typec={"title"} />

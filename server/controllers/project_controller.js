@@ -273,6 +273,7 @@ export default function (io) {
           message: `Bhai error aara : ${err}`,
         });
       }
+
       let users = [];
       // console.log(project);
 
@@ -283,10 +284,12 @@ export default function (io) {
           user_id: user._id,
           user_name: user.name,
           user_email: user.email,
+          user_photu: user.img,
           user_role: uid.role,
+          is_admin: uid.admin
         });
       }
-
+      
       // add this new server to creator's server list
       return res.status(201).send({
         success: true,

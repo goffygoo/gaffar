@@ -53,7 +53,9 @@ export default function (io) {
       }
       await Users.findByIdAndUpdate(user._id,{
         invites: invites
-      })
+      });
+
+      io.sockets.in(req.body.project_id).emit("getUsers", "added");
 
       return res.status(201).send({
         success: true,

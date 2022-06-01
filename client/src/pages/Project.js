@@ -25,7 +25,7 @@ export default function Project() {
   const dispatch = useDispatch();
   const { error } = useSelector((state) => state.project);
 
-  const { initUser, initProject, getDocs, getList } = bindActionCreators(
+  const { initUser, initProject, getDocs, getList , getMembers } = bindActionCreators(
     { ...actionLogin, ...actionProject },
     dispatch
   );
@@ -63,7 +63,7 @@ export default function Project() {
 
     initProject(params.id.slice(1), user_email);
 
-    console.log("react ka jaadu");
+    // console.log("react ka jaadu");
 
     const socket = io("http://localhost:5000/");
 
@@ -79,13 +79,18 @@ export default function Project() {
     socket.emit('join', params.id.slice(1))
 
     socket.on('getDocs', () => {
-      // console.log("hayadocs");
+      console.log("Socket informs: Docs Changed");
       getDocs();
     });
 
     socket.on('getList', (data) => {
-      console.log("hayadocs");
+      console.log("Socket informs: List Changed");
       getList(data.list, data.tasks);
+    });
+
+    socket.on('getUsers', (data) => {
+      console.log("Sockets inform: Member Added");
+      getMembers();
     });
 
   }
