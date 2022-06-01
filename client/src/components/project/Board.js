@@ -60,7 +60,9 @@ export default function Board() {
       {board_id ?
         <div className={styles.container}>
           <div className={styles.containerHead}>
+            {is_admin ?
             <button onClick={() => setpopupAddTask(true)}>+</button>
+            : null}
             <h1>{board[board_id].title}</h1>
             {is_admin ? 
             <button onClick={() => saveData()}>✔</button>
@@ -80,12 +82,17 @@ export default function Board() {
                       <div className={styles.columnHead}>
                         <h2>{column.name}</h2>
                         {columnId !== "Done" ? (
-                          <button
+                          <>
+                          {is_admin ? 
+                            <button
                             className={styles.addBtn}
                             onClick={() => setpopupCol(columnId)}
                           >
                             +
                           </button>
+                          : null}
+                          </>
+                          
                         ) : null}
                         {columnId !== "Done" && columnId !== "To do" ? (
                           <button

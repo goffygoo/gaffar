@@ -34,15 +34,21 @@ export default function List() {
             <div key={id} className={styles.item}>
               <div className={styles.itemHead}>
                 <h1>{obj.title}</h1>
+                {is_admin ? 
                 <button onClick={() => setpopupAddTask(id)} >+</button>
-                <button onClick={() => openBoard(id, navigate, `/project${params.id}/board`)}>✔</button>
+                : null}
+                <button onClick={() => openBoard(id, navigate, `/project${params.id}/board`)}>🔲</button>
+                {is_admin ? 
                 <button onClick={() => delBoard(id)}>💣</button>
+                : null} 
               </div>
               <div className={styles.subContainer}>
                 {obj.tasks.map(task => {
                   return (
                     <div key={task.id} className={styles.taskContainer} >
+                      {is_admin ?
                       <input id={`checkbox${task.id}`} type="checkbox" checked={task.checked} onChange={() => toggle(id, task.id)} />
+                      : null}
                       <label htmlFor={`checkbox${task.id}`} className={task.checked ? styles.taskChecked : ""}>{task.content}</label>
                     </div>
                   )
@@ -51,6 +57,7 @@ export default function List() {
             </div>
           )
         })}
+        {is_admin ?
         <div className={styles.addItem}>
           <input value={item} onChange={e => setitem(e.target.value)}></input>
           <button onClick={() => {
@@ -58,6 +65,7 @@ export default function List() {
             setitem('')
           }} >+</button>
         </div>
+        : null}
       </div>
     </>
   )
