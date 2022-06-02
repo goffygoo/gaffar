@@ -8,7 +8,7 @@ export default function Branding(props) {
 
   return (
     <div
-      className={styles.container}
+      className={styles.container + " noselect"}
       style={{ height, width }}
       onClick={(_e) => navigate("/home")}
     >

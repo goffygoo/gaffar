@@ -2,11 +2,12 @@
   position: fixed;
   display: flex;
   z-index: 1;
+  top: 0;
   left: 0;
   right: 0;
   height: 100vh;
   width: 100vw;
-  background-color: rgba(255, 255, 255, 0.7);
+  background: rgba(66, 66, 66, 0.6);
 }
 
 .popup {
@@ -18,27 +19,30 @@
   border-radius: 1rem;
   padding: 2vh 1vw;
   z-index: 0;
-  background: #ffffff;
+  background-color: #CAEBF2;
 }
 
 .popup > img {
   cursor: pointer;
-  height: 3.5vh;
+  height: 3vh;
   width: auto;
   margin: 0 0 0 auto;
 }
 
 .popup > h1 {
-  color: black;
-  margin-left: 1vw;
+  font-family: Nunito;
+  font-weight: 800;
+  color: #026670;
   font-size: 1.5rem;
   margin: 0.5vh auto 0.5vh auto;
 }
 
 .label {
-  color: black;
+  color: #121212;
   text-align: left;
+  font-weight: 600;
   font-size: 0.7rem;
+  font-family: Nunito;
   display: block;
   width: 45%;
   margin: auto auto auto 1.2vw;
@@ -58,7 +62,8 @@
 .input1 {
   background-color: transparent;
   border: none;
-  border-bottom: solid black 1px;
+  font-family: Montserrat;
+  border-bottom: solid #026670 1px;
   outline: none;
   color: black;
   width: 43%;
@@ -66,7 +71,10 @@
 }
 
 .description {
+  background-color: transparent;
+  font-family: Montserrat;
   height: 15vh;
+  border: solid #026670 1px;
   width: 32vw;
   resize: none;
   outline: none;
@@ -105,8 +113,10 @@
 
 .memberCtn {
   cursor: pointer;
-  border: 1px solid black;
+  border: 2px solid #FCE181;
+  background-color: #FEF9C7;
   border-radius: 0.6rem;
+  padding: 0 3px;
   height: 8vh;
   display: flex;
   flex-direction: row;
@@ -131,11 +141,13 @@
 .name {
   font-size: 1rem;
   font-weight: 600;
+  font-family: Nunito;
   margin: auto auto 0 0;
 }
 
 .role {
   font-size: 0.8rem;
+  font-family: Montserrat;
   margin: 0 auto auto 0;
 }
 
@@ -145,14 +157,27 @@
 }
 
 .memberContainer > h1 {
-  font-size: 1rem;
+  font-size: 1.1rem;
+  color: #121212;
+  font-weight: 600;
+  font-family: Nunito;
 }
 
 .addTaskBtn {
   cursor: pointer;
   margin: auto auto 0 auto;
-  background-color: black;
-  color: white;
-  width: 8vw;
+  background-color: #FF3B3F;
+  margin: auto;
+  display: flex;
+  border-radius: 0.25rem;
   height: 5vh;
+  width: 10vw;
+}
+
+.addTaskBtn > p {
+  font-weight: 600;
+  font-family: Nunito;
+  color: #FFFFFF;
+  font-size: 1rem;
+  margin: auto;
 }

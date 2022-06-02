@@ -23,7 +23,7 @@ import * as actionProject from "../action/actionProject";
 export default function Project() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { error } = useSelector((state) => state.project);
+  const { error, project_name } = useSelector((state) => state.project);
 
   const { initUser, initProject, getDocs, getList, getMembers } = bindActionCreators(
     { ...actionLogin, ...actionProject },
@@ -100,7 +100,7 @@ export default function Project() {
       <div className={styles.titlebar}>
         <Branding />
 
-        <h1>{params['*'].toUpperCase()}</h1>
+        <h1>{project_name.toUpperCase()}</h1>
       </div>
 
       <div className={styles.mainContainer}>
