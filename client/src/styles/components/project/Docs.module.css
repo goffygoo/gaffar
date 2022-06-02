@@ -3,52 +3,66 @@
   flex-direction: column;
   height: 92vh;
   width: 90vw;
-  background-color:white;
+  background-color: white;
 }
 
 .addbox {
   display: flex;
   cursor: pointer;
-  margin: auto;
-  height: 5vh;
-  width: 8vw;
-  background-color: yellowgreen;
+  margin: 1vh auto;
+  height: 7vh;
+  width: 10vw;
+  background-color: #F7CE3E;
+  border-radius: 5px;
 }
 
-.addbox > p {
+.addbox>p {
   margin: auto;
+  font-family: Noto Sans;
+  font-weight: 500;
 }
 
 .container {
   display: flex;
-  flex-direction: column;;
-  background-color: white;
+  flex-direction: column;
   height: 87vh;
   overflow-y: scroll;
 }
+.container::-webkit-scrollbar {
+  width: 0.5vw;
+}
+
+.container::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.4);
+  border-radius: 0.5rem;
+}
 
 .boxContainer {
-  margin: 1vh auto 0 auto;
+  margin: 1vh auto;
   width: 70vw;
+  background-color: #EDEAE5;
   border: 0.5mm grey solid;
 }
 
 .textcomp {
-  background-color: white;
   min-height: 5vh;
   border: none;
   padding-left: 5rem;
   display: flex;
   flex-direction: row;
 }
-.textcomp > p {
+
+.textcomp>p {
   margin: auto 0 auto 1vw;
 }
+
 .textcomparea {
+  background-color: #EDEAE5;
   border: none;
+  outline: none;
 }
+
 .stillcomp {
-  background-color: white;
   min-height: 5vh;
   border: none;
   padding-left: 5rem;
@@ -56,69 +70,112 @@
   outline: none;
 }
 
-.url {
-  color: blue;
-  font-size: 1rem;
+.title {
+  font-weight: 700;
+  font-family: Nunito;
+  margin: 0 0 1vh 0;
+  font-size: 2rem;
+  color: #026670;
 }
 
-.title {
-  font-weight: bolder;
-  font-size: 2rem;
+.url {
+  font-weight: 700;
+  margin: 0 0 1vh 0;
+  font-family: Nunito;
+  font-size: 1rem;
+  color: #1A2930;
 }
 
 .method {
-  font-weight: bolder;
+  font-weight: 700;
+  margin: 0 0 1vh 0;
+  font-family: Nunito;
   font-size: 1rem;
+  color: #1A2930;
 }
 
-.title .textcomp > input {
+.title .textcomp>input {
   margin-left: 1vw;
   font-size: 1.5rem;
-  font-weight: bolder;
+  font-family: Nunito;
+  outline: none;
+  width: 30vw;
 }
 
-.method .textcomp > input {
+.title .textcomp>input:focus {
+  border-bottom: 2px solid #0A1612;
+}
+
+.method .textcomp>input {
   margin-left: 1vw;
+  width: 30vw;
+  font-family: Nunito;
+  outline: none;
   font-size: 1rem;
 }
 
-.url .textcomp > input {
+.method .textcomp>input:focus {
+  border-bottom: 2px solid #0A1612;
+}
+
+.url .textcomp>input {
   margin-left: 1vw;
+  width: 30vw;
+  font-family: Nunito;
+  outline: none;
   font-size: 1rem;
+}
+
+.url .textcomp>input:focus {
+  border-bottom: 2px solid #0A1612;
 }
 
 .request {
   font-weight: bolder;
   font-size: 1rem;
-  color: chocolate;
-}
-.request .textcomp {
-  display: flex;
-  flex-direction: column;
-}
-.request .textcomp > textarea {
-  font-size: 1rem;
-  min-height: 5vh;
-  width: 40vw;
-  margin-left: 1vw;
-  background-color: rgba(0, 128, 0, 0.467);
+  font-family: Nunito;
+
+  color: #026670;
 }
 
-.response .textcomp > textarea {
+.request .textcomp {
+  display: flex;
+  font-family: Nunito;
+
+  flex-direction: column;
+}
+
+.request .textcomp>textarea {
   font-size: 1rem;
   min-height: 5vh;
+  font-family: Nunito;
+
+  width: 40vw;
+  background-color: #FEF9C7;
+  margin-left: 1vw;
+}
+
+.response .textcomp>textarea {
+  font-size: 1rem;
+  min-height: 5vh;
+  font-family: Nunito;
+
   width: 40vw;
   margin-left: 1vw;
+  background-color: #FEF9C7;
+
   margin-bottom: 2vh;
-  background-color: rgba(0, 128, 0, 0.467);
 }
+
 .response .textcomp {
   display: flex;
   flex-direction: column;
 }
+
 .response {
+  font-family: Nunito;
   font-weight: bolder;
-  color: green;
+  color: #026670;
   font-size: 1rem;
   display: flex;
   flex-direction: column;
@@ -127,15 +184,12 @@
 .docCon {
   display: flex;
   flex-direction: column;
-  background-color: white;
   word-break: break-all;
   min-height: 20vh;
   width: 40vw;
 }
 
 .save {
-  background-color: green;
-  color: white;
   cursor: pointer;
   width: 2vw;
   height: 3vh;
@@ -143,26 +197,24 @@
 }
 
 .edit {
-  background-color: green;
-  color: white;
   cursor: pointer;
   width: 2vw;
   height: 3vh;
   margin-left: 1mm;
 }
 
-.request .stillcomp > div {
+.request .stillcomp>div {
   font-size: 1rem;
   min-height: 5vh;
   width: 40vw;
   white-space: pre-wrap;
   word-wrap: break-word;
   font-weight: 100;
-  color: black;
-  background-color: rgba(0, 128, 0, 0.467);
+  color: #1A2930;
+  background-color: #FEF9C7;
 }
 
-.response .stillcomp > div {
+.response .stillcomp>div {
   font-size: 1rem;
   font-weight: 100;
   color: black;
@@ -171,15 +223,16 @@
   word-wrap: break-word;
   width: 40vw;
   margin-bottom: 2vh;
-  background-color: rgba(0, 128, 0, 0.467);
+  background-color: #FEF9C7;
 }
 
 
-.btnCtn{
+.btnCtn {
   display: flex;
+  margin: 1vh ;
 }
 
-.delete{
+.delete {
   display: flex;
   margin: auto 1vw auto auto;
   cursor: pointer;

@@ -14,7 +14,7 @@ export default function List() {
   const params = useParams()
 
   const { toggle, addTask, addItem, openBoard, delBoard, saveData } = bindActionCreators(actionList, dispatch)
-  const { list:{list} , project:{is_admin} } = useSelector(state => state)
+  const { list: { list }, project: { is_admin } } = useSelector(state => state)
 
   const [popupAddTask, setpopupAddTask] = useState(false);
   const [item, setitem] = useState('')
@@ -26,30 +26,52 @@ export default function List() {
       ) : null}
 
       <div className={styles.container}>
-        {is_admin ? 
-        <button onClick={() => saveData()}>Save</button> 
-        : null} 
+        {is_admin ?
+          <div className={styles.addSaveCtn}>
+            <input value={item} onChange={e => setitem(e.target.value)} spellCheck='false' placeholder='List name goes here..'/>
+            <div className={styles.addListBtn} onClick={() => {
+              addItem(item)
+              setitem('')
+            }}>
+              <p>Add List</p>
+            </div>
+            <div onClick={() => saveData()} className={styles.saveBtn}>
+              <p>Save</p>
+            </div>
+          </div>
+          : null}
         {Object.entries(list).map(([id, obj]) => {
           return (
             <div key={id} className={styles.item}>
               <div className={styles.itemHead}>
                 <h1>{obj.title}</h1>
-                {is_admin ? 
-                <button onClick={() => setpopupAddTask(id)} >+</button>
-                : null}
-                <button onClick={() => openBoard(id, navigate, `/project${params.id}/board`)}>🔲</button>
-                {is_admin ? 
-                <button onClick={() => delBoard(id)}>💣</button>
-                : null} 
+                <div className={styles.btnCtn + " noselect"} >
+                  {is_admin ?
+                    <img onClick={() => setpopupAddTask(id)} src="/plus.png" alt='add' />
+                    : null}
+                  {is_admin ?
+                    <img onClick={() => delBoard(id)} className={styles.deleteBtn} src='/delete.svg' alt='delete' />
+                    : null}
+                  <img src="/open.svg" alt="" onClick={() => openBoard(id, navigate, `/project${params.id}/board`)} />
+                </div>
               </div>
               <div className={styles.subContainer}>
                 {obj.tasks.map(task => {
                   return (
-                    <div key={task.id} className={styles.taskContainer} >
-                      {is_admin ?
-                      <input id={`checkbox${task.id}`} type="checkbox" checked={task.checked} onChange={() => toggle(id, task.id)} />
-                      : null}
-                      <label htmlFor={`checkbox${task.id}`} className={task.checked ? styles.taskChecked : ""}>{task.content}</label>
+                    <div key={task.id} className={styles.taskContainer} onClick={() => {
+                      if (!is_admin) return;
+                      toggle(id, task.id);
+                    }} >
+                      <div className={styles.tick + " noselect"}>
+                        {
+                          task.checked ?
+                            <img src="/tick.png" alt='✔' />
+                            :
+                            null
+                        }
+                      </div>
+                      {/* <input id={`checkbox${task.id}`} type="checkbox" checked={task.checked}  /> */}
+                      <div className={task.checked ? styles.taskChecked : ""}>{task.content}</div>
                     </div>
                   )
                 })}
@@ -57,15 +79,6 @@ export default function List() {
             </div>
           )
         })}
-        {is_admin ?
-        <div className={styles.addItem}>
-          <input value={item} onChange={e => setitem(e.target.value)}></input>
-          <button onClick={() => {
-            addItem(item)
-            setitem('')
-          }} >+</button>
-        </div>
-        : null}
       </div>
     </>
   )

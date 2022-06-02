@@ -1,3 +1,11 @@
+.null {
+    color: #C5C1C0 #0A1612 #1A2930 #F7CE3E;
+    color: #4ABDAC #FC4A1A #F78733 #DFDCE3;
+    color: #026670 #9FEDD7 #FEF9C7 #FCE181 #EDEAE5;
+    font-family: Nunito, Noto Sans, Montserrat, Shadows Into Light;
+}
+
+
 .container {
     display: flex;
     flex-direction: column;
@@ -5,53 +13,143 @@
     width: 90vw;
     overflow-y: scroll;
     overflow-x: hidden;
-}   
+}
+
+.container::-webkit-scrollbar {
+    width: 0.5vw;
+}
+
+.container::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.4);
+    border-radius: 0.5rem;
+}
+
+
+.addSaveCtn{
+    display:flex;
+    flex-direction:row;
+    /* border: solid 2px red; */
+    margin: 1vh 1vw 3vh 1vw ;
+}
+
+.addSaveCtn > input{
+    outline:none;
+    width: 20vw;
+    border: none;
+    border-bottom:solid 2px black;
+    font-size: 1.1rem;
+    font-family: Montserrat;
+    margin-left: 2vw;
+}
+.addListBtn{
+    display: flex;
+    cursor: pointer;
+    height: 6vh;
+    width: 8vw;
+    background-color: #FC4A1A;
+    margin-left: 2vw;
+    border-radius: 5px;
+}
+
+.addListBtn >p {
+    margin: auto;
+    color: #EDEAE5;
+    color: white;
+    font-family: Noto Sans;
+    font-weight: 500;
+}
+.saveBtn {
+    display: flex;
+    cursor: pointer;
+    height: 6vh;
+    width: 8vw;
+    margin: 0 2vw 0 auto;
+    background-color: #F7CE3E;
+    border-radius: 5px;
+}
+
+.saveBtn>p {
+    margin: auto;
+    font-family: Noto Sans;
+    font-weight: 500;
+}
 
 .item {
     display: flex;
     flex-direction: column;
-    margin: 1vh 0 1vh 2vw;
-    border: 2px solid black;
+    margin: 2vh 2vw 2vh 2vw;
+    padding-left: 2vw;
+    background-color: whitesmoke;
 }
 
 .itemHead {
     display: flex;
     flex-direction: row;
-}
-
-.itemHead > button {
-    margin: auto 1vw;
+    margin-top: 1vh;
+    /* border: solid 2px red; */
 }
 
 
 .subContainer {
     display: flex;
     flex-direction: column;
+
     margin: 1vh 0 1vh 2vw;
-    border: 2px solid black;
 }
 
 .taskContainer {
+    /* border: solid 2px red; */
+    margin: 1vh;
     display: flex;
     flex-direction: row;
     width: fit-content;
+    cursor: pointer
 }
 
-.taskContainer > input {
-    margin: auto 1vw;
-}
-
-.taskContainer > label {
-    margin: auto 0;
-    cursor: pointer;
-}
 
 .taskChecked {
     text-decoration: line-through;
-} 
+    text-decoration-color: #F78733;
+}
 
 .addItem {
     display: flex;
     flex-direction: row;
     margin: 1vh 0 1vh 2vw;
+}
+
+
+.tick {
+    background-color: #F78733;
+    width: 3vh;
+    height: 3vh;
+    margin: 0 1vw;
+    border-radius: 5px;
+    display: flex;
+}
+
+.tick>img {
+    width: 90%;
+    margin: auto;
+}
+
+.btnCtn{
+    display: flex;
+    flex-direction: row;
+    margin: auto 2vw auto auto;
+}
+
+
+.btnCtn > img {
+    height: 3.5vh;
+    width: auto;
+    margin: auto 3vw auto 0;
+    cursor: pointer;
+}
+
+.itemHead>h1 {
+    margin: auto 10vw auto 0;
+    font-family: Nunito;
+    font-size: 1.8rem;
+    font-weight: 700;
 }

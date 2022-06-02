@@ -20,15 +20,15 @@ export default function Box({ indx }) {
       <div className={styles.btnCtn}>
       {editable[indx] ? (
         <div className={styles.save} onClick={() => toggleedit(indx)}>
-          save
+           <img src="/save.svg" alt='' />
         </div>
       ) : (
         <div className={styles.edit} onClick={() => toggleedit(indx)}>
-          edit
+          <img src="/edit.svg" alt='' />
         </div>
       )}
-      <div className={styles.delete} onClick = {()=>deleteBox(indx)}>
-          vibhor b3
+        <div className={styles.delete} onClick = {()=>deleteBox(indx)}>
+          <img src="/delete.svg" alt='' />
         </div>
       </div>
       : null}
