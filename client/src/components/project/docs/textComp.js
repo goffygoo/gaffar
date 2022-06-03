@@ -11,17 +11,19 @@ export default function TextComp({ indx, typec }) {
   const { editdata } = bindActionCreators(actionDocs, dispatch);
   return (
     <div className={styles.textcomp}>
-      <p>{typec.charAt(0).toUpperCase() + typec.substring(1) + " : "}</p>
-      {typec === "response" || typec == "request" ? (
+      <p>{typec.toUpperCase() + " : "}</p>
+      {typec === "response" || typec === "request" ? (
         <textarea
           className={styles.textcomparea}
           value={contents[indx][typec]}
+          spellCheck="false"
           onChange={(e) => editdata(e.target.value, indx, typec)}
         />
       ) : (
         <input
           className={`${styles.textcomparea}`}
           value={contents[indx][typec]}
+          spellCheck="false"
           onChange={(e) => editdata(e.target.value, indx, typec)}
         />
       )}

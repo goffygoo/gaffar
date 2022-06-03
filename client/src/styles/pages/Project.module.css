@@ -1,35 +1,53 @@
+.null {
+    color: #C5C1C0 #0A1612 #1A2930 #F7CE3E;
+    color: #4ABDAC #FC4A1A #F78733 #DFDCE3;
+    color: #026670 #9FEDD7 #FEF9C7 #FCE181 #EDEAE5;
+    font-family: Nunito, Noto Sans, Montserrat, Shadows Into Light;
+}
+
 .page {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     height: 100vh;
     width: 100vw;
 }
 
+.titlebar {
+    display: flex;
+    flex-direction: row;
+    background-color: #CABEF2;
+    height: 8vh;
+    width: 100vw;
+}
+
+.mainContainer {
+    display: flex;
+    flex-direction: row;
+    height: 92vh;
+    width: 100vw;
+}
+
 .navbar {
+    padding-top: 2vh;
     display: flex;
     flex-direction: column;
-    background-color: cadetblue;
-    height: 100vh;
+    background-color: #0A1612;
+    height: 90vh;
     width: 10vw;
 }
 
 .content {
     display: flex;
     flex-direction: column;
-    background-color: wheat;
-    height: 100vh;
+    height: 92vh;
     width: 90vw;
 }
 
-.titlebar {
-    display: flex;
-    flex-direction: row;
-    background-color: red;
-    height: 8vh;
-    width: 90vw;
-}
-
-.titlebar > h1 {
+.titlebar>h1 {
+    font-family: Nunito;
+    color: #0A1612;
+    letter-spacing: 2px;
+    font-weight: 900;
+    font-size: 2.3rem;
     margin: auto;
-    color: darkslateblue;
 }

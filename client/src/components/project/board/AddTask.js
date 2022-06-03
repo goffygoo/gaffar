@@ -19,7 +19,7 @@ export default function AddTask(props) {
     return (
         <div className={styles.containerPopup}>
             <div className={styles.popup}>
-                <img src="/cancelButton.svg" alt='cancel' onClick={() => view(false)} />
+                <img src="/close.png" alt='cancel' onClick={() => view(false)} />
                 <h1>Add Task</h1>
                 <div className={styles.topCtn}>
                     <div className={styles.inputfield}>
@@ -27,13 +27,13 @@ export default function AddTask(props) {
                         <label className={styles.label}>Deadline</label>
                     </div>
                     <div className={styles.inputfield}>
-                        <input value={task} className={styles.input1} onChange={e => settask(e.target.value)} />
+                        <input value={task} className={styles.input1} spellCheck="false" onChange={e => settask(e.target.value)} />
                         <input value={deadline} type="date" className={styles.input1} onChange={e => setdeadline(e.target.value)} />
                     </div>
                 </div>
                 <div className={styles.taskDescription}>
                 <label className={styles.label}>Description</label>
-                <textarea value={description} className={styles.description} onChange={e => setdescription(e.target.value)} />
+                <textarea value={description} className={styles.description} spellCheck="false" onChange={e => setdescription(e.target.value)} />
                 </div>
                 <div className={styles.memberInput}>
                     <div className={styles.memberContainer}>
@@ -79,10 +79,13 @@ export default function AddTask(props) {
                     </div>
                 </div>
 
-                <button className={styles.addTaskBtn} onClick={() => {
-                    addTask(id, task, deadline, description, members)
+                <div className={styles.addTaskBtn} onClick={() => {
+                    addTask(id, task, deadline, description, added)
                     view(false)
-                }}>Add</button>
+                }}>
+                    <p>Add</p>
+                </div>
+
             </div>
         </div>
     )

@@ -11,7 +11,7 @@ export default function StillComp({ indx, typec }) {
   //   const { editdata } = bindActionCreators(actionDocs, dispatch);
   return (
     <div className={styles.stillcomp}>
-      {typec.charAt(0).toUpperCase() + typec.substring(1)} :{" "}
+      {typec.toUpperCase()} :{" "}
       {typec === "response" || typec === "request" ? (
         <div>{contents[indx][typec]}</div>
       ) : (

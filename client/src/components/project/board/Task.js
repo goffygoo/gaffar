@@ -7,18 +7,10 @@ export default function Task(props) {
 
   const { view, item } = props;
 
-  // const [task, settask] = useState('')
-  // const [deadline, setdeadline] = useState('')
-  // const [description, setdescription] = useState('')
-
-  // const [arr, setArr] = useState(members)
-  // const [added, setAdded] = useState([])
-  console.log(item);
-
   return (
     <div className={styles.containerPopup}>
       <div className={styles.popup}>
-        <img src="/cancelButton.svg" alt="cancel" onClick={() => view(false)} />
+        <img src="/close.png" alt="cancel" onClick={() => view(false)} />
         <h1>Task</h1>
         <div className={styles.topCtn}>
           <div className={styles.inputfield}>
@@ -30,7 +22,7 @@ export default function Task(props) {
             <p className={styles.input1}> {item.deadline}</p>
           </div>
           <div className={styles.taskDescription}>
-            <label className={styles.label}>Description</label>
+            <div className={styles.label}>Description</div>
             <div className={styles.description}>
               <p>{item.description}</p>
             </div>
