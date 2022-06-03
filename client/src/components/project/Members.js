@@ -6,7 +6,7 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 
 export default function Members() {
-  const { member:{members} , login:{user}, project: {is_admin}  } = useSelector((state) => state);
+  const { member:{members} , login:{user} , project: {is_admin} } = useSelector((state) => state);
 
   const [text, settext] = useState("");
   const [msg, setmsg] = useState();
@@ -39,23 +39,21 @@ export default function Members() {
           return <User indx={ind} key={ind} />;
         })}
       </div>
-      {
-        is_admin ? 
-          <div className={styles.addMemberCtn}>
-          <div className={styles.membername}>
-            <input
-              className={styles.membernameInput}
-              value={text}
-              onChange={(e) => settext(e.target.value)}
-              ></input>
-          </div>
-          <div className={styles.addMemberBtn} onClick={() => invite()}>
-            <p>Add Member</p>
-          </div>
-          {msg ? <p>{msg}</p> : null}
+      {is_admin ? 
+      <div className={styles.addMemberCtn}>
+        <div className={styles.membername}>
+          <input
+            className={styles.membernameInput}
+            value={text}
+            onChange={(e) => settext(e.target.value)}
+          ></input>
         </div>
-        : null
-      }
+        <div className={styles.addMemberBtn} onClick={() => invite()}>
+          <p>Add Member</p>
+        </div>
+        {msg ? <p>{msg}</p> : null}
+      </div>
+      : null}
     </div>
   );
 }

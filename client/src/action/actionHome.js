@@ -163,27 +163,23 @@ export const acceptInv = (id, name) => (dispatch) => {
 export const rejectInv = (id, name) => (dispatch) => {
   let {
     login: { user },
-    home: { projects },
   } = store.getState();
 
-  const req = {};
+  const req = {
+    project_id: id,
+    user_email: user.email
+  };
 
   axios
-    .post("http://localhost:5000/user/updatePP", req)
+    .post("http://localhost:5000/user/rejectInvite", req)
     .then((res) => {
       if (res.data.success === false) throw Error("Error");
 
       user.invites = user.invites.filter((i) => i.project_id !== id);
-      projects.push({ project_id: id, project_name: name });
 
       dispatch({
         data: user,
         type: LOGIN_SIGNUP_USER,
-      });
-
-      dispatch({
-        data: projects,
-        type: GET_PROJECTS,
       });
     })
     .catch((err) => {

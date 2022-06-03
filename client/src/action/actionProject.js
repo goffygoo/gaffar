@@ -6,68 +6,71 @@ import {
   LIST_ADD_ITEM,
   SET_TASKS,
   SET_EXTRAS,
-  SET_EXTRA_VAL
-} from "../action/actionTypes";
-import store from "../store";
+  SET_EXTRA_VAL,
+} from '../action/actionTypes'
+import store from '../store'
 
-import axios from "axios";
+import axios from 'axios'
 
-function roughSizeOfObject( object ) {
+function roughSizeOfObject(object) {
+  var objectList = []
+  var stack = [object]
+  var bytes = 0
 
-  var objectList = [];
-  var stack = [ object ];
-  var bytes = 0;
+  while (stack.length) {
+    var value = stack.pop()
 
-  while ( stack.length ) {
-      var value = stack.pop();
+    if (typeof value === 'boolean') {
+      bytes += 4
+    } else if (typeof value === 'string') {
+      bytes += value.length * 2
+    } else if (typeof value === 'number') {
+      bytes += 8
+    } else if (typeof value === 'object' && objectList.indexOf(value) === -1) {
+      objectList.push(value)
 
-      if ( typeof value === 'boolean' ) {
-          bytes += 4;
+      for (var i in value) {
+        stack.push(value[i])
       }
-      else if ( typeof value === 'string' ) {
-          bytes += value.length * 2;
-      }
-      else if ( typeof value === 'number' ) {
-          bytes += 8;
-      }
-      else if
-      (
-          typeof value === 'object'
-          && objectList.indexOf( value ) === -1
-      )
-      {
-          objectList.push( value );
-
-          for( var i in value ) {
-              stack.push( value[ i ] );
-          }
-      }
+    }
   }
-  return bytes;
+  return bytes
 }
 
 export const initProject = (id, user_email) => (dispatch) => {
   const req = {
     project_id: id,
-    user_email
-  };
+    user_email,
+  }
 
   axios
-    .post("http://localhost:5000/project/getInfo", req)
+    .post('http://localhost:5000/project/getInfo', req)
     .then((res) => {
-      if (res.data.success === false) throw Error("Error");
+      if (res.data.success === false) throw Error('Error')
 
-      console.log(res.data);
+      console.log(res.data)
 
-      const { project, members, doc_id, boxes, list, tasks, is_admin, gitLink, discLink, resources, notes } = res.data;
-      let editable = Array(boxes.length).fill(false);
+      const {
+        project,
+        members,
+        doc_id,
+        boxes,
+        list,
+        tasks,
+        is_admin,
+        gitLink,
+        discLink,
+        resources,
+        notes,
+      } = res.data
+      let editable = Array(boxes.length).fill(false)
       dispatch({
         data: {
           project,
           doc_id,
         },
         type: SET_PROJECT,
-      });
+      })
 
       dispatch({
         data: {
@@ -75,41 +78,42 @@ export const initProject = (id, user_email) => (dispatch) => {
           editable: editable,
         },
         type: SAVE_DOCS_CONTENT,
-      });
+      })
 
       dispatch({
         data: members,
         type: SET_MEMBERS,
-      });
+      })
 
       dispatch({
         data: list,
-        type: LIST_ADD_ITEM
+        type: LIST_ADD_ITEM,
       })
 
       dispatch({
         data: tasks,
         type: SET_TASKS,
-      });
+      })
 
       dispatch({
         data: { is_admin, gitLink, discLink, resources, notes },
         type: SET_EXTRAS,
-      });
-
+      })
     })
     .catch((err) => {
       dispatch({
         data: true,
         type: PROJECT_ERROR,
-      });
-      console.log(err);
-    });
-};
+      })
+      console.log(err)
+    })
+}
 
-
-export const saveExtras = () => dispatch => {
-  const { project: { project_id, gitLink, discLink, resources, notes }, login: { user } } = store.getState().project;
+export const saveExtras = () => (dispatch) => {
+  const {
+    project: { project_id, gitLink, discLink, resources, notes },
+    login: { user },
+  } = store.getState()
 
   const req = {
     project_id,
@@ -117,52 +121,52 @@ export const saveExtras = () => dispatch => {
     discLink,
     resources,
     notes,
-    user_email: user.email
+    user_email: user.email,
   }
-  console.log(req);
+  // console.log(req)
   axios
-    .post("http://localhost:5000/project/saveExtras", req)
+    .post('http://localhost:5000/project/saveExtras', req)
     .then((res) => {
-      if (res.data.success === false) throw Error("Error");
+      if (res.data.success === false) throw Error('Error')
 
-      console.log(res);
+      // console.log(res)
 
       dispatch({
         data: { gitLink, discLink, resources, notes },
         type: SET_EXTRAS,
-      });
+      })
     })
     .catch((err) => {
-      console.log(err);
-    });
-};
+      console.log(err)
+    })
+}
 
-export const setExtra = (name, val) => dispatch => {
+export const setExtra = (name, val) => (dispatch) => {
   dispatch({
     data: { [name]: val },
-    type: SET_EXTRA_VAL
+    type: SET_EXTRA_VAL,
   })
 }
 
 export const getDocs = () => (dispatch) => {
   let {
     project: { project_id },
-    login: { user }
-  } = store.getState();
+    login: { user },
+  } = store.getState()
   const req = {
     project_id: project_id,
     user_email: user.email,
-  };
+  }
 
   axios
-    .post("http://localhost:5000/docs/getDocs", req)
+    .post('http://localhost:5000/docs/getDocs', req)
     .then((res) => {
-      if (res.data.success === false) throw Error("Error");
+      if (res.data.success === false) throw Error('Error')
 
-      console.log(res);
+      console.log(res)
 
-      const { boxes } = res.data;
-      let editable = Array(boxes.length).fill(false);
+      const { boxes } = res.data
+      let editable = Array(boxes.length).fill(false)
 
       dispatch({
         data: {
@@ -170,65 +174,71 @@ export const getDocs = () => (dispatch) => {
           editable: editable,
         },
         type: SAVE_DOCS_CONTENT,
-      });
-
+      })
     })
     .catch((err) => {
       dispatch({
         data: true,
         type: PROJECT_ERROR,
-      });
-      console.log(err);
-    });
-};
+      })
+      console.log(err)
+    })
+}
 
 export const getList = (list, tasks) => (dispatch) => {
   try {
     dispatch({
       data: list,
-      type: LIST_ADD_ITEM
+      type: LIST_ADD_ITEM,
     })
 
     dispatch({
       data: tasks,
       type: SET_TASKS,
-    });
-    console.log("reached - 1");
+    })
+    console.log('reached - 1')
   } catch (err) {
-    console.log(`Bhay error aara: ${err}`);
+    console.log(`Bhay error aara: ${err}`)
   }
-};
+}
 
 export const getMembers = () => (dispatch) => {
   let {
     project: { project_id },
-    login: { user }
-  } = store.getState();
+    login: { user },
+  } = store.getState()
   const req = {
     project_id: project_id,
     user_email: user.email,
-  };
+  }
 
   axios
-    .post("http://localhost:5000/project/getUsers", req)
+    .post('http://localhost:5000/project/getUsers', req)
     .then((res) => {
-      if (res.data.success === false) throw Error("Error");
+      if (res.data.success === false) throw Error('Error')
 
-      console.log(res);
+      console.log(res)
 
-      const { members } = res.data;
+      const { members } = res.data
 
       dispatch({
         data: members,
         type: SET_MEMBERS,
-      });
-
+      })
     })
     .catch((err) => {
       dispatch({
         data: true,
         type: PROJECT_ERROR,
-      });
-      console.log(err);
-    });
-};
+      })
+      console.log(err)
+    })
+}
+
+export const changeExtra = (data) => (dispatch) => {
+  let { is_admin } = store.getState().project
+  dispatch({
+    data: { ...data, is_admin },
+    type: SET_EXTRAS,
+  })
+}
