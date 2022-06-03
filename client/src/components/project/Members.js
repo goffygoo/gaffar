@@ -6,7 +6,7 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 
 export default function Members() {
-  const { member:{members} , login:{user}  } = useSelector((state) => state);
+  const { member:{members} , login:{user} , project: {is_admin} } = useSelector((state) => state);
 
   const [text, settext] = useState("");
   const [msg, setmsg] = useState();
@@ -39,6 +39,7 @@ export default function Members() {
           return <User indx={ind} key={ind} />;
         })}
       </div>
+      {is_admin ? 
       <div className={styles.addMemberCtn}>
         <div className={styles.membername}>
           <input
@@ -52,6 +53,7 @@ export default function Members() {
         </div>
         {msg ? <p>{msg}</p> : null}
       </div>
+      : null}
     </div>
   );
 }

@@ -145,9 +145,22 @@ export default function LandingPage() {
 
           <div className={styles.container}>
             <div className={styles.content}>
-              <h1 className={styles.title}>retard🥴</h1>
-              <p className={styles.description}>Srib ke ppo ke hi layak hu mai</p>
+            <p className={styles.description}>
+              SRIB INTERN
+            <br/>
+              Computer Engineering
+            <br/>
+            DTU '23</p>
+              <p className={styles.description}>Skills
+              <br/>➡️C++(Proficient) ,  Python
+              <br/>➡️OS , DBMS , CN
+              <br/>➡️MERN STACK
+              <br/>➡️DATA HANDLING
+              </p>
               <div className={styles.social}>
+                <a href="mailto:viditmanojpushkarna@gmail.com"><img src="/mail.svg" alt="" /></a>
+                <a href="https://github.com/ViditPushkarna"><img src="/git.png" alt="" /></a>
+                <a href="https://www.linkedin.com/in/vidit-pushkarna-901313197/"><img src="/linkedin.svg" alt="" /></a>
                 <a href="https://leetcode.com/bottom_text"><img src="/leetcode.png" alt="" /></a>
               </div>
             </div>
@@ -165,4 +178,4 @@ export default function LandingPage() {
 
     </div>
   )
-}
+};
