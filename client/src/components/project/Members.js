@@ -6,7 +6,7 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 
 export default function Members() {
-  const { member:{members} , login:{user}, project: {is_admin}  } = useSelector((state) => state);
+  const { member:{members} , login:{user} , project: {is_admin} } = useSelector((state) => state);
 
   const [text, settext] = useState("");
   const [msg, setmsg] = useState();
@@ -52,8 +52,13 @@ export default function Members() {
           </div>
           {msg ? <p>{msg}</p> : null}
         </div>
-        : null
-      }
+        <div className={styles.addMemberBtn} onClick={() => invite()}>
+          <p>Add Member</p>
+        </div>
+        {msg ? <p>{msg}</p> : null}
+      </div>
+      : null
+     }
     </div>
   );
 }
