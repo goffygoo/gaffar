@@ -27,7 +27,10 @@ export default function AddTask(props) {
                         <label className={styles.label}>Deadline</label>
                     </div>
                     <div className={styles.inputfield}>
-                        <input value={task} className={styles.input1} spellCheck="false" onChange={e => settask(e.target.value)} />
+                        <input value={task} className={styles.input1} spellCheck="false" onChange={e => {
+                            if(e.target.value.length >= 30)
+                                return;
+                            settask(e.target.value)}} />
                         <input value={deadline} type="date" className={styles.input1} onChange={e => setdeadline(e.target.value)} />
                     </div>
                 </div>
@@ -80,6 +83,8 @@ export default function AddTask(props) {
                 </div>
 
                 <div className={styles.addTaskBtn} onClick={() => {
+                    if (!task.trim()) return
+
                     addTask(id, task, deadline, description, added)
                     view(false)
                 }}>

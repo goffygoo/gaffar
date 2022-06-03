@@ -221,8 +221,9 @@ input .update {
   display: flex;
   font-weight: bold;
   font-size: 1.5rem;
-  font-family: Noto Sans;
   width: 20vw;
+  overflow: hidden;
+  font-family: Noto Sans;
   color: #FFFFFF;
 }
 

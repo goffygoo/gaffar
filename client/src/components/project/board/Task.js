@@ -1,10 +1,7 @@
-import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import React from "react";
 import styles from "../../../styles/components/project/board/Task.module.css";
 
 export default function Task(props) {
-  // const { members } = useSelector(state => state.member)
-
   const { view, item } = props;
 
   return (

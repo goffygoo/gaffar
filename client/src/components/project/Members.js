@@ -42,13 +42,11 @@ export default function Members() {
       {
         is_admin ? 
           <div className={styles.addMemberCtn}>
-          <div className={styles.membername}>
-            <input
+            <input placeholder="Member email goes here..."
               className={styles.membernameInput}
               value={text}
               onChange={(e) => settext(e.target.value)}
               ></input>
-          </div>
           <div className={styles.addMemberBtn} onClick={() => invite()}>
             <p>Add Member</p>
           </div>

@@ -47,7 +47,7 @@ export default function UploadImg(props) {
         <div style={{ width: "100%" }}>
           <div className={styles.inputDiv}>
             <label className={styles.fileInput}>
-              <input type="file" onChange={onChange} />
+              <input type="file" onChange={onChange} accept="image/png, image/gif, image/jpeg" />
               Upload Image
             </label>
           </div>
