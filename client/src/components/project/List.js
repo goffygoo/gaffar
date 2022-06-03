@@ -28,8 +28,12 @@ export default function List() {
       <div className={styles.container}>
         {is_admin ?
           <div className={styles.addSaveCtn}>
-            <input value={item} onChange={e => setitem(e.target.value)} spellCheck='false' placeholder='List name goes here..'/>
+            <input value={item} onChange={e => {
+              if (e.target.value.length > 40) return
+              setitem(e.target.value)
+            }} spellCheck='false' placeholder='List name goes here..'/>
             <div className={styles.addListBtn} onClick={() => {
+              if (!item.trim()) return
               addItem(item)
               setitem('')
             }}>
@@ -70,7 +74,6 @@ export default function List() {
                             null
                         }
                       </div>
-                      {/* <input id={`checkbox${task.id}`} type="checkbox" checked={task.checked}  /> */}
                       <div className={task.checked ? styles.taskChecked : ""}>{task.content}</div>
                     </div>
                   )

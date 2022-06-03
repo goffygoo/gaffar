@@ -15,8 +15,8 @@ export default function Mytasks() {
 
       <div className={styles.container}>
         <div className={styles.mainContainer}>
-
-          {tasks.map(t => {
+        
+          {tasks.sort((a, b) => a.checked - b.checked).map(t => {
             return (
               <div key={t.id} className={`${styles.taskTile} ${t.checked ? styles.done : ""}`}>
                 <p>{t.content}</p>

@@ -1,3 +1,18 @@
+.null {
+    color: #C5C1C0 #0A1612 #1A2930 #F7CE3E;
+    color: #4ABDAC #FC4A1A #F78733 #DFDCE3;
+    color: #026670 #9FEDD7 #FEF9C7 #FCE181 #EDEAE5;
+    font-family: Nunito, Noto Sans, Montserrat, Shadows Into Light;
+}
+
+.warning{
+    font-weight: 700;
+    font-family: nunito;
+    margin: 5vh 0 0 2vw;
+    color: #FC4A1A;
+    font-size: 1.5rem;
+}
+
 .container {
     display: flex;
     flex-direction: column;
@@ -23,25 +38,63 @@
 .containerHead {
     display: flex;
     flex-direction: row;
-    border: 2px solid tomato;
-    height: 5vh;
-    margin: 0;
+    /* border: 2px solid tomato; */
+    height: 6vh;
+    margin: 1vh;
 }
 
-.containerHead > h1 {
+.addTaskBtn {
+    display: flex;
+    cursor: pointer;
+    height: 6vh;
+    width: 8vw;
+    background-color: #FC4A1A;
+    margin-left: 2vw;
+    border-radius: 5px;
+}
+
+.addTaskBtn>p {
+    margin: auto;
+    color: #EDEAE5;
+    color: white;
+    font-family: Noto Sans;
+    font-weight: 500;
+}
+
+.saveBtn {
+    display: flex;
+    cursor: pointer;
+    height: 6vh;
+    width: 8vw;
+    margin: 0 2vw 0 0;
+    background-color: #F7CE3E;
+    border-radius: 5px;
+}
+
+.saveBtn>p {
+    margin: auto;
+    font-family: Noto Sans;
+    font-weight: 500;
+}
+
+.containerHead>h1 {
     margin: auto auto;
-    font-size: 1.5rem;
+    font-size: 1.8rem;
+    font-weight: 800;
+    font-family: nunito;
+    color: #1A2930;
 }
 
 .containerPopup {
     position: fixed;
     display: flex;
     z-index: 1;
+    top: 0;
     left: 0;
     right: 0;
     height: 100vh;
     width: 100vw;
-    background-color: rgba(255, 255, 255, 0.7);
+    background: rgba(66, 66, 66, 0.6);
 }
 
 .popup {
@@ -49,26 +102,55 @@
     flex-direction: column;
     margin: auto;
     width: 25vw;
-    height: 75vh;
+    height: 50vh;
     border-radius: 1rem;
     padding: 2vh 1vw;
     z-index: 0;
-    background: #01081E;
+    background-color: #CAEBF2;
 }
 
-.popup > img {
+.popup>img {
     cursor: pointer;
-    height: 5vh;
+    height: 3vh;
     width: auto;
     margin: 0 0 0 auto;
 }
 
-.popup > h1 {
-    color: wheat;
-    margin: auto;
+.popup>h1 {
+    font-family: Nunito;
+    font-weight: 800;
+    color: #026670;
+    font-size: 1.5rem;
+    margin: 0.5vh auto 0.5vh auto;
 }
 
 .popup > input {
+    background-color: transparent;
+    border: none;
+    font-family: Montserrat;
+    border-bottom: solid #026670 1px;
+    outline: none;
+    color: black;
+    width: 50%;
+    margin: auto;
+}
+
+.addTaskBtnPop {
+    cursor: pointer;
+    margin: auto auto 0 auto;
+    background-color: #FF3B3F;
+    margin: 0 auto 5vh auto;
+    display: flex;
+    border-radius: 0.25rem;
+    height: 5vh;
+    width: 10vw;
+}
+
+.addTaskBtnPop > p {
+    font-weight: 600;
+    font-family: Nunito;
+    color: #FFFFFF;
+    font-size: 1rem;
     margin: auto;
 }
 
@@ -80,14 +162,30 @@
 .columnHead {
     display: flex;
     flex-direction: row;
+    margin: 0 0.5vw 0 0.5vw;
+    /* border: solid 2px red; */
+}
+
+.columnHead>h2 {
+    font-weight: 700;
+    font-size: 1.2rem;
+    width: 10vw;
+    margin-left: 0.8vw;
+    overflow: hidden;
+    background-color: #FFFFFF;
+    text-overflow: ellipsis;
+    font-family: nunito;
 }
 
 .addBtn {
-    margin: auto 0 auto auto;
+    margin: auto 0.5vw auto auto;
+    height: 2.5vh;
+    cursor:pointer;
 }
 
 .removeBtn {
-    margin: auto 0 auto 0;
+    margin: auto 0.8vw auto 0;
+    cursor:pointer;
 }
 
 .columnMain {
@@ -95,7 +193,7 @@
     width: 15vw;
     height: 75vh;
     margin: 8px;
-    background-color: gold;
+    background-color: #F6EDB3;
     overflow-y: scroll;
 }
 
@@ -114,16 +212,28 @@
     padding: 16px;
     margin: 0 0 1vh 0;
     min-height: 10vh;
-    background-color: pink;
+    background-color: #CBB9FE;
 }
 
-.taskTile > p {
+.taskTile>p {
     color: black;
+    word-break: break-all;
+    font-family: nunito;
+    word-wrap: whitespace;
 }
 
-.taskTile > img {
+.taskTile>img {
     margin: auto 0 0 auto;
     height: 4vh;
     width: auto;
     cursor: pointer;
+}
+
+
+.todoHead {
+    color: #F78733;
+}
+
+.doneHead {
+    color: rgb(75, 202, 75);
 }

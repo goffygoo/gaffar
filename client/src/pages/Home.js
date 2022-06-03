@@ -106,11 +106,14 @@ export default function Home() {
                 <input placeholder="Project Name"
                   className={styles.projectName}
                   value={pname}
-                  onChange={(e) => pnamechange(e.target.value)}
+                  onChange={e => {
+                      if (e.target.value.length > 40) return
+                      pnamechange(e.target.value)
+                  }}
                   spellCheck="false"
-                ></input>
+                />
               </div>
-              <div className={styles.addProjectBtn} onClick={addProject}>
+              <div className={styles.addProjectBtn} onClick={() => addProject()}>
                 <p>Add Project</p>
               </div>
             </div>
@@ -156,7 +159,10 @@ export default function Home() {
               <input
                 type="text"
                 value={text}
-                onChange={(e) => settext(e.target.value)}
+                onChange={e => {
+                  if (e.target.value.length > 25) return
+                  settext(e.target.value)
+                }}
                 className={styles.usernameInput}
                 spellCheck="false"
               ></input>

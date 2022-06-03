@@ -13,10 +13,10 @@ import { useSelector } from "react-redux";
 export default function Board() {
   const dispatch = useDispatch();
   const { addCol, delCol, addTask, onDragEnd, saveData } = bindActionCreators(
-    actionList, 
+    actionList,
     dispatch
   );
-  const { list: { board_id, board } , project: {is_admin} } = useSelector((state) => state);
+  const { list: { board_id, board }, project: { is_admin } } = useSelector((state) => state);
 
   const [popupCol, setpopupCol] = useState(false);
   const [col, setcol] = useState("");
@@ -29,22 +29,25 @@ export default function Board() {
         <div className={styles.containerPopup}>
           <div className={styles.popup}>
             <img
-              src="/cancelButton.svg"
+              src="/close.png"
               alt="cancel"
               onClick={() => setpopupCol(false)}
             />
             <h1>Add Column</h1>
 
-            <input value={col} onChange={(e) => setcol(e.target.value)} />
-            <button
-              onClick={() => {
-                addCol(popupCol, col);
-                setcol("");
-                setpopupCol(false);
-              }}
-            >
-              Add
-            </button>
+            <input value={col} spellCheck="false" onChange={(e) => {
+              if (e.target.value.length > 20) return
+                
+              setcol(e.target.value)}} />
+            <div className={styles.addTaskBtnPop} onClick={() => {
+              if (!col.trim()) return
+
+              addCol(popupCol, col);
+              setcol("");
+              setpopupCol(false);
+            }}>
+              <p>Add</p>
+            </div>
           </div>
         </div>
       ) : null}
@@ -61,12 +64,12 @@ export default function Board() {
         <div className={styles.container}>
           <div className={styles.containerHead}>
             {is_admin ?
-            <button onClick={() => setpopupAddTask(true)}>+</button>
-            : null}
+              <div className={styles.addTaskBtn} onClick={() => setpopupAddTask(true)}><p>Add Task</p></div>
+              : null}
             <h1>{board[board_id].title}</h1>
-            {is_admin ? 
-            <button onClick={() => saveData()}>✔</button>
-            : null
+            {is_admin ?
+              <div className={styles.saveBtn} onClick={() => saveData()}><p>Save</p></div>
+              : null
             }
           </div>
 
@@ -80,27 +83,24 @@ export default function Board() {
                   return (
                     <div className={styles.column} key={columnId}>
                       <div className={styles.columnHead}>
-                        <h2>{column.name}</h2>
+                        <h2 className={columnId === "To do" ? styles.todoHead : (columnId === "Done" ? styles.doneHead : "")}>{column.name}</h2>
                         {columnId !== "Done" ? (
                           <>
-                          {is_admin ? 
-                            <button
-                            className={styles.addBtn}
-                            onClick={() => setpopupCol(columnId)}
-                          >
-                            +
-                          </button>
-                          : null}
+                            {is_admin ?
+                              <img
+                                src="/plus.png" alt="plus"
+                                className={styles.addBtn}
+                                onClick={() => setpopupCol(columnId)}
+                              />
+                              : null}
                           </>
-                          
+
                         ) : null}
                         {columnId !== "Done" && columnId !== "To do" ? (
-                          <button
+                          <img src="/delete.svg" alt="delete"
                             className={styles.removeBtn}
                             onClick={() => delCol(columnId)}
-                          >
-                            -
-                          </button>
+                          />
                         ) : null}
                       </div>
 
@@ -113,7 +113,7 @@ export default function Board() {
                               className={styles.columnMain}
                               style={{
                                 ...(snapshot.isDraggingOver && {
-                                  background: "yellow",
+                                  background: "#F6E88A",
                                 }),
                               }}
                             >
@@ -123,7 +123,7 @@ export default function Board() {
                                     key={item.id}
                                     draggableId={item.id}
                                     index={index}
-                                    // isDragDisabled
+                                    isDragDisabled={!is_admin}
                                   >
                                     {(provided, snapshot) => {
                                       return (
@@ -134,7 +134,7 @@ export default function Board() {
                                           className={styles.taskTile}
                                           style={{
                                             ...(snapshot.isDragging && {
-                                              background: "hotpink",
+                                              background: "#A193FE",
                                             }),
                                             ...provided.draggableProps.style,
                                           }}
@@ -162,7 +162,7 @@ export default function Board() {
             </DragDropContext>
           </div>
         </div>
-        : <h1>Choose a board please</h1>
+        : <h1 className={styles.warning}>Choose a board from List please !</h1>
       }
 
     </>

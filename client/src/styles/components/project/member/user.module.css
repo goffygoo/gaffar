@@ -1,115 +1,130 @@
 .mainCtn {
-  background-color: rgb(119, 119, 219);
+  background-color: #EFEFEF;
   width: 54vw;
   height: 20vh;
   display: flex;
   flex-direction: row;
+  /* border: solid 2px pink; */
   margin: 2vh auto 0 auto;
 }
 
 .left {
-  background-color: rgb(201, 112, 201);
-  width: 8vw;
+  margin: auto;
   height: 16vh;
-  margin: auto 1vw auto auto;
+  width: 16vh;
 }
 
 .center {
   display: flex;
   height: 16vh;
-  width: 18vw;
+  width: 15vw;
+  /* border: solid 1px green; */
   flex-direction: column;
-  margin: auto 1vw auto auto;
+  margin: auto 1vw;
 }
 
 .right {
   display: flex;
   height: 16vh;
-  width: 18vw;
+  /* border: solid 1px orange; */
+  width: 23vw;
   margin: auto 1vw auto auto;
   flex-direction: column;
 }
-.kickBtn {
-  margin: 1vh 1vw auto auto;
 
-  height: 3vh;
-  width: 3vh;
-  border-radius: 1.5vh;
-  background-color: orangered;
-}
 .name {
   height: 4vh;
   width: 15vw;
-  font-family: "Gill Sans", sans-serif;
-  margin: auto auto auto auto;
+  font-family: nunito;
   display: flex;
-  background-color: rgb(255, 128, 0);
+  /* background-color: rgb(255, 128, 0); */
 }
 
 .name > p {
-  margin: auto auto auto auto;
-  font-family: "Gill Sans", sans-serif;
+  margin: 1vh;
+  font-family: nunito;
+  font-weight: 700;
+  font-size: 1.3rem;
 }
 
 .email {
-  height: 4vh;
+  /* height: 4vh; */
   display: flex;
+  font-size: 1.2rem;
+
   width: 15vw;
-  font-family: "Gill Sans", sans-serif;
+  font-weight: 500;
+  font-family: nunito;
   margin: auto auto auto auto;
-  background-color: rgb(255, 99, 216);
+  /* background-color: rgb(255, 99, 216); */
 }
 
 .email > p {
-  margin: auto auto auto auto;
+  margin: 1vh;
 }
 .upper {
   height: 4vh;
-  width: 15vw;
-  margin: auto auto auto auto;
-  background-color: orange;
+  width: 100%;
+  margin: auto;
+  background-color: #FFD59E;
+  border-radius: 5px;
   display: flex;
 }
 .upper > p {
   margin: auto auto auto auto;
+  font-weight: 500;
+  font-size: 1.1rem;
+  font-family: nunito;
+}
+
+.upper > input{
+  background-color: transparent;
+  border:none;
+  outline: none;
+  /* height: 90%; */
+  font-family: Montserrat;
+  font-weight: 300;
+  font-size: 1.2rem;
+  margin-left: 1vw;
+  /* border-bottom: solid 1px black; */
 }
 .lower {
-  height: 4vh;
-  width: 15vw;
-  margin: auto auto auto auto;
+  /* height: 4vh; */
+  /* width: 15vw; */
+  margin: auto 0;
   display: flex;
+  /* border: solid 2px red; */
   flex-direction: row;
 }
 
 .edit {
-  width: 3vw;
-  height: 4vh;
+  width: 8vw;
+  height: 5vh;
   border-radius: 10px;
-  background-color: purple;
+  background-color: #F9FFA4;
   cursor: pointer;
   display: flex;
+  /* margin-left: ; */
 }
 
 .save {
-  width: 3vw;
-  height: 4vh;
+  width: 8vw;
+  height: 5vh;
   border-radius: 10px;
   display: flex;
   cursor: pointer;
-
-  margin: 0 0 0 auto;
-  background-color: greenyellow;
+  margin-left: 2vw;
+  background-color: #B4FF9F;
 }
 
 .makeadmin {
-  width: 7vw;
-  height: 4vh;
+  width: 12vw;
+  height: 5vh;
   cursor: pointer;
-  background-color: orangered;
+  background-color: #FFA1A1;
   border-radius: 10px;
   display: flex;
-
-  margin: 0 0 0 auto;
+  margin-left : 1.5vw ;
 }
 
 .edit > p{

@@ -39,21 +39,26 @@ export default function Members() {
           return <User indx={ind} key={ind} />;
         })}
       </div>
-      {is_admin ? 
-      <div className={styles.addMemberCtn}>
-        <div className={styles.membername}>
-          <input
-            className={styles.membernameInput}
-            value={text}
-            onChange={(e) => settext(e.target.value)}
-          ></input>
+      {
+        is_admin ? 
+          <div className={styles.addMemberCtn}>
+            <input placeholder="Member email goes here..."
+              className={styles.membernameInput}
+              value={text}
+              onChange={(e) => settext(e.target.value)}
+              ></input>
+          <div className={styles.addMemberBtn} onClick={() => invite()}>
+            <p>Add Member</p>
+          </div>
+          {msg ? <p>{msg}</p> : null}
         </div>
         <div className={styles.addMemberBtn} onClick={() => invite()}>
           <p>Add Member</p>
         </div>
         {msg ? <p>{msg}</p> : null}
       </div>
-      : null}
+      : null
+     }
     </div>
   );
 }

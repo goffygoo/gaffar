@@ -113,8 +113,10 @@
 
 .memberCtn {
   cursor: pointer;
-  border: 1px solid black;
+  border: 2px solid #FCE181;
+  background-color: #FEF9C7;
   border-radius: 0.6rem;
+  padding: 0 3px;
   height: 8vh;
   display: flex;
   flex-direction: row;
