@@ -21,16 +21,21 @@
   background-color: rgba(0, 0, 0, 0.4);
   border-radius: 0.5rem;
 }
-
+.errorMessage {
+  /* border: solid 2px red; */
+  width: 20%;
+  height: 3vh;
+  font-size: 0.8rem;
+  color: red;
+  margin: 2vh 0 0 20vw;
+}
 .addMemberCtn {
-  margin: 2vh auto 1vh auto;
+  margin: 0 auto 1vh auto;
   display: flex;
   width: 4vh;
   /* background-color: blueviolet; */
   width: 70vw;
 }
-
-
 
 .addMemberBtn {
   display: flex;
@@ -38,12 +43,11 @@
   height: 6vh;
   width: 8vw;
   margin: 0 13vw 0 auto;
-  background-color: #F78733;
+  background-color: #f78733;
   border-radius: 5px;
-
 }
 
-.addMemberBtn>p {
+.addMemberBtn > p {
   margin: auto auto auto auto;
   font-weight: bold;
 }

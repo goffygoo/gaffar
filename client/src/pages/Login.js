@@ -1,16 +1,24 @@
-import React from "react"
-import styles from "../styles/pages/Login.module.css"
-
-import { useDispatch } from 'react-redux'
-import { bindActionCreators } from 'redux'
-import * as actionTest from '../action/actionLogin'
-import { useNavigate } from "react-router-dom"
+import React from "react";
+import styles from "../styles/pages/Login.module.css";
+import Branding from "../components/Branding";
+import { useDispatch } from "react-redux";
+import { bindActionCreators } from "redux";
+import * as actionTest from "../action/actionLogin";
+import { useNavigate } from "react-router-dom";
 
 export default function Dashboard() {
-  const dispatch = useDispatch()
-  const { setsusername, setsemail, setspassword, signup, setlemail, setlpassword, login} = bindActionCreators(actionTest, dispatch) 
+  const dispatch = useDispatch();
+  const {
+    setsusername,
+    setsemail,
+    setspassword,
+    signup,
+    setlemail,
+    setlpassword,
+    login,
+  } = bindActionCreators(actionTest, dispatch);
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   return (
     <>
@@ -36,7 +44,7 @@ export default function Dashboard() {
               <label className={styles.label} htmlFor="chk" aria-hidden="true">
                 Sign up
               </label>
-              <div className={styles.input_fields}>
+              <div className={styles.input_fields_login}>
                 <label htmlFor="username" className={styles.icons}>
                   <i className={`zmdi zmdi-account zmdi-hc-2x`}></i>
                 </label>
@@ -49,7 +57,7 @@ export default function Dashboard() {
                   className={styles.input}
                 ></input>
               </div>
-              <div className={styles.input_fields}>
+              <div className={styles.input_fields_login}>
                 <label htmlFor="username" className={styles.icons}>
                   <i className={`zmdi zmdi-email zmdi-hc-2x`}></i>
                 </label>
@@ -62,7 +70,7 @@ export default function Dashboard() {
                   className={styles.input}
                 ></input>
               </div>
-              <div className={styles.input_fields}>
+              <div className={styles.input_fields_login}>
                 <label htmlFor="password" className={styles.icons}>
                   <i className={`zmdi zmdi-key zmdi-hc-2x`}></i>
                 </label>
@@ -75,7 +83,10 @@ export default function Dashboard() {
                   className={styles.input}
                 ></input>
               </div>
-              <button className={styles.button} onClick={e => signup(e, navigate)}>
+              <button
+                className={styles.button}
+                onClick={(e) => signup(e, navigate)}
+              >
                 Sign up
               </button>
             </form>
@@ -113,7 +124,10 @@ export default function Dashboard() {
                   required=""
                 ></input>
               </div>
-              <button className={styles.button} onClick={e => login(e, navigate)}>
+              <button
+                className={styles.button}
+                onClick={(e) => login(e, navigate)}
+              >
                 Login
               </button>
             </form>
@@ -121,5 +135,5 @@ export default function Dashboard() {
         </div>
       </div>
     </>
-  )
+  );
 }

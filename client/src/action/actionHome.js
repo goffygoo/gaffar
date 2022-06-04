@@ -10,7 +10,7 @@ import axios from "axios";
 export const addProject = () => (dispatch) => {
   let {
     home: { pname, projects },
-    login: { user },
+    login: { user, token },
   } = store.getState();
   if (pname === "") {
     return;
@@ -22,7 +22,11 @@ export const addProject = () => (dispatch) => {
   };
 
   axios
-    .post("http://localhost:5000/project/createProject", req)
+    .post("http://localhost:5000/project/createProject", req, {
+      headers: {
+        Authorization: token,
+      },
+    })
     .then((res) => {
       if (res.data.success === false) throw Error("Error");
 
@@ -53,7 +57,7 @@ export const pnamechange = (name) => (dispatch) => {
 
 export const getprojects = () => (dispatch) => {
   let {
-    login: { user },
+    login: { user, token },
   } = store.getState();
   // axios request
   const req = {
@@ -61,7 +65,11 @@ export const getprojects = () => (dispatch) => {
   };
 
   axios
-    .post("http://localhost:5000/project/getProjects", req)
+    .post("http://localhost:5000/project/getProjects", req, {
+      headers: {
+        Authorization: token,
+      },
+    })
     .then((res) => {
       if (res.data.success === false) throw Error("Error");
 
@@ -78,7 +86,7 @@ export const getprojects = () => (dispatch) => {
 
 export const rename = (name) => (dispatch) => {
   let {
-    login: { user },
+    login: { user, token },
   } = store.getState();
 
   const req = {
@@ -87,7 +95,11 @@ export const rename = (name) => (dispatch) => {
   };
 
   axios
-    .post("http://localhost:5000/user/updateName", req)
+    .post("http://localhost:5000/user/updateName", req, {
+      headers: {
+        Authorization: token,
+      },
+    })
     .then((res) => {
       if (res.data.success === false) throw Error("Error");
       user.name = name;
@@ -102,24 +114,28 @@ export const rename = (name) => (dispatch) => {
 };
 
 export const updateimg = (img) => (dispatch) => {
-  let {
-    login: { user },
-  } = store.getState();
+  let { user, token } = store.getState().login;
 
   const req = {
-    user_email: user.email,
+    img_id: user.img,
     img,
   };
 
   axios
-    .post("http://localhost:5000/user/updatePP", req)
+    .post("http://localhost:5000/user/updatePP", req, {
+      headers: {
+        Authorization: token,
+      },
+    })
     .then((res) => {
       if (res.data.success === false) throw Error("Error");
-      user.img = img;
-      dispatch({
-        data: user,
-        type: LOGIN_SIGNUP_USER,
-      });
+
+      console.log(res);
+      // user.img = img;
+      // dispatch({
+      //   data: user,
+      //   type: LOGIN_SIGNUP_USER,
+      // });
     })
     .catch((err) => {
       console.log(err);
@@ -128,17 +144,21 @@ export const updateimg = (img) => (dispatch) => {
 
 export const acceptInv = (id, name) => (dispatch) => {
   let {
-    login: { user },
+    login: { user, token },
     home: { projects },
   } = store.getState();
 
   const req = {
     project_id: id,
-    user_email: user.email
+    user_email: user.email,
   };
 
   axios
-    .post("http://localhost:5000/user/acceptInvite", req)
+    .post("http://localhost:5000/user/acceptInvite", req, {
+      headers: {
+        Authorization: token,
+      },
+    })
     .then((res) => {
       if (res.data.success === false) throw Error("Error");
 
@@ -162,16 +182,20 @@ export const acceptInv = (id, name) => (dispatch) => {
 
 export const rejectInv = (id, name) => (dispatch) => {
   let {
-    login: { user },
+    login: { user, token },
   } = store.getState();
 
   const req = {
     project_id: id,
-    user_email: user.email
+    user_email: user.email,
   };
 
   axios
-    .post("http://localhost:5000/user/rejectInvite", req)
+    .post("http://localhost:5000/user/rejectInvite", req, {
+      headers: {
+        Authorization: token,
+      },
+    })
     .then((res) => {
       if (res.data.success === false) throw Error("Error");
 

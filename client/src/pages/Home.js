@@ -54,7 +54,7 @@ export default function Home() {
       .post("http://localhost:5000/user/getInfo", req, {
         headers: {
           Authorization: token,
-        }
+        },
       })
       .then((res) => {
         if (res.data.success === false) throw Error("Error");
@@ -64,6 +64,8 @@ export default function Home() {
       })
       .catch((err) => {
         console.log(err);
+        if (err.response && err.response.data === "Unauthorized")
+          return navigate("/login");
       });
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -72,13 +74,20 @@ export default function Home() {
   return (
     <>
       {popup ? (
-        <UploadImg show={setpopup} ratio={1} setUploadData={setimgdata} updateimg={updateimg} />
+        <UploadImg
+          show={setpopup}
+          ratio={1}
+          setUploadData={setimgdata}
+          updateimg={updateimg}
+        />
       ) : null}
 
       <div className={styles.page}>
         <div className={styles.topArea}>
           <Branding height="10vh" />
-          <div className={styles.pageheading}><h1> Dashboard</h1></div>
+          <div className={styles.pageheading}>
+            <h1> Dashboard</h1>
+          </div>
           <div
             className={styles.logoutBtn}
             onClick={() => {
@@ -94,7 +103,9 @@ export default function Home() {
         <div className={styles.mainWindow}>
           <div className={styles.mainContainer}>
             <div className={styles.projectsContainer}>
-              <div className={styles.projectHeading}><h2>Your Projects</h2></div>
+              <div className={styles.projectHeading}>
+                <h2>Your Projects</h2>
+              </div>
               <div className={styles.projectCtn}>
                 {projects.map((p, ind) => {
                   return <Project indx={ind} key={ind} />;
@@ -103,17 +114,21 @@ export default function Home() {
             </div>
             <div className={styles.addProject}>
               <div className={styles.projectNameInput}>
-                <input placeholder="Project Name"
+                <input
+                  placeholder="Project Name"
                   className={styles.projectName}
                   value={pname}
-                  onChange={e => {
-                      if (e.target.value.length > 40) return
-                      pnamechange(e.target.value)
+                  onChange={(e) => {
+                    if (e.target.value.length > 40) return;
+                    pnamechange(e.target.value);
                   }}
                   spellCheck="false"
                 />
               </div>
-              <div className={styles.addProjectBtn} onClick={() => addProject()}>
+              <div
+                className={styles.addProjectBtn}
+                onClick={() => addProject()}
+              >
                 <p>Add Project</p>
               </div>
             </div>
@@ -122,7 +137,6 @@ export default function Home() {
                 <h2>Invites</h2>
               </div>
               <div className={styles.inviteCtn}>
-
                 {user.invites.map((e) => {
                   return (
                     <Invite
@@ -145,9 +159,7 @@ export default function Home() {
               <img
                 src={
                   imgdata === undefined
-                    ? user.img === undefined
-                      ? "user.svg"
-                      : user.img
+                    ? `http://localhost:5000/user/getImg?img_id=${user.img}`
                     : imgdata
                 }
                 alt="profile"
@@ -159,9 +171,9 @@ export default function Home() {
               <input
                 type="text"
                 value={text}
-                onChange={e => {
-                  if (e.target.value.length > 25) return
-                  settext(e.target.value)
+                onChange={(e) => {
+                  if (e.target.value.length > 25) return;
+                  settext(e.target.value);
                 }}
                 className={styles.usernameInput}
                 spellCheck="false"

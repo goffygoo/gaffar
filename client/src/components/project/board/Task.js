@@ -30,7 +30,7 @@ export default function Task(props) {
               {item.membersAdded.map((mem) => {
                 return (
                   <div className={styles.memberCtn}>
-                    <img src={mem.user_photu} alt="img" />
+                    <img src={`http://localhost:5000/user/getImg?img_id=${mem.user_photu}`} alt="img" />
                     <div className={styles.memberInfo}>
                       <p className={styles.name}>{mem.user_name}</p>
                       <p className={styles.role}>{mem.user_role}</p>
