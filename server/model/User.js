@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose'
 
 const userSchema = new mongoose.Schema({
   email: {
@@ -17,20 +17,20 @@ const userSchema = new mongoose.Schema({
   projects: [
     {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "Project",
+      ref: 'Project',
     },
   ],
   mytasks: [
     {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "Tasks",
+      ref: 'Tasks',
     },
   ],
   invites: [
     {
       project_id: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "Project",
+        ref: 'Project',
       },
       project_name: {
         type: String,
@@ -38,10 +38,11 @@ const userSchema = new mongoose.Schema({
     },
   ],
   img: {
-    type: String,
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'PP',
   },
-});
+})
 
-const Users = mongoose.model("Users", userSchema);
+const Users = mongoose.model('Users', userSchema)
 
-export default Users;
+export default Users

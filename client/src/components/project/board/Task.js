@@ -1,11 +1,11 @@
-import React, { useState } from "react";
-import { useSelector } from "react-redux";
-import styles from "../../../styles/components/project/board/Task.module.css";
+import React, { useState } from 'react'
+import { useSelector } from 'react-redux'
+import styles from '../../../styles/components/project/board/Task.module.css'
 
 export default function Task(props) {
   // const { members } = useSelector(state => state.member)
 
-  const { view, item } = props;
+  const { view, item } = props
 
   return (
     <div className={styles.containerPopup}>
@@ -33,18 +33,21 @@ export default function Task(props) {
               {item.membersAdded.map((mem) => {
                 return (
                   <div className={styles.memberCtn}>
-                    <img src={mem.user_photu} alt="img" />
+                    <img
+                      src={`http://localhost:5000/user/getImg?img_id=${mem.user_photu}`}
+                      alt="img"
+                    />
                     <div className={styles.memberInfo}>
                       <p className={styles.name}>{mem.user_name}</p>
                       <p className={styles.role}>{mem.user_role}</p>
                     </div>
                   </div>
-                );
+                )
               })}
             </div>
           </div>
         </div>
       </div>
     </div>
-  );
+  )
 }

@@ -22,6 +22,7 @@ export default function (io) {
   router.post('/getInfo', home(io).getInfo)
   router.post('/acceptInvite', home(io).acceptInvite)
   router.post('/rejectInvite', home(io).rejectInvite)
+  router.get('/getImg', home(io).getImg)
   return router
 }
 

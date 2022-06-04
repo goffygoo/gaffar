@@ -1,26 +1,26 @@
-import React, { useState, useEffect } from "react";
-import Branding from "../components/Branding";
-import Project from "../components/home/Project";
-import Invite from "../components/home/Invite";
-import UploadImg from "../components/home/upload";
-import styles from "../styles/pages/Home.module.css";
-import axios from "axios";
+import React, { useState, useEffect } from 'react'
+import Branding from '../components/Branding'
+import Project from '../components/home/Project'
+import Invite from '../components/home/Invite'
+import UploadImg from '../components/home/upload'
+import styles from '../styles/pages/Home.module.css'
+import axios from 'axios'
 
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import { bindActionCreators } from "redux";
+import { useDispatch, useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
+import { bindActionCreators } from 'redux'
 
-import * as actionHome from "../action/actionHome";
-import * as actionLogin from "../action/actionLogin";
+import * as actionHome from '../action/actionHome'
+import * as actionLogin from '../action/actionLogin'
 
 export default function Home() {
   const {
     home: { pname, projects },
     login: { user },
-  } = useSelector((state) => state);
-  const navigate = useNavigate();
+  } = useSelector((state) => state)
+  const navigate = useNavigate()
 
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
   const {
     addProject,
     pnamechange,
@@ -30,62 +30,69 @@ export default function Home() {
     updateimg,
     acceptInv,
     rejectInv,
-  } = bindActionCreators(Object.assign({}, actionHome, actionLogin), dispatch);
+  } = bindActionCreators(Object.assign({}, actionHome, actionLogin), dispatch)
 
-  const [editable, seteditable] = useState(false);
-  const [text, settext] = useState("");
-  const [popup, setpopup] = useState(false);
-  const [imgdata, setimgdata] = useState();
+  const [editable, seteditable] = useState(false)
+  const [text, settext] = useState('')
+  const [popup, setpopup] = useState(false)
+  const [imgdata, setimgdata] = useState()
 
   useEffect(() => {
     if (
-      localStorage.getItem("user") === null ||
-      localStorage.getItem("token") === null
+      localStorage.getItem('user') === null ||
+      localStorage.getItem('token') === null
     )
-      return navigate("/login");
-    const user_email = localStorage.getItem("user");
-    const token = localStorage.getItem("token");
+      return navigate('/login')
+    const user_email = localStorage.getItem('user')
+    const token = localStorage.getItem('token')
 
     const req = {
       user_email: user_email,
-    };
+    }
 
     axios
-      .post("http://localhost:5000/user/getInfo", req, {
+      .post('http://localhost:5000/user/getInfo', req, {
         headers: {
           Authorization: token,
-        }
+        },
       })
       .then((res) => {
-        if (res.data.success === false) throw Error("Error");
+        if (res.data.success === false) throw Error('Error')
 
-        initUser(res.data.user, token);
-        getprojects();
+        initUser(res.data.user, token)
+        getprojects()
       })
       .catch((err) => {
-        console.log(err);
-      });
+        console.log(err)
+      })
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [])
 
   return (
     <>
       {popup ? (
-        <UploadImg show={setpopup} ratio={1} setUploadData={setimgdata} updateimg={updateimg} />
+        <UploadImg
+          show={setpopup}
+          ratio={1}
+          setUploadData={setimgdata}
+          updateimg={updateimg}
+        />
       ) : null}
 
       <div className={styles.page}>
         <div className={styles.topArea}>
           <Branding height="10vh" />
-          <div className={styles.pageheading}><h1> Dashboard</h1></div>
+          <div className={styles.pageheading}>
+            <h1> Dashboard</h1>
+          </div>
           <div
             className={styles.logoutBtn}
             onClick={() => {
-              localStorage.removeItem("user");
-              localStorage.removeItem("token");
+              localStorage.removeItem('user')
+              localStorage.removeItem('token')
 
-              navigate("/login");
+              navigate('/login')
             }}
           >
             <p>Log Out</p>
@@ -94,16 +101,19 @@ export default function Home() {
         <div className={styles.mainWindow}>
           <div className={styles.mainContainer}>
             <div className={styles.projectsContainer}>
-              <div className={styles.projectHeading}><h2>Your Projects</h2></div>
+              <div className={styles.projectHeading}>
+                <h2>Your Projects</h2>
+              </div>
               <div className={styles.projectCtn}>
                 {projects.map((p, ind) => {
-                  return <Project indx={ind} key={ind} />;
+                  return <Project indx={ind} key={ind} />
                 })}
               </div>
             </div>
             <div className={styles.addProject}>
               <div className={styles.projectNameInput}>
-                <input placeholder="Project Name"
+                <input
+                  placeholder="Project Name"
                   className={styles.projectName}
                   value={pname}
                   onChange={(e) => pnamechange(e.target.value)}
@@ -119,7 +129,6 @@ export default function Home() {
                 <h2>Invites</h2>
               </div>
               <div className={styles.inviteCtn}>
-
                 {user.invites.map((e) => {
                   return (
                     <Invite
@@ -129,7 +138,7 @@ export default function Home() {
                       accept={acceptInv}
                       reject={rejectInv}
                     />
-                  );
+                  )
                 })}
               </div>
             </div>
@@ -142,9 +151,7 @@ export default function Home() {
               <img
                 src={
                   imgdata === undefined
-                    ? user.img === undefined
-                      ? "user.svg"
-                      : user.img
+                    ? `http://localhost:5000/user/getImg?img_id=${user.img}`
                     : imgdata
                 }
                 alt="profile"
@@ -170,16 +177,16 @@ export default function Home() {
                 className={styles.edit}
                 onClick={(_e) => seteditable((val) => !val)}
               >
-                <p>{editable ? "Cancel" : "Edit"}</p>
+                <p>{editable ? 'Cancel' : 'Edit'}</p>
               </div>
               <div
                 className={styles.update}
                 onClick={(e) => {
                   if (text) {
-                    rename(text);
-                    seteditable(false);
+                    rename(text)
+                    seteditable(false)
 
-                    settext("");
+                    settext('')
                   }
                 }}
               >
@@ -190,5 +197,5 @@ export default function Home() {
         </div>
       </div>
     </>
-  );
+  )
 }
