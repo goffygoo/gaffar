@@ -92,12 +92,16 @@ export default function Board() {
                           </>
                         ) : null}
                         {columnId !== 'Done' && columnId !== 'To do' ? (
-                          <button
-                            className={styles.removeBtn}
-                            onClick={() => delCol(columnId)}
-                          >
-                            -
-                          </button>
+                          <>
+                            {is_admin ? (
+                              <button
+                                className={styles.removeBtn}
+                                onClick={() => delCol(columnId)}
+                              >
+                                -
+                              </button>
+                            ) : null}
+                          </>
                         ) : null}
                       </div>
 
