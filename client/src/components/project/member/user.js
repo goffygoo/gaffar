@@ -12,7 +12,7 @@ export default function User({ indx }) {
   const [role, setrole] = useState('')
   return (
     <div key={`user${indx}`} className={styles.mainCtn}>
-      <img className={styles.left} src={members[indx].user_photu} alt="profile" />
+      <img className={styles.left} src={`http://localhost:5000/user/getImg?img_id=${members[indx].user_photu}`} alt="profile" />
       <div className={styles.center}>
         <div className={styles.name}>
           <p>{members[indx].user_name}</p>

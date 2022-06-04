@@ -6,7 +6,11 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 
 export default function Members() {
-  const { member:{members} , login:{user} , project: {is_admin} } = useSelector((state) => state);
+  const {
+    member: { members },
+    login: { user, token },
+    project: { is_admin },
+  } = useSelector((state) => state);
 
   const [text, settext] = useState("");
   const [msg, setmsg] = useState();
@@ -17,11 +21,15 @@ export default function Members() {
     const req = {
       project_id: params.id.slice(1),
       new_user_email: text,
-      user_email:user.email
+      user_email: user.email,
     };
 
     axios
-      .post("http://localhost:5000/project/invite", req)
+      .post("http://localhost:5000/project/invite", req, {
+        headers: {
+          Authorization: token,
+        },
+      })
       .then((res) => {
         if (res.data.message) setmsg(res.data.message);
         settext("");
@@ -39,26 +47,20 @@ export default function Members() {
           return <User indx={ind} key={ind} />;
         })}
       </div>
-      {
-        is_admin ? 
-          <div className={styles.addMemberCtn}>
-            <input placeholder="Member email goes here..."
-              className={styles.membernameInput}
-              value={text}
-              onChange={(e) => settext(e.target.value)}
-              ></input>
+      <p className={styles.errorMessage}>{msg}</p>
+      {is_admin ? (
+        <div className={styles.addMemberCtn}>
+          <input
+            placeholder="Member email goes here..."
+            className={styles.membernameInput}
+            value={text}
+            onChange={(e) => settext(e.target.value)}
+          ></input>
           <div className={styles.addMemberBtn} onClick={() => invite()}>
             <p>Add Member</p>
           </div>
-          {msg ? <p>{msg}</p> : null}
         </div>
-        <div className={styles.addMemberBtn} onClick={() => invite()}>
-          <p>Add Member</p>
-        </div>
-        {msg ? <p>{msg}</p> : null}
-      </div>
-      : null
-     }
+      ) : null}
     </div>
   );
 }

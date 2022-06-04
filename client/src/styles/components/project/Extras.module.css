@@ -1,102 +1,157 @@
+.scroll {
+  overflow-y: scroll;
+  padding-bottom: 1vh;
+}
+
+.scroll::-webkit-scrollbar {
+  width: 0.5vw;
+}
+
+.scroll::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.4);
+  border-radius: 0.5rem;
+}
+
 .mainCtn {
-    overflow-y: scroll;
-    display: flex;
-    flex-direction: column;
+  /* overflow-y: scroll; */
+  /* height: 90vh; */
+  margin: 2vh;
+  display: flex;
+  flex-direction: column;
 }
 
 .component {
-    display: flex;
-    flex-direction: column;
-    min-height: 20vh;
-    width: 70%;
-    margin: 1vh auto auto auto;
+  display: flex;
+  flex-direction: column;
+  min-height: 20vh;
+  width: 90%;
+  margin: 1vh auto auto auto;
+  /* border: solid 2px red; */
 }
 
 .component2 {
-    display: flex;
-    flex-direction: column;
-    min-height: 20vh;
-    width: 70%;
-    margin: 1vh auto auto auto;
+  display: flex;
+  flex-direction: column;
+  min-height: 30vh;
+  width: 90%;
+  margin: 1vh auto auto auto;
+  /* border: solid 2px red; */
 }
 
 .first {
-    display: flex;
-    flex-direction: row;
-    height: 6vh;
-    width: 100%;
+  display: flex;
+  flex-direction: row;
+  height: 6vh;
+  width: 100%;
+  /* border: solid 2px red; */
 }
 
 .title {
-    background-color: blue;
-    height: 100%;
-    display: flex;
-    width: 60%;
+  /* background-color: blue; */
+  height: 100%;
+  display: flex;
+  width: 60%;
+  /* border: solid 2px yellow; */
 }
 
-.title>p {
-    margin: auto;
-    font-weight: bold;
-    font-size: 1rem;
-}
-
-.editBtn {
-    display: flex;
-    height: 100%;
-    width: 8vw;
-    background-color: green;
-    margin: auto 0 auto auto;
-    cursor: pointer;
+.title > p {
+  /* height: 100%; */
+  border-bottom: solid 2px red;
+  margin: 0;
+  font-weight: 700;
+  font-size: 1.5rem;
+  font-family: nunito;
 }
 
 .saveBtn {
-    display: flex;
-    background-color: red;
-    height: 100%;
-    width: 8vw;
-    margin: auto 0 auto auto;
-    cursor: pointer;
+  display: flex;
+  cursor: pointer;
+  height: 6vh;
+  width: 8vw;
+  /* border: solid 2px green; */
+  margin: 0 0 0 1vw;
+  background-color: #f7ce3e;
+  border-radius: 5px;
 }
 
-.editBtn>p {
-    margin: auto;
-    font-weight: bold;
-    font-size: 1rem;
+.saveBtn > p {
+  margin: auto;
+  font-family: Noto Sans;
+  font-weight: 500;
+}
+.editBtn {
+  display: flex;
+  cursor: pointer;
+  /* border: solid 2px green; */
+  height: 6vh;
+  width: 8vw;
+  margin: 0 0 0 auto;
+  background-color: #dfdce3;
+  border-radius: 5px;
 }
 
-.saveBtn>p {
-    margin: auto;
-    font-weight: bold;
-    font-size: 1.2rem;
+.editBtn > p {
+  margin: auto;
+  font-family: Noto Sans;
+  font-weight: 700;
 }
 
 .input {
-    margin: 1vh 0 auto auto;
-    height: 5vh;
-    width: 100%;
+  margin: 2vh auto auto 0;
+  height: 5vh;
+  width: 100%;
+  /* border: solid 2px red; */
+  outline: none;
+  font-family: Montserrat;
 }
 
 .textarea {
-    margin: 1vh 0 auto auto;
-    height: 10vh;
-    width: 100%;
+  margin: 1vh auto auto 0;
+  font-family: Montserrat;
+  /* border: solid 2px red; */
+  width: 100%;
+  height: 30vh;
 }
 
-.textarea>textarea {
-    resize: none;
-    width: 100%;
+.textarea > textarea {
+  resize: none;
+  height: 30vh;
+  width: 100%;
+  font-family: Montserrat;
+  outline: none;
+}
+
+.textarea > textarea::-webkit-scrollbar {
+  width: 0.5vw;
+}
+
+.textarea > textarea::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.4);
+  border-radius: 0.5rem;
 }
 
 .content {
-    margin: 1vh 0 2vh auto;
-    min-height: 5vh;
-    width: 100%;
-    background-color: white;
-    display: flex;
+  margin: 1vh 0 0 auto;
+  min-height: 5vh;
+  width: 100%;
+  /* border: solid 2px red; */
+  background-color: white;
+  display: flex;
 }
 
 .content > p {
-    white-space: pre-wrap;
-    word-wrap: break-word;
-    margin: 1px auto auto 1px;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  word-break: break-all;
+  font-family: Nunito;
+  /* font-weight: 100; */
+  margin: 1px auto auto 1px;
+}
+
+.content > p > a {
+  color: #1a2930;
+  text-decoration: none;
+}
+.content > p > a:hover {
+  color: #026670;
 }

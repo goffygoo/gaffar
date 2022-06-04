@@ -28,9 +28,9 @@ export default function UploadImg(props) {
 
   const crop = () => {
     if (typeof cropper !== "undefined") {
-      updateimg(cropper.getCroppedCanvas().toDataURL())
-      setUploadData(cropper.getCroppedCanvas().toDataURL())
-      show(false)
+      updateimg(cropper.getCroppedCanvas().toDataURL());
+      setUploadData(cropper.getCroppedCanvas().toDataURL());
+      show(false);
     }
   };
 
@@ -47,13 +47,21 @@ export default function UploadImg(props) {
         <div style={{ width: "100%" }}>
           <div className={styles.inputDiv}>
             <label className={styles.fileInput}>
-              <input type="file" onChange={onChange} accept="image/png, image/gif, image/jpeg" />
+              <input
+                type="file"
+                onChange={onChange}
+                accept="image/png, image/gif, image/jpeg"
+              />
               Upload Image
             </label>
           </div>
 
           <Cropper
-            style={{ height: "30vh", width: "100%", backgroundColor: "#CAEBF2"}}
+            style={{
+              height: "30vh",
+              width: "100%",
+              backgroundColor: "#CAEBF2",
+            }}
             zoomTo={0}
             aspectRatio={ratio}
             src={image}
@@ -70,7 +78,7 @@ export default function UploadImg(props) {
         </div>
 
         <div className={styles.btnSave} onClick={() => crop()}>
-          <p>Crop Image</p>
+          <p>Save Image</p>
         </div>
       </div>
     </div>

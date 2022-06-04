@@ -16,7 +16,10 @@ export default function Board() {
     actionList,
     dispatch
   );
-  const { list: { board_id, board }, project: { is_admin } } = useSelector((state) => state);
+  const {
+    list: { board_id, board },
+    project: { is_admin },
+  } = useSelector((state) => state);
 
   const [popupCol, setpopupCol] = useState(false);
   const [col, setcol] = useState("");
@@ -35,17 +38,25 @@ export default function Board() {
             />
             <h1>Add Column</h1>
 
-            <input value={col} spellCheck="false" onChange={(e) => {
-              if (e.target.value.length > 20) return
-                
-              setcol(e.target.value)}} />
-            <div className={styles.addTaskBtnPop} onClick={() => {
-              if (!col.trim()) return
+            <input
+              value={col}
+              spellCheck="false"
+              onChange={(e) => {
+                if (e.target.value.length > 20) return;
 
-              addCol(popupCol, col);
-              setcol("");
-              setpopupCol(false);
-            }}>
+                setcol(e.target.value);
+              }}
+            />
+            <div
+              className={styles.addTaskBtnPop}
+              onClick={() => {
+                if (!col.trim()) return;
+
+                addCol(popupCol, col);
+                setcol("");
+                setpopupCol(false);
+              }}
+            >
               <p>Add</p>
             </div>
           </div>
@@ -60,44 +71,62 @@ export default function Board() {
         <Task item={popupTask} view={setpopupTask} />
       ) : null}
 
-      {board_id ?
+      {board_id ? (
         <div className={styles.container}>
           <div className={styles.containerHead}>
-            {is_admin ?
-              <div className={styles.addTaskBtn} onClick={() => setpopupAddTask(true)}><p>Add Task</p></div>
-              : null}
+            {is_admin ? (
+              <div
+                className={styles.addTaskBtn}
+                onClick={() => setpopupAddTask(true)}
+              >
+                <p>Add Task</p>
+              </div>
+            ) : null}
             <h1>{board[board_id].title}</h1>
-            {is_admin ?
-              <div className={styles.saveBtn} onClick={() => saveData()}><p>Save</p></div>
-              : null
-            }
+            {is_admin ? (
+              <div className={styles.saveBtn} onClick={() => saveData()}>
+                <p>Save</p>
+              </div>
+            ) : null}
           </div>
 
           <div className={styles.mainContainer}>
-            <DragDropContext
-              onDragEnd={(result) => onDragEnd(result)}
-            >
+            <DragDropContext onDragEnd={(result) => onDragEnd(result)}>
               {Object.entries(board[board_id].columns)
                 .sort((a, b) => a[1].index - b[1].index)
                 .map(([columnId, column]) => {
                   return (
                     <div className={styles.column} key={columnId}>
                       <div className={styles.columnHead}>
-                        <h2 className={columnId === "To do" ? styles.todoHead : (columnId === "Done" ? styles.doneHead : "")}>{column.name}</h2>
+                        <h2
+                          className={
+                            columnId === "To do"
+                              ? styles.todoHead
+                              : columnId === "Done"
+                              ? styles.doneHead
+                              : ""
+                          }
+                        >
+                          {column.name}
+                        </h2>
                         {columnId !== "Done" ? (
                           <>
-                            {is_admin ?
+                            {is_admin ? (
                               <img
-                                src="/plus.png" alt="plus"
+                                src="/plus.png"
+                                alt="plus"
                                 className={styles.addBtn}
                                 onClick={() => setpopupCol(columnId)}
                               />
-                              : null}
+                            ) : null}
                           </>
-
                         ) : null}
-                        {columnId !== "Done" && columnId !== "To do" ? (
-                          <img src="/delete.svg" alt="delete"
+                        {is_admin &&
+                        columnId !== "Done" &&
+                        columnId !== "To do" ? (
+                          <img
+                            src="/delete.svg"
+                            alt="delete"
                             className={styles.removeBtn}
                             onClick={() => delCol(columnId)}
                           />
@@ -162,9 +191,9 @@ export default function Board() {
             </DragDropContext>
           </div>
         </div>
-        : <h1 className={styles.warning}>Choose a board from List please !</h1>
-      }
-
+      ) : (
+        <h1 className={styles.warning}>Choose a board from List please !</h1>
+      )}
     </>
   );
 }

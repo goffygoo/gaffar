@@ -4,6 +4,7 @@ import {
   SET_TYPEC,
   REMOVE_BOX,
   SAVE_DOCS_CONTENT,
+  PROJECT_ERROR,
 } from "./actionTypes";
 import store from "../store";
 import axios from "axios";
@@ -11,22 +12,32 @@ import axios from "axios";
 export const toggleedit = (indx) => (dispatch) => {
   let {
     docs: { editable, contents },
-    project: { doc_id , project_id},
-    login: {user}
+    project: { doc_id, project_id },
+    login: { user, token },
   } = store.getState();
   if (editable[indx] === true) {
     const req = {
       ...contents[indx],
       user_email: user.email,
-      project_id: project_id
-    }
+      project_id: project_id,
+    };
     axios
-      .post("http://localhost:5000/docs/saveBox", req)
+      .post("http://localhost:5000/docs/saveBox", req, {
+        headers: {
+          Authorization: token,
+        },
+      })
       .then((res) => {
         if (res.data.success === false) throw Error("Error");
       })
       .catch((err) => {
         console.log(err);
+        if (err.response && err.response.data === "Unauthorized") {
+          dispatch({
+            data: true,
+            type: PROJECT_ERROR,
+          });
+        }
       });
   }
 
@@ -49,18 +60,22 @@ export const editdata = (content, indx, typec) => (dispatch) => {
 export const addbox = () => (dispatch) => {
   let {
     docs: { contents, editable },
-    project: { doc_id , project_id},
-    login: {user}
+    project: { doc_id, project_id },
+    login: { user, token },
   } = store.getState();
   // axios
   let req = {
-    project_id:project_id,
+    project_id: project_id,
     docs_id: doc_id,
-    user_email: user.email
+    user_email: user.email,
   };
 
   axios
-    .post("http://localhost:5000/docs/addBox", req)
+    .post("http://localhost:5000/docs/addBox", req, {
+      headers: {
+        Authorization: token,
+      },
+    })
     .then((res) => {
       if (res.data.success === false) throw Error("Error");
 
@@ -83,6 +98,12 @@ export const addbox = () => (dispatch) => {
     })
     .catch((err) => {
       console.log(err);
+      if (err.response && err.response.data === "Unauthorized") {
+        dispatch({
+          data: true,
+          type: PROJECT_ERROR,
+        });
+      }
     });
 };
 
@@ -93,21 +114,23 @@ export const settypec = (typii) => (dispatch) => {
   });
 };
 
-
-
 export const deleteBox = (indx) => (dispatch) => {
   let {
     docs: { editable, contents },
     project: { project_id },
-    login: {user}
+    login: { user, token },
   } = store.getState();
   const req = {
     box_id: contents[indx].box_id,
     project_id,
-    user_email: user.email
-  }
+    user_email: user.email,
+  };
   axios
-    .post("http://localhost:5000/docs/deleteBox", req)
+    .post("http://localhost:5000/docs/deleteBox", req, {
+      headers: {
+        Authorization: token,
+      },
+    })
     .then((res) => {
       if (res.data.success === false) throw Error("Error");
       contents.splice(indx, 1);
@@ -123,5 +146,11 @@ export const deleteBox = (indx) => (dispatch) => {
     })
     .catch((err) => {
       console.log(err);
+      if (err.response && err.response.data === "Unauthorized") {
+        dispatch({
+          data: true,
+          type: PROJECT_ERROR,
+        });
+      }
     });
 };
