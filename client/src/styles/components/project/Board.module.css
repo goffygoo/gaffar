@@ -210,8 +210,8 @@
 }
 
 .taskTile>p {
-    color: black;
-    word-break: break-all;
+    color: #0A1612;
+    /* word-break: break-all; */
     font-family: nunito;
     word-wrap: whitespace;
 }

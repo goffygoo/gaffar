@@ -164,6 +164,7 @@ export default function Board() {
                                           style={{
                                             ...(snapshot.isDragging && {
                                               background: "#A193FE",
+                                              borderRadius: "0.5rem",
                                             }),
                                             ...provided.draggableProps.style,
                                           }}

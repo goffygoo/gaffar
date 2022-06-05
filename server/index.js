@@ -39,5 +39,5 @@ server.listen(PORT, function (err) {
     console.log("oh no no no no no");
     return;
   }
-  console.log("hey there i am using project-it on port : ", PORT);
+  console.log("hey there i am using project-y on port : ", PORT);
 });

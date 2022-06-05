@@ -202,9 +202,6 @@
 }
 
 
-
-
-
 .sec2heading {
   display: flex;
   margin: 2vh 0 auto 0;
@@ -241,8 +238,8 @@
 .sec2 > img {
   width: 90%;
   height: auto;
-  margin: 3vh auto 20vh auto;
-  border-radius: 5vh;
+  margin: 5vh auto 20vh auto;
+  border-radius: 1rem;
 }
 
 
