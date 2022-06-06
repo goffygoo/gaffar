@@ -34,7 +34,7 @@ app.use(cors());
 // use express router
 app.use("/", routes(io));
 
-server.listen(PORT, function (err) {
+server.listen(process.env.PORT || PORT, function (err) {
   if (err) {
     console.log("oh no no no no no");
     return;
