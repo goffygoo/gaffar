@@ -8,6 +8,7 @@ import {
 } from "./actionTypes";
 import store from "../store";
 import axios from "axios";
+import config from "../config.json";
 
 export const toggleedit = (indx) => (dispatch) => {
   let {
@@ -22,7 +23,7 @@ export const toggleedit = (indx) => (dispatch) => {
       project_id: project_id,
     };
     axios
-      .post("http://localhost:5000/docs/saveBox", req, {
+      .post(config.SERVER + "/docs/saveBox", req, {
         headers: {
           Authorization: token,
         },
@@ -71,7 +72,7 @@ export const addbox = () => (dispatch) => {
   };
 
   axios
-    .post("http://localhost:5000/docs/addBox", req, {
+    .post(config.SERVER + "/docs/addBox", req, {
       headers: {
         Authorization: token,
       },
@@ -126,7 +127,7 @@ export const deleteBox = (indx) => (dispatch) => {
     user_email: user.email,
   };
   axios
-    .post("http://localhost:5000/docs/deleteBox", req, {
+    .post(config.SERVER + "/docs/deleteBox", req, {
       headers: {
         Authorization: token,
       },

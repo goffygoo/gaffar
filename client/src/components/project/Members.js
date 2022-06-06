@@ -4,7 +4,7 @@ import User from "./member/user";
 import styles from "../../styles/components/project/Members.module.css";
 import { useParams } from "react-router-dom";
 import axios from "axios";
-
+import config from "../../config.json";
 export default function Members() {
   const {
     member: { members },
@@ -25,7 +25,7 @@ export default function Members() {
     };
 
     axios
-      .post("http://localhost:5000/project/invite", req, {
+      .post(config.SERVER + "/project/invite", req, {
         headers: {
           Authorization: token,
         },

@@ -6,6 +6,7 @@ import {
 } from "../action/actionTypes";
 import store from "../store";
 import axios from "axios";
+import config from "../config.json";
 
 export const addProject = () => (dispatch) => {
   let {
@@ -22,7 +23,7 @@ export const addProject = () => (dispatch) => {
   };
 
   axios
-    .post("http://localhost:5000/project/createProject", req, {
+    .post(config.SERVER + "/project/createProject", req, {
       headers: {
         Authorization: token,
       },
@@ -65,7 +66,7 @@ export const getprojects = () => (dispatch) => {
   };
 
   axios
-    .post("http://localhost:5000/project/getProjects", req, {
+    .post(config.SERVER + "/project/getProjects", req, {
       headers: {
         Authorization: token,
       },
@@ -95,7 +96,7 @@ export const rename = (name) => (dispatch) => {
   };
 
   axios
-    .post("http://localhost:5000/user/updateName", req, {
+    .post(config.SERVER + "/user/updateName", req, {
       headers: {
         Authorization: token,
       },
@@ -122,7 +123,7 @@ export const updateimg = (img) => (dispatch) => {
   };
 
   axios
-    .post("http://localhost:5000/user/updatePP", req, {
+    .post(config.SERVER + "/user/updatePP", req, {
       headers: {
         Authorization: token,
       },
@@ -154,7 +155,7 @@ export const acceptInv = (id, name) => (dispatch) => {
   };
 
   axios
-    .post("http://localhost:5000/user/acceptInvite", req, {
+    .post(config.SERVER + "/user/acceptInvite", req, {
       headers: {
         Authorization: token,
       },
@@ -191,7 +192,7 @@ export const rejectInv = (id, name) => (dispatch) => {
   };
 
   axios
-    .post("http://localhost:5000/user/rejectInvite", req, {
+    .post(config.SERVER + "/user/rejectInvite", req, {
       headers: {
         Authorization: token,
       },

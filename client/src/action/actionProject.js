@@ -9,6 +9,7 @@ import {
   SET_EXTRA_VAL,
 } from "../action/actionTypes";
 import store from "../store";
+import config from "../config.json";
 
 import axios from "axios";
 
@@ -48,7 +49,7 @@ export const initProject = (id, user_email) => (dispatch) => {
   // console.log(token, req);
 
   axios
-    .post("http://localhost:5000/project/getInfo", req, {
+    .post(config.SERVER + "/project/getInfo", req, {
       headers: {
         Authorization: token,
       },
@@ -133,7 +134,7 @@ export const saveExtras = () => (dispatch) => {
   };
   // console.log(req)
   axios
-    .post("http://localhost:5000/project/saveExtras", req, {
+    .post(config.SERVER + "/project/saveExtras", req, {
       headers: {
         Authorization: token,
       },
@@ -177,7 +178,7 @@ export const getDocs = () => (dispatch) => {
   };
 
   axios
-    .post("http://localhost:5000/docs/getDocs", req, {
+    .post(config.SERVER + "/docs/getDocs", req, {
       headers: {
         Authorization: token,
       },
@@ -235,7 +236,7 @@ export const getMembers = () => (dispatch) => {
   };
 
   axios
-    .post("http://localhost:5000/project/getUsers", req, {
+    .post(config.SERVER + "/project/getUsers", req, {
       headers: {
         Authorization: token,
       },

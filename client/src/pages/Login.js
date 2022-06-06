@@ -1,11 +1,9 @@
 import React from "react";
 import styles from "../styles/pages/Login.module.css";
-import Branding from "../components/Branding";
 import { useDispatch } from "react-redux";
 import { bindActionCreators } from "redux";
 import * as actionTest from "../action/actionLogin";
 import { useNavigate } from "react-router-dom";
-
 export default function Dashboard() {
   const dispatch = useDispatch();
   const {
