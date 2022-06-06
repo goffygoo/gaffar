@@ -8,7 +8,7 @@ import {
 import { v4 as uuid } from "uuid";
 import store from "../store";
 import axios from "axios";
-
+import config from "../config.json";
 export const toggle = (id, taskId) => (dispatch) => {
   const { list, board } = store.getState().list;
 
@@ -239,7 +239,7 @@ export const saveData = () => (dispatch) => {
   };
 
   axios
-    .post("http://localhost:5000/list/saveList", req, {
+    .post(config.SERVER + "/list/saveList", req, {
       headers: {
         Authorization: token,
       },

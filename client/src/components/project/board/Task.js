@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "../../../styles/components/project/board/Task.module.css";
-
+import config from "../../../config.json";
 export default function Task(props) {
   const { view, item } = props;
 
@@ -30,7 +30,10 @@ export default function Task(props) {
               {item.membersAdded.map((mem) => {
                 return (
                   <div className={styles.memberCtn}>
-                    <img src={`http://localhost:5000/user/getImg?img_id=${mem.user_photu}`} alt="img" />
+                    <img
+                      src={`${config.SERVER}/user/getImg?img_id=${mem.user_photu}`}
+                      alt="img"
+                    />
                     <div className={styles.memberInfo}>
                       <p className={styles.name}>{mem.user_name}</p>
                       <p className={styles.role}>{mem.user_role}</p>

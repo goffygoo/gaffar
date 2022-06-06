@@ -11,6 +11,7 @@ import {
 } from "./actionTypes";
 import store from "../store";
 import axios from "axios";
+import config from "../config.json";
 
 export const initUser = (user, token) => (dispatch) => {
   dispatch({
@@ -57,7 +58,7 @@ export const signup = (e, navigate) => (dispatch) => {
   };
 
   axios
-    .post("http://localhost:5000/user/createUser", req)
+    .post(config.SERVER + "/user/createUser", req)
     .then((res) => {
       if (res.data.success === false) throw Error("Error");
 
@@ -119,7 +120,7 @@ export const login = (e, navigate) => (dispatch) => {
   };
 
   axios
-    .post("http://localhost:5000/user/login", req)
+    .post(config.SERVER + "/user/login", req)
     .then((res) => {
       if (res.data.success === false) throw Error("Error");
 

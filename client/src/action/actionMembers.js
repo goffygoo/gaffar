@@ -1,7 +1,7 @@
 import { PROJECT_ERROR, MAKE_ADMIN } from "../action/actionTypes";
 import store from "../store";
 import axios from "axios";
-
+import config from "../config.json";
 export const invite = (email) => (dispatch) => {};
 export const makeAdmin = (indx) => (dispatch) => {
   const {
@@ -17,7 +17,7 @@ export const makeAdmin = (indx) => (dispatch) => {
   };
 
   axios
-    .post("http://localhost:5000/project/makeAdmin", req, {
+    .post(config.SERVER + "/project/makeAdmin", req, {
       headers: {
         Authorization: token,
       },
@@ -59,7 +59,7 @@ export const changeRole = (indx, role) => (dispatch) => {
   };
 
   axios
-    .post("http://localhost:5000/project/changeRole", req, {
+    .post(config.SERVER + "/project/changeRole", req, {
       headers: {
         Authorization: token,
       },

@@ -5,6 +5,7 @@ import Invite from "../components/home/Invite";
 import UploadImg from "../components/home/upload";
 import styles from "../styles/pages/Home.module.css";
 import axios from "axios";
+import config from "../config.json";
 
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -51,7 +52,7 @@ export default function Home() {
     };
 
     axios
-      .post("http://localhost:5000/user/getInfo", req, {
+      .post(config.SERVER + "/user/getInfo", req, {
         headers: {
           Authorization: token,
         },
@@ -158,8 +159,8 @@ export default function Home() {
             <div className={styles.profilePicture}>
               <img
                 src={
-                  imgdata === undefined
-                    ? `http://localhost:5000/user/getImg?img_id=${user.img}`
+                  imgdata === undefined && user.img !== undefined
+                    ? `${config.SERVER}/user/getImg?img_id=${user.img}`
                     : imgdata
                 }
                 alt="profile"

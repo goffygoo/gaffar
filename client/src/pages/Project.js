@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import Branding from "../components/Branding";
 import styles from "../styles/pages/Project.module.css";
+import config from "../config.json";
 import {
   Navigate,
   Route,
@@ -53,7 +54,7 @@ export default function Project() {
     };
 
     axios
-      .post("http://localhost:5000/user/getInfo", req, {
+      .post(config.SERVER + "/user/getInfo", req, {
         headers: {
           Authorization: token,
         },
@@ -69,7 +70,7 @@ export default function Project() {
         navigate("/home");
       });
 
-    const socket = io("http://localhost:5000/");
+    const socket = io(config.SERVER + "/");
 
     initSocket(socket);
 
