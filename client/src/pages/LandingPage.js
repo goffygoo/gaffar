@@ -41,7 +41,7 @@ export default function LandingPage() {
       <div className={styles.sec2}>
         <div className={styles.sec2heading}>
           <h2>Easily manage your task using our</h2>
-          <h1>Kanaban Board</h1>
+          <h1>Kanban Board</h1>
           <p>Track progress using our highly intractive board which provides fully flexible columns and advanced task management</p>
         </div>
         <img src="/board.png" alt='board' />
