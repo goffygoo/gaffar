@@ -1,3 +1,4 @@
 {
-    "SERVER" : "https://rocky-shore-27492.herokuapp.com"
+    "SERVER" : "https://rocky-shore-27492.herokuapp.com",
+    "MEETING_SERVER" : "https://rocky-shore-27492.herokuapp.com"
 }

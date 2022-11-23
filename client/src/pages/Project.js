@@ -24,6 +24,7 @@ import { bindActionCreators } from "redux";
 
 import * as actionLogin from "../action/actionLogin";
 import * as actionProject from "../action/actionProject";
+import Gather from "../components/project/Gather";
 
 export default function Project() {
   const navigate = useNavigate();
@@ -133,6 +134,12 @@ export default function Project() {
             navigate={navigate}
           />
           <Tabs
+            name="Gather"
+            link={`${params.id}/gather`}
+            selected={params["*"] === "gather"}
+            navigate={navigate}
+          />
+          <Tabs
             name="Members"
             link={`${params.id}/members`}
             selected={params["*"] === "members"}
@@ -160,6 +167,7 @@ export default function Project() {
             <Route exact path="/members" element={<Members />} />
             <Route exact path="/mytasks" element={<Mytasks />} />
             <Route exact path="/extras" element={<Extras />} />
+            <Route exact path="/gather" element={<Gather />} />
             <Route path="/*" element={<Navigate to="/page_not_found" />} />
           </Routes>
         </div>
