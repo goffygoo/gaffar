@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import io from 'socket.io-client'
 import styles from '../../styles/components/project/Gather.module.css'
 import config from '../../config.json'
+import { useSelector } from 'react-redux'
 
 const URL = config.MEETING_SERVER
 
@@ -15,6 +16,8 @@ export default function MeetingComponent({ leaveMeeting }) {
             { 'urls': 'stun:stun.l.google.com:19302' },
         ]
     }
+
+    const username = useSelector((state) => state.login.user.name);
 
     const [videoAvailable, setvideoAvailable] = useState(undefined)
     const [audioAvailable, setaudioAvailable] = useState(undefined)
@@ -303,12 +306,7 @@ export default function MeetingComponent({ leaveMeeting }) {
         socket.on('signal', gotMessageFromServer)
 
         socket.on('connect', () => {
-            const user = {
-                first_name: "OliV",
-                last_name: ""
-            }
-
-            socket.emit('join-call', user.first_name)
+            socket.emit('join-call', username)
             socketid = socket.id
 
             socket.on('user-left', (id) => {
@@ -444,12 +442,7 @@ export default function MeetingComponent({ leaveMeeting }) {
                         <p onClick={() => pinToScreen("defalut")}>Pin</p>
                         <video id="my-video" ref={localVideoref} autoPlay muted />
                         {(() => {
-                            const user = {
-                                first_name: "OliV",
-                                last_name: ""
-                            }
-
-                            return <p>{user.first_name}</p>
+                            return <p>{username}</p>
                         })()}
                     </div>
                 </div>
