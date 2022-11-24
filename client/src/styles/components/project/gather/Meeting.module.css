@@ -1,0 +1,152 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.mainWrapper {
+    display: flex;
+    flex-direction: row;
+    height: 92vh;
+    width: 90vw;
+}
+
+.pinContainer {
+    height: 92vh;
+    display: flex;
+}
+
+.pinContainer > div {
+    position: relative;
+    height: 70vh;
+    width: fit-content;
+    margin: auto;
+}
+
+.pinContainer > div > video {
+    height: 100%;
+}
+
+.pinContainer > div:hover > p {
+    display: block;
+}
+
+.pinContainer > div > p {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    font-family: Noto Sans;
+    font-weight: 400;
+    font-size: 1rem;
+    color: #FFFFFF;
+    letter-spacing: 2px;
+    text-shadow: -1px 0 #121212, 0 1px #121212, 1px 0 #121212, 0 -1px #121212;
+    cursor: pointer;
+    z-index: 1;
+    display: none;
+}
+
+.pinContainer > div > p:first-child {top: 0;}
+.pinContainer > div > p:last-child {bottom: 0;}
+
+
+.mainContainer {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    height: 92vh;
+    width: 90vw;
+}
+
+.mainContainer > div {
+    position: relative;
+    height: 40vh;
+    width: fit-content;
+    margin: auto;
+}
+
+.mainContainer > div > video {
+    max-width: 28vw;
+    height: 100%;
+}
+
+.mainContainer > div:hover > p {
+    display: block;
+}
+
+.mainContainer > div > p {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    font-family: Noto Sans;
+    font-weight: 400;
+    font-size: 1rem;
+    color: #FFFFFF;
+    letter-spacing: 2px;
+    text-shadow: -1px 0 #121212, 0 1px #121212, 1px 0 #121212, 0 -1px #121212;
+    cursor: pointer;
+    z-index: 1;
+    display: none;
+}
+
+.mainContainer > div > p:first-child {top: 0;}
+.mainContainer > div > p:last-child {bottom: 0;}
+
+.buttonContainer {
+    position: absolute;
+    display: flex;
+    bottom: 0;
+    height: 8vh;
+    width: 90vw;
+}
+
+.buttonContainerCentre {
+    display: flex;
+    flex-direction: row;
+    margin: 0 auto;
+}
+
+.buttonContainerCentre > img {
+    cursor: pointer;
+    height: 6vh;
+    width: 6vh;
+    margin: 0 1vw 2vh 1vw;
+}
+
+.buttonContainerCentre > div {
+    display: flex;
+    height: 5vh;
+    width: 7vw;
+    cursor: pointer;
+    margin: 0 1vw 2vh 1vw;
+    border: 3px solid #121212;
+    border-radius: 2px;
+}
+
+.buttonContainerCentre > div > p {
+    margin: auto;
+    font-family: Noto Sans;
+    font-weight: 400;
+    font-size: 1rem;
+    color: #121212;
+}
+
+.join {
+    border-color: #121212 !important;
+} 
+
+.leave {
+    border-color: crimson !important;
+    background-color: crimson;
+}
+
+.leave > p {
+    color: white !important;
+}
+
+.leave:hover {
+    background-color: white;
+}
+
+.leave:hover > p {
+    color: crimson !important;
+}

@@ -7,6 +7,7 @@ import {
   SET_TASKS,
   SET_EXTRAS,
   SET_EXTRA_VAL,
+  SET_MESSAGES
 } from "../action/actionTypes";
 import store from "../store";
 import config from "../config.json";
@@ -71,8 +72,14 @@ export const initProject = (id, user_email) => (dispatch) => {
         discLink,
         resources,
         notes,
+        messages
       } = res.data;
       let editable = Array(boxes.length).fill(false);
+
+      dispatch({
+        data: messages,
+        type: SET_MESSAGES,
+      });
 
       dispatch({
         data: {

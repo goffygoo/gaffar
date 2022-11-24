@@ -33,4 +33,8 @@ export const MAKE_ADMIN = "MAKE_ADMIN";
 
 export const SET_TASKS = "SET_TASKS";
 
+// messages
+
+export const SET_MESSAGES = "SET_MESSAGES";
+export const APPEND_MESSAGES = "APPEND_MESSAGES";
 

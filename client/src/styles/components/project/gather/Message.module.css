@@ -1,0 +1,54 @@
+.container {
+    display: flex;
+    flex-direction: row;
+    width: 80vw;
+    min-height: 10vh;
+    margin: 2vh auto;
+    background-color: whitesmoke;
+    padding: 5px;
+}
+
+.textContainer {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin: 0 1vw;
+}
+
+.textContainerHeader {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    margin: 1vh 0 1vh 0;
+}
+
+.textContainerHeader > h1 {
+    font-weight: 600;
+    font-size: 1.5rem;
+    color: crimson;
+    margin: 0;
+    font-family: Nunito;
+}
+
+.textContainerHeader > p {
+    margin: 0 0 0 auto;
+    color: grey;
+}
+
+.textContainer > p {
+    font-family: Nunito;
+    margin: 0;
+}
+
+.container>img {
+    cursor: pointer;
+}
+
+.profilePic {
+    height: 10vh;
+}
+
+.delete {
+    margin: 5px 0 0 auto;
+    height: 3vh;
+}

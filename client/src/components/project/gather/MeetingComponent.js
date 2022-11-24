@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import io from 'socket.io-client'
-import styles from '../../styles/components/project/Gather.module.css'
-import config from '../../config.json'
+import styles from '../../../styles/components/project/gather/Meeting.module.css'
+import config from '../../../config.json'
 import { useSelector } from 'react-redux'
 
 const URL = config.MEETING_SERVER

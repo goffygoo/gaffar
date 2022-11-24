@@ -4,6 +4,7 @@ import jwt from "jsonwebtoken";
 import Docs from "../model/Docs.js";
 import Docsbox from "../model/Docsbox.js";
 import Lists from "../model/List.js";
+import Messages from "../model/Message.js"
 
 export default function (io) {
   const home = async function (req, res) {
@@ -148,6 +149,20 @@ export default function (io) {
           }
         }
       }
+      // messages collection : 
+      let allMessages = await Messages.find({ project: req.body.project_id });
+      let allmess = [];
+      for (let message of allMessages) {
+        let sender = await Users.findById(message.sender);
+        allmess.push({
+          sender: sender.name,
+          sender_id: message.sender,
+          message_id: message._id,
+          text: message.text,
+          time_stamp: message.createdAt,
+          img: message.image
+        });
+      }
 
       return res.status(201).send({
         success: true,
@@ -163,6 +178,7 @@ export default function (io) {
         discLink: project.discLink,
         resources: project.resources,
         notes: project.notes,
+        messages: allmess,
       });
     } catch (err) {
       return res.status(404).send({

@@ -16,6 +16,7 @@ import Docs from "../components/project/Docs";
 import Extras from "../components/project/Extras";
 import Members from "../components/project/Members";
 import Mytasks from "../components/project/Mytasks";
+import Gather from "../components/project/Gather";
 import axios from "axios";
 import io from "socket.io-client";
 
@@ -24,15 +25,16 @@ import { bindActionCreators } from "redux";
 
 import * as actionLogin from "../action/actionLogin";
 import * as actionProject from "../action/actionProject";
-import Gather from "../components/project/Gather";
+import * as actionGather from "../action/actionGather";
+
 
 export default function Project() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { error, project_name } = useSelector((state) => state.project);
 
-  const { initUser, initProject, getDocs, getList, getMembers, changeExtra } =
-    bindActionCreators({ ...actionLogin, ...actionProject }, dispatch);
+  const { initUser, initProject, getDocs, getList, getMembers, changeExtra, appendMessage, deleteMessage } =
+    bindActionCreators({ ...actionLogin, ...actionProject, ...actionGather }, dispatch);
 
   const params = useParams();
 
@@ -87,6 +89,16 @@ export default function Project() {
     socket.on("getDocs", () => {
       console.log("Socket informs: Docs Changed");
       getDocs();
+    });
+    
+    socket.on("new_message_created", (message) => {
+      console.log("Socket informs: Messages Changed");
+      appendMessage(message)
+    });
+
+    socket.on("message_deleted", (message) => {
+      console.log("Socket informs: Messages Changed");
+      deleteMessage(message)
     });
 
     socket.on("getList", (data) => {
