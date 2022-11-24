@@ -21,6 +21,11 @@ const io = new Server(server, {
 });
 iofunc(io);
 
+// connect to database
+import db from "./config/mongoose.js";
+import passport from "passport";
+// console.log(db);
+
 app.use(bodyParser.json({ limit: "20mb", extended: true }));
 app.use(bodyParser.urlencoded({ limit: "20mb", extended: true }));
 
