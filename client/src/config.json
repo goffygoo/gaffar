@@ -1,4 +1,4 @@
 {
-    "SERVER" : "https://rocky-shore-27492.herokuapp.com",
+    "SERVER" : "http://localhost:8081",
     "MEETING_SERVER" : "https://desolate-lowlands-81248.herokuapp.com"
 }

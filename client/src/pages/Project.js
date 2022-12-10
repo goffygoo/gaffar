@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Branding from "../components/Branding";
 import styles from "../styles/pages/Project.module.css";
 import config from "../config.json";
@@ -17,6 +17,7 @@ import Extras from "../components/project/Extras";
 import Members from "../components/project/Members";
 import Mytasks from "../components/project/Mytasks";
 import Gather from "../components/project/Gather";
+import Editor from "../components/project/Editor";
 import axios from "axios";
 import io from "socket.io-client";
 
@@ -26,6 +27,7 @@ import { bindActionCreators } from "redux";
 import * as actionLogin from "../action/actionLogin";
 import * as actionProject from "../action/actionProject";
 import * as actionGather from "../action/actionGather";
+import * as actionEditor from "../action/actionEditor";
 
 
 export default function Project() {
@@ -33,10 +35,12 @@ export default function Project() {
   const dispatch = useDispatch();
   const { error, project_name } = useSelector((state) => state.project);
 
-  const { initUser, initProject, getDocs, getList, getMembers, changeExtra, appendMessage, deleteMessage } =
-    bindActionCreators({ ...actionLogin, ...actionProject, ...actionGather }, dispatch);
+  const { initUser, initProject, getDocs, getList, getMembers, changeExtra, appendMessage, deleteMessage, setQuillData } =
+    bindActionCreators({ ...actionLogin, ...actionProject, ...actionGather, ...actionEditor }, dispatch);
 
   const params = useParams();
+  const [socketConnection, setSocketConnection] = useState();
+
 
   useEffect(() => {
     if (error === true) return navigate("/home");
@@ -74,6 +78,7 @@ export default function Project() {
       });
 
     const socket = io(config.SERVER + "/");
+    setSocketConnection(socket);
 
     initSocket(socket);
 
@@ -83,6 +88,7 @@ export default function Project() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+
   const initSocket = (socket) => {
     socket.emit("join", params.id.slice(1));
 
@@ -90,10 +96,15 @@ export default function Project() {
       console.log("Socket informs: Docs Changed");
       getDocs();
     });
-    
+
     socket.on("new_message_created", (message) => {
       console.log("Socket informs: Messages Changed");
       appendMessage(message)
+    });
+
+    socket.on("receive-changes", (data) => {
+      console.log("Socket informs: Editor Changed");
+      setQuillData(data.contents)
     });
 
     socket.on("message_deleted", (message) => {
@@ -152,6 +163,12 @@ export default function Project() {
             navigate={navigate}
           />
           <Tabs
+            name="Editor"
+            link={`${params.id}/editor`}
+            selected={params["*"] === "editor"}
+            navigate={navigate}
+          />
+          <Tabs
             name="Members"
             link={`${params.id}/members`}
             selected={params["*"] === "members"}
@@ -180,6 +197,7 @@ export default function Project() {
             <Route exact path="/mytasks" element={<Mytasks />} />
             <Route exact path="/extras" element={<Extras />} />
             <Route exact path="/gather" element={<Gather />} />
+            <Route exact path="/editor" element={<Editor socket={socketConnection} />} />
             <Route path="/*" element={<Navigate to="/page_not_found" />} />
           </Routes>
         </div>

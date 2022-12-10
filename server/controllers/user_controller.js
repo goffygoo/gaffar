@@ -214,6 +214,7 @@ export default function (io) {
 
   const login = async function (req, res) {
     try {
+      console.log("reached login");
       let user = await Users.findOne({ email: req.body.user_email });
       // no user found
       if (!user) {
