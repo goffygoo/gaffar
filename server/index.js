@@ -9,7 +9,7 @@ import iofunc from "./config/sockets.js"
 // fire up the express app
 const app = express();
 
-const PORT = 5000;
+const PORT = 8081;
 
 const server = http.Server(app);
 

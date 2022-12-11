@@ -38,3 +38,6 @@ export const SET_TASKS = "SET_TASKS";
 export const SET_MESSAGES = "SET_MESSAGES";
 export const APPEND_MESSAGES = "APPEND_MESSAGES";
 
+// editor
+
+export const SET_QUILL_DATA = "SET_QUILL_DATA";

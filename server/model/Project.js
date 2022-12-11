@@ -6,9 +6,9 @@ const projectSchema = new mongoose.Schema({
     required: true,
   },
   list: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Lists",
-    },
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Lists",
+  },
   doc: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Docs",
@@ -27,16 +27,17 @@ const projectSchema = new mongoose.Schema({
       }
     },
   ],
-  gitLink : {
+  editor: Object,
+  gitLink: {
     type: String
   },
-  discLink : {
+  discLink: {
     type: String
   },
-  resources : {
+  resources: {
     type: String
   },
-  notes : {
+  notes: {
     type: String
   }
 });

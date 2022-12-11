@@ -7,6 +7,7 @@ import member from "./memberReducer";
 import project from "./projectReducer";
 import mytasks from "./mytasksReducer";
 import gather from "./gatherReducer"
+import editor from "./editorReducer"
 
 export default combineReducers({
   login,
@@ -16,5 +17,6 @@ export default combineReducers({
   member,
   project,
   gather,
-  mytasks
+  mytasks,
+  editor
 });

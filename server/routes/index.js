@@ -4,6 +4,7 @@ import user from "./user.js";
 import project from "./project.js";
 import docs from "./docs.js";
 import list from "./list.js"
+import editor from "./editor.js";
 import message from "./message.js"
 
 import { logger2} from '../config/middleware.js'
@@ -18,6 +19,7 @@ export default function (io) {
   router.use("/docs", docs(io));
   router.use("/list", list(io));
   router.use("/message", message(io));
+  router.use("/editor", editor(io));
   // for any further routes, access from here
   // router.use('/routerName', require('./route'));
   return router;
