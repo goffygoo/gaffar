@@ -1,0 +1,48 @@
+.outercont {
+    display: flex;
+    flex-direction: column;
+    height: 92vh;
+    width: 90vw;
+    background-color: white;
+}
+
+.editorContainer {
+    height: 75vh;
+}
+
+.controlBar {
+    display: flex;
+    flex-direction: row;
+}
+
+.syncBtn {
+    display: flex;
+    cursor: pointer;
+    margin: 1vh auto;
+    height: 7vh;
+    width: 10vw;
+    background-color: #DFDCE3;
+    border-radius: 5px;
+}
+
+.syncBtn>p {
+    margin: auto;
+    font-family: Noto Sans;
+    font-weight: 500;
+}
+
+.saveBtn {
+    display: flex;
+    cursor: pointer;
+    margin: 1vh auto;
+    height: 7vh;
+    width: 10vw;
+    background-color: #F7CE3E;
+    border-radius: 5px;
+}
+
+.saveBtn>p {
+    margin: auto;
+    font-family: Noto Sans;
+    font-weight: 500;
+}

@@ -9,11 +9,12 @@ export default function (io) {
   console.log("Editor Router loaded");
 
   router.get("/", home(io).home);
-  // router.post(
-  //   "/userInfo",
-  //   passport.authenticate("jwt", { session: false }),
-  //   userInfo
-  // );
+  router.post(
+    "/saveEditor",
+    passport.authenticate("jwt", { session: false }),
+    adminAccess,
+    home(io).saveEditor
+  );
   // router.post("/login", login);
   // for any further routes, access from here
   // router.use('/routerName', require('./route'));

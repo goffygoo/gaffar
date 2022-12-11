@@ -179,6 +179,7 @@ export default function (io) {
         resources: project.resources,
         notes: project.notes,
         messages: allmess,
+        editorContents: project.editor
       });
     } catch (err) {
       return res.status(404).send({

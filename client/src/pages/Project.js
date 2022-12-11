@@ -33,7 +33,9 @@ import * as actionEditor from "../action/actionEditor";
 export default function Project() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { error, project_name } = useSelector((state) => state.project);
+  const { project: { error, project_name, project_id },
+    editor: { contents } } = useSelector((state) => state);
+  // const { error, project_name } = useSelector((state) => state.project);
 
   const { initUser, initProject, getDocs, getList, getMembers, changeExtra, appendMessage, deleteMessage, setQuillData } =
     bindActionCreators({ ...actionLogin, ...actionProject, ...actionGather, ...actionEditor }, dispatch);
@@ -100,6 +102,11 @@ export default function Project() {
     socket.on("new_message_created", (message) => {
       console.log("Socket informs: Messages Changed");
       appendMessage(message)
+    });
+
+    socket.on("sync-data", (data) => {
+      console.log("Socket informs: Sync Editor Data");
+      setQuillData(data.contents)
     });
 
     socket.on("receive-changes", (data) => {

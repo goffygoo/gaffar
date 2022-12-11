@@ -7,7 +7,8 @@ import {
   SET_TASKS,
   SET_EXTRAS,
   SET_EXTRA_VAL,
-  SET_MESSAGES
+  SET_MESSAGES,
+  SET_QUILL_DATA
 } from "../action/actionTypes";
 import store from "../store";
 import config from "../config.json";
@@ -72,7 +73,8 @@ export const initProject = (id, user_email) => (dispatch) => {
         discLink,
         resources,
         notes,
-        messages
+        messages,
+        editorContents
       } = res.data;
       let editable = Array(boxes.length).fill(false);
 
@@ -115,6 +117,11 @@ export const initProject = (id, user_email) => (dispatch) => {
         data: tasks,
         type: SET_TASKS,
       });
+
+      dispatch({
+        data: editorContents,
+        type: SET_QUILL_DATA,
+      })
     })
     .catch((err) => {
       dispatch({
