@@ -1,4 +1,4 @@
 {
-    "SERVER" : "http://localhost:8081",
-    "MEETING_SERVER" : "https://desolate-lowlands-81248.herokuapp.com"
+    "SERVER": "https://gaffar.onrender.com",
+    "MEETING_SERVER": "https://desolate-lowlands-81248.herokuapp.com"
 }

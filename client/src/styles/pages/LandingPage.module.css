@@ -13,14 +13,14 @@
   height: 100vh;
 }
 
-.heading > p {
+.heading>p {
   font-family: Nunito;
   font-weight: 700;
   font-size: 1.5rem;
   margin: 1vh 0 0 1vw;
 }
 
-.subheading > p {
+.subheading>p {
   font-family: Montserrat;
   font-weight: 500;
   font-size: 1.1rem;
@@ -28,7 +28,7 @@
   margin: 3vh 0 0 1vw;
 }
 
-.subheading > p > span {
+.subheading>p>span {
   font-family: Shadows Into Light;
   font-weight: 700;
   font-size: 1.3rem;
@@ -66,7 +66,7 @@
   background-image: url("./../../../public/dots.svg");
 }
 
-.featureBox{
+.featureBox {
   backdrop-filter: blur(200px);
   filter: blur();
   box-shadow: 0 3rem 5rem rgba(0, 0, 0, 0.25);
@@ -76,16 +76,17 @@
   padding-top: 10vh;
   margin: 0 auto 20vh auto;
 }
+
 .aboutUs {
   display: flex;
   flex-direction: column;
-  background-color: #14A76C ;
+  background-color: #14A76C;
   background-image: url("./../../../public/hex.svg");
   min-height: 100vh;
 }
 
-.aboutUs > h1 {
-  color: #FEDC3D ;
+.aboutUs>h1 {
+  color: #FEDC3D;
   font-family: Noto Sans;
   font-weight: 900;
   margin: 8vh auto 8vh auto;
@@ -102,16 +103,17 @@
   flex-direction: row;
 }
 
-.coverPicture{
+.coverPicture {
   margin: auto 4vw auto auto;
   display: flex;
 }
-.coverPicture > img{
+
+.coverPicture>img {
   height: 65vh;
   width: auto;
 }
 
-.headertext{
+.headertext {
   display: flex;
   flex-direction: column;
   height: 50vh;
@@ -119,12 +121,13 @@
   margin: 2vh auto auto 4vw;
 }
 
-.logo{
+.logo {
   display: flex;
 
 }
-.logo > img{
-  height : 15vh;
+
+.logo>img {
+  height: 15vh;
   width: auto;
 }
 
@@ -145,13 +148,14 @@
   position: relative;
   display: flex;
   text-decoration: none;
-  cursor:pointer;
+  cursor: pointer;
   overflow: hidden;
 }
 
 .diveInBox:hover .wave {
   top: -120px;
 }
+
 .diveInBox span {
   position: relative;
   z-index: 1;
@@ -162,6 +166,7 @@
   font-size: 1rem;
   letter-spacing: 8px;
 }
+
 .diveInBox .wave {
   width: 200px;
   height: 200px;
@@ -172,7 +177,9 @@
   top: -80px;
   transition: 0.4s;
 }
-.diveInBox .wave::before, .diveInBox .wave::after {
+
+.diveInBox .wave::before,
+.diveInBox .wave::after {
   width: 200%;
   height: 200%;
   content: "";
@@ -181,11 +188,13 @@
   left: 40%;
   transform: translate(-50%, -75%);
 }
+
 .diveInBox .wave::before {
   border-radius: 45%;
   background-color: #141414;
   animation: wave 5s linear infinite;
 }
+
 .diveInBox .wave::after {
   border-radius: 40%;
   background-color: rgba(20, 20, 20, 0.5);
@@ -196,6 +205,7 @@
   0% {
     transform: translate(-50%, -75%) rotate(0deg);
   }
+
   100% {
     transform: translate(-50%, -75%) rotate(360deg);
   }
@@ -208,7 +218,7 @@
   flex-direction: column;
 }
 
-.sec2heading > h2{
+.sec2heading>h2 {
   color: #FFFFFF;
   font-family: Nunito;
   font-weight: 700;
@@ -216,7 +226,7 @@
   font-size: 1.8rem;
 }
 
-.sec2heading > h1 {
+.sec2heading>h1 {
   color: #35da3d;
   letter-spacing: 8px;
   font-family: Noto Sans;
@@ -225,7 +235,7 @@
   font-size: 3rem;
 }
 
-.sec2heading > p {
+.sec2heading>p {
   color: #FFE400;
   font-family: Montserrat;
   font-weight: 400;
@@ -235,7 +245,7 @@
   font-size: 1.4rem;
 }
 
-.sec2 > img {
+.sec2>img {
   width: 90%;
   height: auto;
   margin: 5vh auto 20vh auto;
@@ -244,20 +254,20 @@
 
 
 
-.featuresLeft{
+.featuresLeft {
   display: flex;
   flex-direction: row;
   height: 35vh;
   width: 100%;
 }
 
-.featuresLeft > img{
+.featuresLeft>img {
   height: 100%;
   width: auto;
   margin-left: 3vw;
 }
 
-.textDescriptionLeft{
+.textDescriptionLeft {
   height: 30vh;
   width: 35vw;
   margin: 0 auto 0 10vw;
@@ -265,7 +275,7 @@
   flex-direction: column;
 }
 
-.textDescriptionLeft > h3 {
+.textDescriptionLeft>h3 {
   font-family: Noto Sans;
   font-weight: 900;
   margin-top: 0;
@@ -273,7 +283,7 @@
   color: #D79922;
 }
 
-.textDescriptionLeft > p {
+.textDescriptionLeft>p {
   font-family: Montserrat;
   font-weight: 600;
   margin: 0 0;
@@ -281,7 +291,7 @@
 }
 
 
-.pointerRight{
+.pointerRight {
   margin-left: 18vw;
   display: flex;
 }
@@ -294,13 +304,13 @@
   margin: 0 5vw 0 auto;
 }
 
-.featuresRight > img{
+.featuresRight>img {
   height: 100%;
   width: auto;
   margin-right: 3vw;
 }
 
-.textDescriptionRight{
+.textDescriptionRight {
   display: flex;
   width: 35vw;
   margin: 0 10vw 0 auto;
@@ -309,7 +319,7 @@
 
 }
 
-.textDescriptionRight > h3 {
+.textDescriptionRight>h3 {
   font-family: Noto Sans;
   font-weight: 900;
   margin-top: 0;
@@ -317,15 +327,15 @@
   color: #D79922;
 }
 
-.textDescriptionRight > p{
+.textDescriptionRight>p {
   font-family: Montserrat;
   font-weight: 600;
   margin: 0 0;
   color: #4056A1;
 }
 
-.pointerLeft{
-  
+.pointerLeft {
+
   display: flex;
   width: 50vw;
   flex-direction: row;
@@ -334,11 +344,11 @@
 }
 
 
-.sec3 > h1 {
+.sec3>h1 {
   font-weight: 900;
   font-family: Noto Sans;
   background-color: #EFE2BA;
-  
+
   margin: 8vh auto 8vh auto;
   color: #F13C20;
   font-size: 3rem;
@@ -383,7 +393,7 @@
   color: #747474;
 }
 
-.description > img {
+.description>img {
   height: 1.3rem;
 }
 
@@ -400,7 +410,7 @@
   background: url("./../../../public/devl1.svg") white;
   background-position: center right;
   background-repeat: no-repeat;
-  background-size: auto 100%; 
+  background-size: auto 100%;
   transition: 1s ease-in;
 }
 
@@ -410,7 +420,7 @@
   height: 100%;
   width: 50%;
   right: 0;
-  
+
   background: url("./../../../public/devr1.svg") white;
   background-position: center left;
   background-repeat: no-repeat;
@@ -426,8 +436,6 @@
   transform: translatex(-300px);
 }
 
-
-
 .flap2 {
   width: 100%;
   height: 100%;
@@ -438,10 +446,10 @@
   content: "";
   height: 100%;
   width: 50%;
-  background: url("./../../../public/devl2.svg") white;
+  background: url("./../../../public/devl4.svg") white;
   background-position: center right;
   background-repeat: no-repeat;
-  background-size: auto 100%; 
+  background-size: auto 100%;
   transition: 1s ease-in;
 }
 
@@ -451,8 +459,8 @@
   height: 100%;
   width: 50%;
   right: 0;
-  
-  background: url("./../../../public/devr2.svg") white;
+
+  background: url("./../../../public/devr4.svg") white;
   background-position: center left;
   background-repeat: no-repeat;
   background-size: auto 100%;
@@ -481,7 +489,7 @@
   background: url("./../../../public/devl3.svg") white;
   background-position: center right;
   background-repeat: no-repeat;
-  background-size: auto 100%; 
+  background-size: auto 100%;
   transition: 1s ease-in;
 }
 
@@ -491,7 +499,7 @@
   height: 100%;
   width: 50%;
   right: 0;
-  
+
   background: url("./../../../public/devr3.svg") white;
   background-position: center left;
   background-repeat: no-repeat;
@@ -513,11 +521,11 @@
   margin-top: 5vh;
 }
 
-.social > a {
-  height: 5vh; 
+.social>a {
+  height: 5vh;
   margin: auto;
 }
 
-.social > a > img {
+.social>a>img {
   height: 100%;
 }
