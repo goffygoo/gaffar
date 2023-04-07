@@ -446,7 +446,7 @@
   content: "";
   height: 100%;
   width: 50%;
-  background: url("./../../../public/devl4.svg") white;
+  background: url("./../../../public/devl2.svg") white;
   background-position: center right;
   background-repeat: no-repeat;
   background-size: auto 100%;
@@ -460,7 +460,7 @@
   width: 50%;
   right: 0;
 
-  background: url("./../../../public/devr4.svg") white;
+  background: url("./../../../public/devr2.svg") white;
   background-position: center left;
   background-repeat: no-repeat;
   background-size: auto 100%;
