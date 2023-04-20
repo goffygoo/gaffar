@@ -15,7 +15,7 @@ function App() {
           <Route exact path="/" element={<LandingPage />} />
           <Route exact path="/login" element={<Login />} />
           <Route exact path="/home" element={<Home />} />
-          <Route exact path="/project:id/*" element={<Project />} />
+          <Route exact path="/project/:id/*" element={<Project />} />
           <Route path="/*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

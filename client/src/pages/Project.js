@@ -72,7 +72,7 @@ export default function Project() {
         if (res.data.success === false) throw Error("Error");
 
         initUser(res.data.user, token);
-        initProject(params.id.slice(1), user_email);
+        initProject(params.id, user_email);
       })
       .catch((err) => {
         console.log(err);
@@ -92,7 +92,7 @@ export default function Project() {
 
 
   const initSocket = (socket) => {
-    socket.emit("join", params.id.slice(1));
+    socket.emit("join", params);
 
     socket.on("getDocs", () => {
       console.log("Socket informs: Docs Changed");
