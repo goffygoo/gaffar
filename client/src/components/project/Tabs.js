@@ -8,7 +8,7 @@ export default function Tabs(props) {
     <div
       className={`${styles.container} ${selected ? styles.selected : ""}`}
       onClick={() => {
-        navigate(`/project${link}`);
+        navigate(`/project/${link}`);
       }}
     >
       <p>{name}</p>
