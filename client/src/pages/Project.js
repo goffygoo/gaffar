@@ -92,7 +92,7 @@ export default function Project() {
 
 
   const initSocket = (socket) => {
-    socket.emit("join", params);
+    socket.emit("join", params.id);
 
     socket.on("getDocs", () => {
       console.log("Socket informs: Docs Changed");
