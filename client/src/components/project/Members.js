@@ -19,7 +19,7 @@ export default function Members() {
 
   const invite = () => {
     const req = {
-      project_id: params.id.slice(1),
+      project_id: params.id,
       new_user_email: text,
       user_email: user.email,
     };
