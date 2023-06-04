@@ -5,6 +5,7 @@ import routes from "./routes/index.js";
 import { Server } from "socket.io";
 import http from "http";
 import iofunc from "./config/sockets.js"
+import { preventServerFromSleeping } from './config/selfPinging.js'
 
 // fire up the express app
 const app = express();
@@ -41,3 +42,5 @@ server.listen(process.env.PORT || PORT, function (err) {
   }
   console.log("hey there i am using project-y on port : ", PORT);
 });
+
+preventServerFromSleeping()

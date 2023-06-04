@@ -7,13 +7,11 @@ import list from "./list.js"
 import editor from "./editor.js";
 import message from "./message.js"
 
-import { logger2} from '../config/middleware.js'
-
 export default function (io) {
   const router = express.Router();
   console.log("Router loaded");
 
-  router.get("/", logger2 ,home(io).home);
+  router.get("/", home(io).home);
   router.use("/user", user(io));
   router.use("/project", project(io));
   router.use("/docs", docs(io));
