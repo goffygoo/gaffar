@@ -56,7 +56,7 @@ export default function List() {
                   {is_admin ?
                     <img onClick={() => delBoard(id)} className={styles.deleteBtn} src='/delete.svg' alt='delete' />
                     : null}
-                  <img src="/open.svg" alt="" onClick={() => openBoard(id, navigate, `/project${params.id}/board`)} />
+                  <img src="/open.svg" alt="" onClick={() => openBoard(id, navigate, `/project/${params.id}/board`)} />
                 </div>
               </div>
               <div className={styles.subContainer}>
